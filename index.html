@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zentry Banking - Modern Banking for the Digital Age</title>
   <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/landing.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -41,30 +40,36 @@
   </div>
   
   <!-- Header/Navigation -->
-  <header class="header glass-bg">
+  <header class="header">
     <div class="container">
-      <nav class="navbar">
-        <a href="#" class="logo">Zentry</a>
+      <div class="header-container">
+        <a href="#" class="header-logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+            <line x1="2" y1="10" x2="22" y2="10"></line>
+          </svg>
+          <span>Zentry</span>
+        </a>
         
-        <ul class="nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#app-showcase">App</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <nav class="header-nav">
+          <a href="#features" class="header-nav-link">Features</a>
+          <a href="#app-showcase" class="header-nav-link">App</a>
+          <a href="#testimonials" class="header-nav-link">Testimonials</a>
+          <a href="#pricing" class="header-nav-link">Pricing</a>
+          <a href="#contact" class="header-nav-link">Contact</a>
+        </nav>
         
-        <div class="nav-actions">
+        <div class="header-actions">
           <a href="login.html" class="btn btn-secondary">Sign In</a>
           <a href="register.html" class="btn btn-primary">Get Started</a>
+          
+          <button class="mobile-menu-toggle d-none d-md-flex">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        
-        <button class="mobile-menu-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
+      </div>
     </div>
   </header>
   
@@ -111,7 +116,7 @@
   <!-- Features Section -->
   <section id="features" class="features">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title text-center">
         <h2>Experience Smart Banking</h2>
         <p>Our platform combines security, convenience, and innovation to deliver an exceptional banking experience.</p>
       </div>
@@ -190,7 +195,7 @@
   <!-- App Screenshots Section -->
   <section id="app-showcase" class="app-showcase">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title text-center">
         <h2>Explore Our Banking Platform</h2>
         <p>Take a closer look at our sleek, intuitive interface designed to make banking a pleasure.</p>
       </div>
@@ -218,7 +223,7 @@
   <!-- Testimonials Section -->
   <section id="testimonials" class="testimonials">
     <div class="container">
-      <div class="section-title">
+      <div class="section-title text-center">
         <h2>What Our Users Say</h2>
         <p>Don't take our word for it - hear from our valued customers about their Zentry experience.</p>
       </div>
