@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Status - Zentry Banking</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/status.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">Zentry</a>
+      </div>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="apply.html" class="btn btn-primary">Apply Now</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="status-main">
+    <div class="container">
+      <div class="status-container">
+        <div class="status-header">
+          <h1>Check Application Status</h1>
+          <p>Enter your application ID to check the status of your application</p>
+        </div>
+        
+        <form id="statusForm" class="status-form">
+          <div class="form-group">
+            <label for="applicationId">Application ID</label>
+            <input type="text" id="applicationId" name="applicationId" placeholder="Enter your application ID" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Check Status</button>
+        </form>
+        
+        <div class="status-result" id="statusResult">
+          <!-- Status results will be displayed here -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2023 Zentry Banking. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/status.js"></script>
+</body>
+</html>

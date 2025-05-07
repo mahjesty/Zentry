@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open an Account - Zentry Banking</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/forms.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html">Zentry</a>
+        </div>
+        <div class="nav-links">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-secondary">Login</a>
+          <a href="application.html" class="btn btn-primary">Open an Account</a>
+        </div>
+        <button class="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="mobile-menu-header">
+      <div class="logo">Zentry</div>
+      <button class="mobile-menu-close">&times;</button>
+    </div>
+    <div class="mobile-menu-body">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <div class="mobile-auth-buttons">
+        <a href="login.html" class="btn btn-secondary">Login</a>
+        <a href="admin-login.html" class="btn btn-secondary">Admin Login</a>
+        <a href="application.html" class="btn btn-primary">Open an Account</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Form Section -->
+  <section class="form-section">
+    <div class="container">
+      <div class="form-container">
+        <div class="form-header">
+          <h1>Open a Zentry Account</h1>
+          <p>Fill out the form below to apply for a new account. We'll review your application and get back to you shortly.</p>
+        </div>
+        
+        <div id="application-form-container">
+          <form id="application-form" class="application-form">
+            <div class="form-group">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" id="fullName" name="fullName" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="dob" class="form-label">Date of Birth</label>
+              <input type="date" id="dob" name="dob" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="address" class="form-label">Address</label>
+              <textarea id="address" name="address" class="form-control" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="nationalId" class="form-label">National ID</label>
+              <input type="text" id="nationalId" name="nationalId" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-checkbox">
+                <input type="checkbox" required>
+                <span>I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></span>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Submit Application</button>
+          </form>
+        </div>
+        
+        <div id="success-message" class="success-message" style="display: none;">
+          <div class="success-icon"></div>
+          <h2>Application Submitted Successfully!</h2>
+          <p>Thank you for applying for a Zentry account. Your application has been received and is under review.</p>
+          <div class="application-id-container">
+            <p>Your Application ID:</p>
+            <h3 id="application-id"></h3>
+            <p class="text-muted">Please save this ID to check your application status later.</p>
+          </div>
+          <div class="success-actions">
+            <a href="status.html" class="btn btn-primary">Check Application Status</a>
+            <a href="index.html" class="btn btn-secondary">Return to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h3>Zentry</h3>
+          <p>Banking for the digital age</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-column">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+          </div>
+          <div class="footer-links-column">
+            <h4>Resources</h4>
+            <a href="#">Blog</a>
+            <a href="#">Help Center</a>
+            <a href="#">FAQs</a>
+          </div>
+          <div class="footer-links-column">
+            <h4>Legal</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Security</a>
+          </div>
+        </div>
+        <div class="footer-social">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon facebook-icon"></a>
+            <a href="#" class="social-icon twitter-icon"></a>
+            <a href="#" class="social-icon instagram-icon"></a>
+            <a href="#" class="social-icon linkedin-icon"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Zentry. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/application.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Zentry Banking</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <aside class="sidebar admin-sidebar">
+    <div class="sidebar-header">
+      <a href="admin-dashboard.html" class="sidebar-logo">Zentry Admin</a>
+      <button class="sidebar-toggle" aria-label="Toggle sidebar"></button>
+    </div>
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        <li class="nav-item active">
+          <a href="admin-dashboard.html" class="nav-link">
+            <div class="nav-icon dashboard"></div>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <div class="nav-icon applications"></div>
+            <span>Applications</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <div class="nav-icon users"></div>
+            <span>Users</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <div class="nav-icon accounts"></div>
+            <span>Accounts</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <div class="nav-icon transactions"></div>
+            <span>Transactions</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <div class="nav-icon reports"></div>
+            <span>Reports</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <div class="nav-icon settings"></div>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="#" id="adminLogoutBtn" class="logout-btn">
+        <div class="nav-icon logout"></div>
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <header class="dashboard-header admin-header">
+      <div class="header-search">
+        <div class="search-icon"></div>
+        <input type="text" placeholder="Search...">
+      </div>
+      <div class="header-actions">
+        <button class="notification-btn" aria-label="Notifications">
+          <div class="notification-icon"></div>
+          <span class="notification-badge">5</span>
+        </button>
+        <div class="user-profile">
+          <div class="user-avatar admin-avatar">
+            <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+          </div>
+          <div class="user-info">
+            <span class="user-name">Admin User</span>
+            <span class="user-role">System Administrator</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="welcome-section">
+        <h1>Admin Dashboard</h1>
+        <p class="date-display" id="adminCurrentDate"></p>
+      </div>
+
+      <div class="stats-overview">
+        <div class="stat-card">
+          <div class="stat-icon users"></div>
+          <div class="stat-content">
+            <h3>Total Users</h3>
+            <p class="stat-value">2,458</p>
+            <p class="stat-change positive">+12% from last month</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon applications"></div>
+          <div class="stat-content">
+            <h3>New Applications</h3>
+            <p class="stat-value">48</p>
+            <p class="stat-change positive">+8% from last week</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon accounts"></div>
+          <div class="stat-content">
+            <h3>Active Accounts</h3>
+            <p class="stat-value">3,642</p>
+            <p class="stat-change positive">+5% from last month</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon transactions"></div>
+          <div class="stat-content">
+            <h3>Daily Transactions</h3>
+            <p class="stat-value">$1.2M</p>
+            <p class="stat-change negative">-3% from yesterday</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="pending-applications">
+          <div class="section-header">
+            <h2>Pending Applications</h2>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="applications-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="applicationsTableBody">
+                <!-- Application rows will be dynamically inserted here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="system-activity">
+          <div class="section-header">
+            <h2>System Activity</h2>
+          </div>
+          <div class="activity-list" id="activityList">
+            <!-- Activity items will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="user-management">
+        <div class="section-header">
+          <h2>Recent Users</h2>
+          <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="users-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Account Type</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <!-- User rows will be dynamically inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

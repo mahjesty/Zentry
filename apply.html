@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply - Zentry Banking</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/apply.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">Zentry</a>
+      </div>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="apply-main">
+    <div class="container">
+      <div class="apply-container">
+        <div class="apply-header">
+          <h1>Apply for an Account</h1>
+          <p>Complete the form below to start your application</p>
+        </div>
+        
+        <div class="progress-bar">
+          <div class="progress-step active" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-label">Personal Info</div>
+          </div>
+          <div class="progress-step" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-label">Contact Details</div>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-label">Financial Info</div>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-number">4</div>
+            <div class="step-label">Review</div>
+          </div>
+        </div>
+        
+        <form id="applicationForm" class="apply-form">
+          <!-- Step 1: Personal Information -->
+          <div class="form-step active" data-step="1">
+            <h2>Personal Information</h2>
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+              <label for="ssn">Social Security Number</label>
+              <input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" required>
+            </div>
+            <div class="form-group">
+              <label for="idType">ID Type</label>
+              <select id="idType" name="idType" required>
+                <option value="">Select ID Type</option>
+                <option value="driver">Driver's License</option>
+                <option value="passport">Passport</option>
+                <option value="state">State ID</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="idNumber">ID Number</label>
+              <input type="text" id="idNumber" name="idNumber" required>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-primary next-step">Continue</button>
+            </div>
+          </div>
+          
+          <!-- Step 2: Contact Information -->
+          <div class="form-step" data-step="2">
+            <h2>Contact Information</h2>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="address">Street Address</label>
+              <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="state">State</label>
+                <select id="state" name="state" required>
+                  <option value="">Select State</option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <!-- Add all states here -->
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="zip">ZIP Code</label>
+                <input type="text" id="zip" name="zip" required>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline prev-step">Back</button>
+              <button type="button" class="btn btn-primary next-step">Continue</button>
+            </div>
+          </div>
+          
+          <!-- Step 3: Financial Information -->
+          <div class="form-step" data-step="3">
+            <h2>Financial Information</h2>
+            <div class="form-group">
+              <label for="employment">Employment Status</label>
+              <select id="employment" name="employment" required>
+                <option value="">Select Status</option>
+                <option value="employed">Employed</option>
+                <option value="self-employed">Self-Employed</option>
+                <option value="unemployed">Unemployed</option>
+                <option value="retired">Retired</option>
+                <option value="student">Student</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="income">Annual Income</label>
+              <input type="number" id="income" name="income" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="accountType">Account Type</label>
+              <select id="accountType" name="accountType" required>
+                <option value="">Select Account Type</option>
+                <option value="checking">Checking Account</option>
+                <option value="savings">Savings Account</option>
+                <option value="both">Both Checking & Savings</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Do you have any existing loans?</label>
+              <div class="radio-group">
+                <input type="radio" id="loansYes" name="existingLoans" value="yes">
+                <label for="loansYes">Yes</label>
+                <input type="radio" id="loansNo" name="existingLoans" value="no">
+                <label for="loansNo">No</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>How did you hear about us?</label>
+              <select id="referral" name="referral">
+                <option value="">Select Option</option>
+                <option value="search">Search Engine</option>
+                <option value="social">Social Media</option>
+                <option value="friend">Friend/Family</option>
+                <option value="ad">Advertisement</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline prev-step">Back</button>
+              <button type="button" class="btn btn-primary next-step">Review Application</button>
+            </div>
+          </div>
+          
+          <!-- Step 4: Review Information -->
+          <div class="form-step" data-step="4">
+            <h2>Review Your Application</h2>
+            <div class="review-section">
+              <h3>Personal Information</h3>
+              <div class="review-data" id="reviewPersonal"></div>
+            </div>
+            <div class="review-section">
+              <h3>Contact Information</h3>
+              <div class="review-data" id="reviewContact"></div>
+            </div>
+            <div class="review-section">
+              <h3>Financial Information</h3>
+              <div class="review-data" id="reviewFinancial"></div>
+            </div>
+            <div class="form-group">
+              <div class="checkbox-group">
+                <input type="checkbox" id="termsAgree" name="termsAgree" required>
+                <label for="termsAgree">I agree to the <a href="#" target="_blank">Terms and Conditions</a> and <a href="#" target="_blank">Privacy Policy</a></label>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline prev-step">Back</button>
+              <button type="submit" class="btn btn-primary">Submit Application</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2023 Zentry Banking. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="success-modal" id="successModal">
+    <div class="modal-content">
+      <div class="modal-icon success"></div>
+      <h2>Application Submitted!</h2>
+      <p>Your application has been successfully submitted. Your application ID is: <span id="applicationId"></span></p>
+      <p>You can check the status of your application using this ID.</p>
+      <div class="modal-actions">
+        <a href="status.html" class="btn btn-outline">Check Status</a>
+        <a href="index.html" class="btn btn-primary">Return to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/apply.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Zentry Banking</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">Zentry</div>
+        <button id="sidebar-toggle" class="sidebar-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="sidebar-nav-item active">
+            <a href="dashboard.html" class="sidebar-nav-link">
+              <div class="sidebar-nav-icon dashboard-icon"></div>
+              <span class="sidebar-nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" class="sidebar-nav-link">
+              <div class="sidebar-nav-icon accounts-icon"></div>
+              <span class="sidebar-nav-text">Accounts</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" class="sidebar-nav-link">
+              <div class="sidebar-nav-icon transfer-icon"></div>
+              <span class="sidebar-nav-text">Transfer</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" class="sidebar-nav-link">
+              <div class="sidebar-nav-icon transactions-icon"></div>
+              <span class="sidebar-nav-text">Transactions</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item">
+            <a href="#" class="sidebar-nav-link">
+              <div class="sidebar-nav-icon settings-icon"></div>
+              <span class="sidebar-nav-text">Settings</span>
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li class="sidebar-nav-item">
+            <a href="#" class="sidebar-nav-link logout-icon">
+              <div class="sidebar-nav-icon logout-icon"></div>
+              <span class="sidebar-nav-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <p class="sidebar-footer-text">© 2025 Zentry Banking</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Navigation -->
+      <div class="top-nav">
+        <div class="welcome-message">
+          <h2>Welcome back, <span id="user-name">Alex</span></h2>
+          <p class="date" id="current-date">Wednesday, May 7, 2025</p>
+        </div>
+        <div class="user-profile">
+          <div class="notification">
+            <div class="notification-icon"></div>
+            <span class="notification-badge">3</span>
+          </div>
+          <div class="avatar">A</div>
+        </div>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard">
+        <!-- Balance Cards -->
+        <div class="section-header">
+          <h2 class="section-title">Your Accounts</h2>
+        </div>
+        <div class="balance-cards">
+          <div class="balance-card primary">
+            <div class="card-header">
+              <h4>Main Account</h4>
+              <span class="card-type">Checking</span>
+            </div>
+            <div class="card-body">
+              <div class="balance" id="main-balance">$12,456.78</div>
+              <div class="card-number">**** **** **** 4567</div>
+            </div>
+            <div class="card-footer">
+              <div class="trend positive">
+                <span class="trend-icon">↑</span>
+                <span>2.4%</span>
+                <span class="trend-period">this month</span>
+              </div>
+              <button class="btn btn-outline">View Details</button>
+            </div>
+          </div>
+          <div class="balance-card secondary">
+            <div class="card-header">
+              <h4>Savings Account</h4>
+              <span class="card-type">Savings</span>
+            </div>
+            <div class="card-body">
+              <div class="balance" id="savings-balance">$45,678.90</div>
+              <div class="card-number">**** **** **** 7890</div>
+            </div>
+            <div class="card-footer">
+              <div class="trend positive">
+                <span class="trend-icon">↑</span>
+                <span>1.2%</span>
+                <span class="trend-period">this month</span>
+              </div>
+              <button class="btn btn-outline">View Details</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section-header">
+          <h2 class="section-title">Quick Actions</h2>
+        </div>
+        <div class="action-buttons">
+          <div class="action-button">
+            <div class="action-icon transfer-action"></div>
+            <span class="action-text">Transfer</span>
+          </div>
+          <div class="action-button">
+            <div class="action-icon bills-action"></div>
+            <span class="action-text">Pay Bills</span>
+          </div>
+          <div class="action-button">
+            <div class="action-icon analytics-action"></div>
+            <span class="action-text">Analytics</span>
+          </div>
+          <div class="action-button">
+            <div class="action-icon investments-action"></div>
+            <span class="action-text">Investments</span>
+          </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="section-header">
+          <h2 class="section-title">Recent Transactions</h2>
+          <a href="#" class="view-all">View All</a>
+        </div>
+        <div class="transactions-table-container">
+          <table class="transactions-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-body">
+              <!-- Transactions will be dynamically inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
