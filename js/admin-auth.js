@@ -1,53 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Helper function to generate a unique ID
-  function generateId() {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-  }
-
-  // Helper function to save data to localStorage
-  function saveToStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
-  }
-
-  // Admin login form submission
-  const adminLoginForm = document.getElementById("adminLoginForm")
+  const adminLoginForm = document.getElementById("admin-login-form")
 
   if (adminLoginForm) {
-    adminLoginForm.addEventListener("submit", function (e) {
-      e.preventDefault()
+    adminLoginForm.addEventListener("submit", (event) => {
+      event.preventDefault()
 
-      const username = document.getElementById("adminUsername").value
-      const password = document.getElementById("adminPassword").value
+      const email = document.getElementById("email").value.trim()
+      const password = document.getElementById("password").value
 
       // Simple validation
-      if (!username || !password) {
-        alert("Please enter both admin ID and password.")
+      if (!email || !password) {
+        alert("Please enter both email and password.")
         return
       }
 
-      // Simulate login API call
-      const submitButton = this.querySelector('button[type="submit"]')
-      const originalText = submitButton.textContent
+      // In a real application, this would be an API call to authenticate the admin
+      // For demo purposes, we'll just simulate a successful login
 
-      submitButton.disabled = true
-      submitButton.textContent = "Logging in..."
+      // Store admin info in localStorage
+      const adminData = {
+        email: email,
+        name: email.split("@")[0], // Extract name from email for demo
+        isLoggedIn: true,
+        role: "admin",
+      }
 
-      // For demo purposes, accept any credentials
-      setTimeout(() => {
-        // Store admin info in localStorage
-        const admin = {
-          id: generateId(),
-          username: username,
-          name: "Admin User",
-          email: "admin@zentrybank.com",
-          role: "admin",
-        }
+      localStorage.setItem("zentry_user", JSON.stringify(adminData))
 
-        saveToStorage("currentAdmin", admin)
-
-        // Redirect to admin dashboard
-        window.location.href = "admin-dashboard.html"
-      }, 1500)
+      // Redirect to admin dashboard
+      window.location.href = "admin-dashboard.html"
     })
   }
 })

@@ -75,10 +75,11 @@ function checkAuth() {
 
   // Check if user is logged in
   if (!userData.isLoggedIn) {
-    // Redirect to login page if not on login or index page
+    // Redirect to login page if not on login, admin-login, or index page
     const currentPage = window.location.pathname.split("/").pop()
     if (
       currentPage !== "login.html" &&
+      currentPage !== "admin-login.html" &&
       currentPage !== "index.html" &&
       currentPage !== "" &&
       currentPage !== "application.html" &&
@@ -88,10 +89,14 @@ function checkAuth() {
       return false
     }
   } else {
-    // If user is logged in and trying to access login page, redirect to dashboard
+    // If user is logged in and trying to access login page, redirect to appropriate dashboard
     const currentPage = window.location.pathname.split("/").pop()
     if (currentPage === "login.html") {
-      window.location.href = "dashboard.html"
+      if (userData.role === "admin") {
+        window.location.href = "admin-dashboard.html"
+      } else {
+        window.location.href = "dashboard.html"
+      }
       return false
     }
   }
