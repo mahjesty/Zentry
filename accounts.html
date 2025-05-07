@@ -1,0 +1,432 @@
+&lt;!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Accounts | Zentry Banking</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/accounts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        &lt;!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="/placeholder.svg?height=40&width=140&query=Zentry+Banking+Logo" alt="Zentry Banking">
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="accounts.html">
+                            <i class="fas fa-wallet"></i>
+                            <span>Accounts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="transactions.html">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transactions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="transfer.html">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Transfer</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="payments.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cards.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Cards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </a>
+                <a href="#" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        &lt;!-- Main Content -->
+        <main class="main-content">
+            &lt;!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search accounts...">
+                </div>
+                <div class="header-actions">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="/placeholder.svg?height=40&width=40&query=user+avatar" alt="User Avatar" class="avatar">
+                        <div class="user-info">
+                            <p class="user-name">John Doe</p>
+                            <p class="user-role">Personal Account</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            &lt;!-- Accounts Content -->
+            <div class="dashboard-content">
+                <div class="page-header">
+                    <h1>My Accounts</h1>
+                    <div class="page-actions">
+                        <button class="btn-secondary">
+                            <i class="fas fa-plus"></i>
+                            <span>Open New Account</span>
+                        </button>
+                        <button class="btn-outline">
+                            <i class="fas fa-link"></i>
+                            <span>Link External Account</span>
+                        </button>
+                    </div>
+                </div>
+
+                &lt;!-- Account Summary -->
+                <div class="accounts-summary">
+                    <div class="summary-card total">
+                        <div class="summary-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Total Balance</h3>
+                            <p class="summary-amount">$24,223.25</p>
+                            <p class="summary-change positive">+$1,250.45 (5.4%) this month</p>
+                        </div>
+                    </div>
+                    <div class="summary-card income">
+                        <div class="summary-icon">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Income</h3>
+                            <p class="summary-amount">$4,250.00</p>
+                            <p class="summary-period">This Month</p>
+                        </div>
+                    </div>
+                    <div class="summary-card expense">
+                        <div class="summary-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Expenses</h3>
+                            <p class="summary-amount">$2,840.75</p>
+                            <p class="summary-period">This Month</p>
+                        </div>
+                    </div>
+                    <div class="summary-card savings">
+                        <div class="summary-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="summary-details">
+                            <h3>Savings Rate</h3>
+                            <p class="summary-amount">33.2%</p>
+                            <p class="summary-change positive">+2.5% from last month</p>
+                        </div>
+                    </div>
+                </div>
+
+                &lt;!-- Account Cards -->
+                <div class="accounts-section">
+                    <div class="section-header">
+                        <h2>My Accounts</h2>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="cards">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button class="view-btn" data-view="list">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="accounts-grid">
+                        &lt;!-- Checking Account Card -->
+                        <div class="account-detail-card">
+                            <div class="card-header">
+                                <div class="account-type checking">
+                                    <i class="fas fa-wallet"></i>
+                                    <h3>Checking Account</h3>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn-icon" title="More Options">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="account-number">**** **** **** 4567</div>
+                                <div class="account-balance">
+                                    <span class="balance-label">Available Balance</span>
+                                    <span class="balance-amount">$8,942.50</span>
+                                </div>
+                                <div class="account-info">
+                                    <div class="info-item">
+                                        <span class="info-label">Current Balance</span>
+                                        <span class="info-value">$8,942.50</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Interest Rate</span>
+                                        <span class="info-value">0.01% APY</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="transactions.html?account=checking" class="btn-text">
+                                    <i class="fas fa-list"></i>
+                                    <span>Transactions</span>
+                                </a>
+                                <a href="transfer.html?from=checking" class="btn-text">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Transfer</span>
+                                </a>
+                                <a href="#" class="btn-text">
+                                    <i class="fas fa-file-invoice"></i>
+                                    <span>Statements</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        &lt;!-- Savings Account Card -->
+                        <div class="account-detail-card">
+                            <div class="card-header">
+                                <div class="account-type savings">
+                                    <i class="fas fa-piggy-bank"></i>
+                                    <h3>Savings Account</h3>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn-icon" title="More Options">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="account-number">**** **** **** 7890</div>
+                                <div class="account-balance">
+                                    <span class="balance-label">Available Balance</span>
+                                    <span class="balance-amount">$15,280.75</span>
+                                </div>
+                                <div class="account-info">
+                                    <div class="info-item">
+                                        <span class="info-label">Current Balance</span>
+                                        <span class="info-value">$15,280.75</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Interest Rate</span>
+                                        <span class="info-value">0.50% APY</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="transactions.html?account=savings" class="btn-text">
+                                    <i class="fas fa-list"></i>
+                                    <span>Transactions</span>
+                                </a>
+                                <a href="transfer.html?from=savings" class="btn-text">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Transfer</span>
+                                </a>
+                                <a href="#" class="btn-text">
+                                    <i class="fas fa-file-invoice"></i>
+                                    <span>Statements</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        &lt;!-- Credit Card -->
+                        <div class="account-detail-card">
+                            <div class="card-header">
+                                <div class="account-type credit">
+                                    <i class="fas fa-credit-card"></i>
+                                    <h3>Credit Card</h3>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn-icon" title="More Options">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="account-number">**** **** **** 1234</div>
+                                <div class="account-balance">
+                                    <span class="balance-label">Current Balance</span>
+                                    <span class="balance-amount">$1,240.30</span>
+                                </div>
+                                <div class="account-info">
+                                    <div class="info-item">
+                                        <span class="info-label">Available Credit</span>
+                                        <span class="info-value">$8,759.70</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Payment Due</span>
+                                        <span class="info-value">$35.00 on May 15</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="transactions.html?account=credit" class="btn-text">
+                                    <i class="fas fa-list"></i>
+                                    <span>Transactions</span>
+                                </a>
+                                <a href="payments.html?account=credit" class="btn-text">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Pay</span>
+                                </a>
+                                <a href="#" class="btn-text">
+                                    <i class="fas fa-file-invoice"></i>
+                                    <span>Statements</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        &lt;!-- Add New Account Card -->
+                        <div class="account-detail-card add-account">
+                            <div class="add-account-content">
+                                <div class="add-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <h3>Open a New Account</h3>
+                                <p>Explore our range of accounts and find the right one for your needs.</p>
+                                <button class="btn btn-primary">Get Started</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                &lt;!-- Account Activity -->
+                <div class="accounts-section">
+                    <div class="section-header">
+                        <h2>Recent Activity</h2>
+                        <a href="transactions.html" class="view-all">View All Transactions</a>
+                    </div>
+                    <div class="activity-table-container">
+                        <table class="activity-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Account</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>May 7, 2023</td>
+                                    <td>Checking (*4567)</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon restaurant">
+                                                <i class="fas fa-utensils"></i>
+                                            </div>
+                                            <span>Starbucks Coffee</span>
+                                        </div>
+                                    </td>
+                                    <td class="amount-debit">-$5.75</td>
+                                    <td>$8,942.50</td>
+                                </tr>
+                                <tr>
+                                    <td>May 6, 2023</td>
+                                    <td>Checking (*4567)</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon grocery">
+                                                <i class="fas fa-shopping-basket"></i>
+                                            </div>
+                                            <span>Whole Foods Market</span>
+                                        </div>
+                                    </td>
+                                    <td class="amount-debit">-$84.32</td>
+                                    <td>$8,948.25</td>
+                                </tr>
+                                <tr>
+                                    <td>May 5, 2023</td>
+                                    <td>Checking (*4567)</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon salary">
+                                                <i class="fas fa-briefcase"></i>
+                                            </div>
+                                            <span>Acme Corp - Salary</span>
+                                        </div>
+                                    </td>
+                                    <td class="amount-credit">+$3,250.00</td>
+                                    <td>$9,032.57</td>
+                                </tr>
+                                <tr>
+                                    <td>May 4, 2023</td>
+                                    <td>Credit Card (*1234)</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon shopping">
+                                                <i class="fas fa-shopping-bag"></i>
+                                            </div>
+                                            <span>Amazon.com</span>
+                                        </div>
+                                    </td>
+                                    <td class="amount-debit">-$67.99</td>
+                                    <td>$1,240.30</td>
+                                </tr>
+                                <tr>
+                                    <td>May 3, 2023</td>
+                                    <td>Checking (*4567)</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon transfer">
+                                                <i class="fas fa-exchange-alt"></i>
+                                            </div>
+                                            <span>Transfer to Savings</span>
+                                        </div>
+                                    </td>
+                                    <td class="amount-debit">-$500.00</td>
+                                    <td>$5,782.57</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/accounts.js"></script>
+</body>
+</html>

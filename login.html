@@ -1,172 +1,127 @@
-<!DOCTYPE html>
+&lt;!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Zentry Banking</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/forms.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Additional styles for the login page */
-    body {
-      background-color: var(--primary-bg);
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .login-container {
-      display: flex;
-      width: 900px;
-      max-width: 90%;
-      background-color: var(--card-bg);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    
-    .login-image {
-      flex: 1;
-      background: linear-gradient(135deg, #0ea5e9, #0284c7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .login-image::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-      opacity: 0.3;
-      animation: backgroundMove 30s linear infinite;
-    }
-    
-    @keyframes backgroundMove {
-      0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-      100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
-    }
-    
-    .login-image-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: white;
-    }
-    
-    .login-image-content h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    
-    .login-image-content p {
-      opacity: 0.9;
-      max-width: 80%;
-      margin: 0 auto;
-    }
-    
-    .login-form-container {
-      flex: 1;
-      padding: 3rem 2rem;
-    }
-    
-    .login-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    
-    .login-header h1 {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .login-header p {
-      color: var(--text-secondary);
-    }
-    
-    .loading-spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s ease-in-out infinite;
-      margin-right: 8px;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    @media (max-width: 768px) {
-      .login-container {
-        flex-direction: column;
-      }
-      
-      .login-image {
-        display: none;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Zentry Banking</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-image">
-      <div class="login-image-content">
-        <h2>Welcome to Zentry Banking</h2>
-        <p>Experience secure, modern banking designed for today's digital world.</p>
-      </div>
+    <div class="auth-container">
+        <div class="auth-left">
+            <div class="auth-logo">
+                <img src="assets/logo.png" alt="Zentry Banking Logo">
+                <h1>Zentry Banking</h1>
+            </div>
+            <div class="auth-content">
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Log in to access your accounts, transfer money, and manage your finances.</p>
+                </div>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">Username or Email</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" name="username" placeholder="Enter your username or email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Log In</button>
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+                    <div class="social-login">
+                        <button type="button" class="social-btn google">
+                            <i class="fab fa-google"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-btn apple">
+                            <i class="fab fa-apple"></i>
+                            <span>Apple</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="apply.html">Apply Now</a></p>
+                </div>
+            </div>
+            <div class="auth-security">
+                <i class="fas fa-shield-alt"></i>
+                <p>Protected by bank-level security and encryption</p>
+            </div>
+        </div>
+        <div class="auth-right">
+            <div class="auth-image">
+                <div class="auth-overlay"></div>
+                <div class="auth-features">
+                    <div class="auth-feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile Banking</h3>
+                        <p>Access your accounts anytime, anywhere with our award-winning mobile app.</p>
+                    </div>
+                    <div class="auth-feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Financial Insights</h3>
+                        <p>Get personalized insights and recommendations to improve your financial health.</p>
+                    </div>
+                    <div class="auth-feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>Secure Banking</h3>
+                        <p>Rest easy with our advanced security measures protecting your accounts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="login-form-container">
-      <div class="login-header">
-        <h1>Sign In</h1>
-        <p>Enter your credentials to access your account</p>
-      </div>
-      
-      <form id="login-form" class="login-form">
-        <div class="form-group">
-          <label for="email" class="form-label">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" id="password" name="password" class="form-control" required>
-        </div>
-        
-        <div class="form-options">
-          <label class="form-checkbox">
-            <input type="checkbox" name="remember">
-            <span>Remember me</span>
-          </label>
-          <a href="#" class="forgot-password">Forgot password?</a>
-        </div>
-        
-        <button type="submit" class="btn btn-primary w-100">Sign In</button>
-      </form>
-      
-      <div class="login-footer">
-        <p>Don't have an account? <a href="application.html">Apply Now</a></p>
-        <p><a href="admin-login.html">Admin Login</a></p>
-      </div>
-    </div>
-  </div>
 
-  <script src="js/main.js"></script>
-  <script src="js/login.js"></script>
+    &lt;!-- Two-Factor Authentication Modal -->
+    <div class="modal" id="twoFactorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Two-Factor Authentication</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>We've sent a verification code to your registered mobile number ending in ***1234.</p>
+                <div class="otp-container">
+                    <input type="text" maxlength="1" class="otp-input" autofocus>
+                    <input type="text" maxlength="1" class="otp-input">
+                    <input type="text" maxlength="1" class="otp-input">
+                    <input type="text" maxlength="1" class="otp-input">
+                    <input type="text" maxlength="1" class="otp-input">
+                    <input type="text" maxlength="1" class="otp-input">
+                </div>
+                <div class="resend-code">
+                    <p>Didn't receive the code? <a href="#" id="resendCode">Resend</a></p>
+                    <div class="countdown">Resend in <span id="countdown">30</span>s</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelVerification">Cancel</button>
+                <button class="btn btn-primary" id="verifyCode">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
 </body>
 </html>

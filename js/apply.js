@@ -1,233 +1,222 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Helper functions
-  function generateId() {
-    return "APP-" + Math.random().toString(36).substring(2, 8).toUpperCase()
-  }
-
-  function saveToStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value))
-  }
-
-  function getFromStorage(key) {
-    const data = localStorage.getItem(key)
-    return data ? JSON.parse(data) : null
-  }
-
-  // Application form steps
+  // Get form elements
   const applicationForm = document.getElementById("applicationForm")
+  const formSections = document.querySelectorAll(".form-section")
   const progressSteps = document.querySelectorAll(".progress-step")
-  const formSteps = document.querySelectorAll(".form-step")
-  const nextButtons = document.querySelectorAll(".next-step")
-  const prevButtons = document.querySelectorAll(".prev-step")
-  const successModal = document.getElementById("successModal")
+  const nextButtons = document.querySelectorAll(".btn-next")
+  const prevButtons = document.querySelectorAll(".btn-prev")
+  const submitButton = document.querySelector(".btn-submit")
+  const successMessage = document.querySelector(".application-success")
 
-  let currentStep = 1
+  // Initialize form
+  let currentSection = 1
+  updateFormProgress()
 
-  // Initialize form data object
-  const formData = {}
+  // Next button click handler
+  nextButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const nextSection = Number.parseInt(this.getAttribute("data-next"))
 
-  if (applicationForm) {
-    // Next step buttons
-    nextButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        // Validate current step
-        const currentFormStep = document.querySelector(`.form-step[data-step="${currentStep}"]`)
-        const inputs = currentFormStep.querySelectorAll("input, select")
-        let isValid = true
-
-        inputs.forEach((input) => {
-          if (input.hasAttribute("required") && !input.value) {
-            isValid = false
-            input.classList.add("error")
-          } else {
-            input.classList.remove("error")
-            // Store form data
-            if (input.name) {
-              formData[input.name] = input.value
-            }
-          }
-        })
-
-        if (!isValid) {
-          alert("Please fill in all required fields.")
-          return
-        }
-
-        // Move to next step
-        currentStep++
-        updateFormSteps()
-
-        // If moving to review step, populate review data
-        if (currentStep === 4) {
-          populateReviewData()
-        }
-      })
-    })
-
-    // Previous step buttons
-    prevButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        currentStep--
-        updateFormSteps()
-      })
-    })
-
-    // Form submission
-    applicationForm.addEventListener("submit", function (e) {
-      e.preventDefault()
-
-      // Check terms agreement
-      const termsAgree = document.getElementById("termsAgree")
-      if (!termsAgree.checked) {
-        alert("Please agree to the terms and conditions.")
-        return
+      // Validate current section before proceeding
+      if (validateSection(currentSection)) {
+        currentSection = nextSection
+        updateFormProgress()
       }
+    })
+  })
 
-      // Simulate form submission
-      const submitButton = this.querySelector('button[type="submit"]')
-      const originalText = submitButton.textContent
+  // Previous button click handler
+  prevButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const prevSection = Number.parseInt(this.getAttribute("data-prev"))
+      currentSection = prevSection
+      updateFormProgress()
+    })
+  })
 
+  // Form submission handler
+  applicationForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    // Validate final section
+    if (validateSection(currentSection)) {
+      // Show loading state
       submitButton.disabled = true
-      submitButton.textContent = "Submitting..."
+      submitButton.textContent = "Processing..."
 
-      // Generate application ID
-      const applicationId = generateId()
-
-      // Store application data in localStorage
-      const application = {
-        id: applicationId,
-        data: formData,
-        status: "pending",
-        date: new Date().toISOString(),
-        updates: [
-          {
-            date: new Date().toISOString(),
-            status: "pending",
-            message: "Application submitted successfully.",
-          },
-        ],
-      }
-
-      // Get existing applications or create new array
-      const applications = getFromStorage("applications") || []
-      applications.push(application)
-      saveToStorage("applications", applications)
-
-      // Show success modal after delay
+      // Simulate form submission (replace with actual API call)
       setTimeout(() => {
-        document.getElementById("applicationId").textContent = applicationId
-        successModal.classList.add("active")
-        submitButton.disabled = false
-        submitButton.textContent = originalText
+        // Hide form and show success message
+        applicationForm.style.display = "none"
+        successMessage.style.display = "block"
+
+        // Generate random reference number
+        const referenceNumber = "ZB-" + Math.floor(10000000 + Math.random() * 90000000)
+        document.getElementById("referenceNumber").textContent = referenceNumber
+
+        // Scroll to top of success message
+        window.scrollTo({
+          top: successMessage.offsetTop - 100,
+          behavior: "smooth",
+        })
       }, 2000)
-    })
-  }
+    }
+  })
 
-  // Update form steps visibility
-  function updateFormSteps() {
-    // Update progress steps
-    progressSteps.forEach((step) => {
-      const stepNum = Number.parseInt(step.dataset.step)
-      step.classList.remove("active", "completed")
+  // Update form progress
+  function updateFormProgress() {
+    // Hide all sections and update progress steps
+    formSections.forEach((section, index) => {
+      section.classList.remove("active")
+      progressSteps[index].classList.remove("active", "completed")
 
-      if (stepNum === currentStep) {
-        step.classList.add("active")
-      } else if (stepNum < currentStep) {
-        step.classList.add("completed")
+      // Mark completed steps
+      if (index + 1 < currentSection) {
+        progressSteps[index].classList.add("completed")
+      }
+
+      // Mark current step
+      if (index + 1 === currentSection) {
+        progressSteps[index].classList.add("active")
       }
     })
 
-    // Update form steps visibility
-    formSteps.forEach((step) => {
-      step.classList.remove("active")
-      if (Number.parseInt(step.dataset.step) === currentStep) {
-        step.classList.add("active")
-      }
+    // Show current section
+    document.querySelector(`.form-section[data-section="${currentSection}"]`).classList.add("active")
+
+    // Scroll to top of form
+    window.scrollTo({
+      top: applicationForm.offsetTop - 100,
+      behavior: "smooth",
     })
   }
 
-  // Populate review data
-  function populateReviewData() {
-    const reviewPersonal = document.getElementById("reviewPersonal")
-    const reviewContact = document.getElementById("reviewContact")
-    const reviewFinancial = document.getElementById("reviewFinancial")
+  // Validate form section
+  function validateSection(sectionNumber) {
+    const section = document.querySelector(`.form-section[data-section="${sectionNumber}"]`)
+    const inputs = section.querySelectorAll("input, select, textarea")
+    let isValid = true
 
-    if (!reviewPersonal || !reviewContact || !reviewFinancial) return
+    // Check each required input
+    inputs.forEach((input) => {
+      if (input.hasAttribute("required") && !input.value) {
+        isValid = false
+        highlightInvalidInput(input)
+      } else if (input.type === "email" && input.value && !validateEmail(input.value)) {
+        isValid = false
+        highlightInvalidInput(input)
+      } else if (input.id === "confirmEmail" && input.value !== document.getElementById("email").value) {
+        isValid = false
+        highlightInvalidInput(input)
+        showError(input, "Email addresses do not match")
+      } else if (input.hasAttribute("pattern") && input.value && !validatePattern(input)) {
+        isValid = false
+        highlightInvalidInput(input)
+      } else {
+        removeInvalidHighlight(input)
+      }
+    })
 
-    // Personal information
-    reviewPersonal.innerHTML = `
-      <div>
-        <strong>Full Name</strong>
-        <p>${formData.firstName || ""} ${formData.lastName || ""}</p>
-      </div>
-      <div>
-        <strong>Date of Birth</strong>
-        <p>${formData.dob || ""}</p>
-      </div>
-      <div>
-        <strong>SSN</strong>
-        <p>XXX-XX-${formData.ssn ? formData.ssn.slice(-4) : ""}</p>
-      </div>
-      <div>
-        <strong>ID Type</strong>
-        <p>${formData.idType || ""}</p>
-      </div>
-      <div>
-        <strong>ID Number</strong>
-        <p>${formData.idNumber || ""}</p>
-      </div>
-    `
+    // Special validation for section 4 (account selection)
+    if (sectionNumber === 4) {
+      const accountTypeSelected = section.querySelector('input[name="accountType"]:checked')
+      if (!accountTypeSelected) {
+        isValid = false
+        showError(section.querySelector(".account-options"), "Please select an account type")
+      }
+    }
 
-    // Contact information
-    reviewContact.innerHTML = `
-      <div>
-        <strong>Email</strong>
-        <p>${formData.email || ""}</p>
-      </div>
-      <div>
-        <strong>Phone</strong>
-        <p>${formData.phone || ""}</p>
-      </div>
-      <div>
-        <strong>Address</strong>
-        <p>${formData.address || ""}</p>
-      </div>
-      <div>
-        <strong>City</strong>
-        <p>${formData.city || ""}</p>
-      </div>
-      <div>
-        <strong>State</strong>
-        <p>${formData.state || ""}</p>
-      </div>
-      <div>
-        <strong>ZIP Code</strong>
-        <p>${formData.zip || ""}</p>
-      </div>
-    `
+    return isValid
+  }
 
-    // Financial information
-    reviewFinancial.innerHTML = `
-      <div>
-        <strong>Employment Status</strong>
-        <p>${formData.employment || ""}</p>
-      </div>
-      <div>
-        <strong>Annual Income</strong>
-        <p>$${formData.income ? Number(formData.income).toLocaleString() : "0"}</p>
-      </div>
-      <div>
-        <strong>Account Type</strong>
-        <p>${formData.accountType || ""}</p>
-      </div>
-      <div>
-        <strong>Existing Loans</strong>
-        <p>${formData.existingLoans || "No"}</p>
-      </div>
-      <div>
-        <strong>Referral Source</strong>
-        <p>${formData.referral || "N/A"}</p>
-      </div>
-    `
+  // Highlight invalid input
+  function highlightInvalidInput(input) {
+    input.classList.add("invalid")
+
+    // Add error message if not already present
+    const errorMessage = input.parentElement.querySelector(".error-message")
+    if (!errorMessage) {
+      showError(input, input.getAttribute("data-error") || "This field is required")
+    }
+
+    // Add input event listener to remove error on input
+    input.addEventListener(
+      "input",
+      () => {
+        removeInvalidHighlight(input)
+      },
+      { once: true },
+    )
+  }
+
+  // Remove invalid highlight
+  function removeInvalidHighlight(input) {
+    input.classList.remove("invalid")
+
+    // Remove error message if present
+    const errorMessage = input.parentElement.querySelector(".error-message")
+    if (errorMessage) {
+      errorMessage.remove()
+    }
+  }
+
+  // Show error message
+  function showError(element, message) {
+    const errorDiv = document.createElement("div")
+    errorDiv.className = "error-message"
+    errorDiv.textContent = message
+
+    // Insert error message after the element
+    element.parentElement.appendChild(errorDiv)
+  }
+
+  // Validate email format
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return re.test(email)
+  }
+
+  // Validate input pattern
+  function validatePattern(input) {
+    const pattern = new RegExp(input.getAttribute("pattern"))
+    return pattern.test(input.value)
+  }
+
+  // Format SSN input
+  const ssnInput = document.getElementById("ssn")
+  if (ssnInput) {
+    ssnInput.addEventListener("input", (e) => {
+      let value = e.target.value.replace(/\D/g, "")
+      if (value.length > 9) {
+        value = value.slice(0, 9)
+      }
+
+      if (value.length > 5) {
+        value = value.slice(0, 3) + "-" + value.slice(3, 5) + "-" + value.slice(5)
+      } else if (value.length > 3) {
+        value = value.slice(0, 3) + "-" + value.slice(3)
+      }
+
+      e.target.value = value
+    })
+  }
+
+  // Format phone number input
+  const phoneInput = document.getElementById("phoneNumber")
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (e) => {
+      let value = e.target.value.replace(/\D/g, "")
+      if (value.length > 10) {
+        value = value.slice(0, 10)
+      }
+
+      if (value.length > 6) {
+        value = value.slice(0, 3) + "-" + value.slice(3, 6) + "-" + value.slice(6)
+      } else if (value.length > 3) {
+        value = value.slice(0, 3) + "-" + value.slice(3)
+      }
+
+      e.target.value = value
+    })
   }
 })

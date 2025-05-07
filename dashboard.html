@@ -1,181 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Zentry Banking</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Zentry Banking</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <div class="logo">Zentry</div>
-        <button id="sidebar-toggle" class="sidebar-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li class="sidebar-nav-item active">
-            <a href="dashboard.html" class="sidebar-nav-link">
-              <div class="sidebar-nav-icon dashboard-icon"></div>
-              <span class="sidebar-nav-text">Dashboard</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item">
-            <a href="#" class="sidebar-nav-link">
-              <div class="sidebar-nav-icon accounts-icon"></div>
-              <span class="sidebar-nav-text">Accounts</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item">
-            <a href="#" class="sidebar-nav-link">
-              <div class="sidebar-nav-icon transfer-icon"></div>
-              <span class="sidebar-nav-text">Transfer</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item">
-            <a href="#" class="sidebar-nav-link">
-              <div class="sidebar-nav-icon transactions-icon"></div>
-              <span class="sidebar-nav-text">Transactions</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item">
-            <a href="#" class="sidebar-nav-link">
-              <div class="sidebar-nav-icon settings-icon"></div>
-              <span class="sidebar-nav-text">Settings</span>
-            </a>
-          </li>
-        </ul>
-        <ul>
-          <li class="sidebar-nav-item">
-            <a href="#" class="sidebar-nav-link logout-icon">
-              <div class="sidebar-nav-icon logout-icon"></div>
-              <span class="sidebar-nav-text">Logout</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="sidebar-footer">
-        <p class="sidebar-footer-text">© 2025 Zentry Banking</p>
-      </div>
-    </aside>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="/placeholder.svg?height=40&width=140&query=Zentry+Banking+Logo" alt="Zentry Banking">
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="accounts.html">
+                            <i class="fas fa-wallet"></i>
+                            <span>Accounts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="transactions.html">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Transactions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="transfer.html">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Transfer</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="payments.html">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Payments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="cards.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Cards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </a>
+                <a href="#" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Top Navigation -->
-      <div class="top-nav">
-        <div class="welcome-message">
-          <h2>Welcome back, <span id="user-name">Alex</span></h2>
-          <p class="date" id="current-date">Wednesday, May 7, 2025</p>
-        </div>
-        <div class="user-profile">
-          <div class="notification">
-            <div class="notification-icon"></div>
-            <span class="notification-badge">3</span>
-          </div>
-          <div class="avatar">A</div>
-        </div>
-      </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search transactions, payments...">
+                </div>
+                <div class="header-actions">
+                    <div class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="/placeholder.svg?height=40&width=40&query=user+avatar" alt="User Avatar" class="avatar">
+                        <div class="user-info">
+                            <p class="user-name">John Doe</p>
+                            <p class="user-role">Personal Account</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-      <!-- Dashboard Content -->
-      <div class="dashboard">
-        <!-- Balance Cards -->
-        <div class="section-header">
-          <h2 class="section-title">Your Accounts</h2>
-        </div>
-        <div class="balance-cards">
-          <div class="balance-card primary">
-            <div class="card-header">
-              <h4>Main Account</h4>
-              <span class="card-type">Checking</span>
-            </div>
-            <div class="card-body">
-              <div class="balance" id="main-balance">$12,456.78</div>
-              <div class="card-number">**** **** **** 4567</div>
-            </div>
-            <div class="card-footer">
-              <div class="trend positive">
-                <span class="trend-icon">↑</span>
-                <span>2.4%</span>
-                <span class="trend-period">this month</span>
-              </div>
-              <button class="btn btn-outline">View Details</button>
-            </div>
-          </div>
-          <div class="balance-card secondary">
-            <div class="card-header">
-              <h4>Savings Account</h4>
-              <span class="card-type">Savings</span>
-            </div>
-            <div class="card-body">
-              <div class="balance" id="savings-balance">$45,678.90</div>
-              <div class="card-number">**** **** **** 7890</div>
-            </div>
-            <div class="card-footer">
-              <div class="trend positive">
-                <span class="trend-icon">↑</span>
-                <span>1.2%</span>
-                <span class="trend-period">this month</span>
-              </div>
-              <button class="btn btn-outline">View Details</button>
-            </div>
-          </div>
-        </div>
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <div class="welcome-section">
+                    <div class="welcome-message">
+                        <h1>Welcome back, <span id="userName">John</span>!</h1>
+                        <p>Here's your financial summary as of <span id="currentDate">May 7, 2023</span></p>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>New Transfer</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span>Pay Bill</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i>
+                            <span>Download Statement</span>
+                        </button>
+                    </div>
+                </div>
 
-        <!-- Quick Actions -->
-        <div class="section-header">
-          <h2 class="section-title">Quick Actions</h2>
-        </div>
-        <div class="action-buttons">
-          <div class="action-button">
-            <div class="action-icon transfer-action"></div>
-            <span class="action-text">Transfer</span>
-          </div>
-          <div class="action-button">
-            <div class="action-icon bills-action"></div>
-            <span class="action-text">Pay Bills</span>
-          </div>
-          <div class="action-button">
-            <div class="action-icon analytics-action"></div>
-            <span class="action-text">Analytics</span>
-          </div>
-          <div class="action-button">
-            <div class="action-icon investments-action"></div>
-            <span class="action-text">Investments</span>
-          </div>
-        </div>
+                <!-- Account Summary Cards -->
+                <div class="account-summary">
+                    <div class="section-header">
+                        <h2>Account Summary</h2>
+                        <a href="accounts.html" class="view-all">View All Accounts</a>
+                    </div>
+                    <div class="account-cards">
+                        <div class="account-card primary">
+                            <div class="card-header">
+                                <h3>Checking Account</h3>
+                                <span class="account-number">**** 4567</span>
+                            </div>
+                            <div class="card-balance">
+                                <span class="balance-label">Available Balance</span>
+                                <span class="balance-amount">$8,942.50</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="transactions.html?account=checking" class="card-action">
+                                    <i class="fas fa-list"></i>
+                                    <span>Transactions</span>
+                                </a>
+                                <a href="transfer.html?from=checking" class="card-action">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Transfer</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="account-card savings">
+                            <div class="card-header">
+                                <h3>Savings Account</h3>
+                                <span class="account-number">**** 7890</span>
+                            </div>
+                            <div class="card-balance">
+                                <span class="balance-label">Available Balance</span>
+                                <span class="balance-amount">$15,280.75</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="transactions.html?account=savings" class="card-action">
+                                    <i class="fas fa-list"></i>
+                                    <span>Transactions</span>
+                                </a>
+                                <a href="transfer.html?from=savings" class="card-action">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Transfer</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="account-card credit">
+                            <div class="card-header">
+                                <h3>Credit Card</h3>
+                                <span class="account-number">**** 1234</span>
+                            </div>
+                            <div class="card-balance">
+                                <span class="balance-label">Current Balance</span>
+                                <span class="balance-amount">$1,240.30</span>
+                                <span class="credit-limit">Credit Limit: $10,000</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="transactions.html?account=credit" class="card-action">
+                                    <i class="fas fa-list"></i>
+                                    <span>Transactions</span>
+                                </a>
+                                <a href="payments.html?account=credit" class="card-action">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Pay</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Recent Transactions -->
-        <div class="section-header">
-          <h2 class="section-title">Recent Transactions</h2>
-          <a href="#" class="view-all">View All</a>
-        </div>
-        <div class="transactions-table-container">
-          <table class="transactions-table">
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Amount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="transactions-body">
-              <!-- Transactions will be dynamically inserted here -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
-  </div>
+                <!-- Recent Transactions -->
+                <div class="recent-transactions">
+                    <div class="section-header">
+                        <h2>Recent Transactions</h2>
+                        <a href="transactions.html" class="view-all">View All</a>
+                    </div>
+                    <div class="transactions-table-container">
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>May 6, 2023</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon grocery">
+                                                <i class="fas fa-shopping-basket"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-name">Whole Foods Market</span>
+                                                <span class="transaction-account">Checking *4567</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Groceries</td>
+                                    <td class="amount-debit">-$84.32</td>
+                                    <td><span class="status completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>May 5, 2023</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon salary">
+                                                <i class="fas fa-briefcase"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-name">Acme Corp - Salary</span>
+                                                <span class="transaction-account">Checking *4567</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Income</td>
+                                    <td class="amount-credit">+$3,250.00</td>
+                                    <td><span class="status completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>May 4, 2023</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon utilities">
+                                                <i class="fas fa-bolt"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-name">City Power & Electric</span>
+                                                <span class="transaction-account">Checking *4567</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Utilities</td>
+                                    <td class="amount-debit">-$142.50</td>
+                                    <td><span class="status completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>May 3, 2023</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon transfer">
+                                                <i class="fas fa-exchange-alt"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-name">Transfer to Savings</span>
+                                                <span class="transaction-account">Checking *4567</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Transfer</td>
+                                    <td class="amount-debit">-$500.00</td>
+                                    <td><span class="status completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>May 2, 2023</td>
+                                    <td>
+                                        <div class="transaction-info">
+                                            <div class="transaction-icon shopping">
+                                                <i class="fas fa-shopping-bag"></i>
+                                            </div>
+                                            <div class="transaction-details">
+                                                <span class="transaction-name">Amazon.com</span>
+                                                <span class="transaction-account">Credit Card *1234</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Shopping</td>
+                                    <td class="amount-debit">-$67.99</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-  <script src="script.js"></script>
+                <!-- Financial Insights -->
+                <div class="financial-insights">
+                    <div class="section-header">
+                        <h2>Financial Insights</h2>
+                    </div>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <h3>Monthly Spending</h3>
+                                <select class="insight-period">
+                                    <option>This Month</option>
+                                    <option>Last Month</option>
+                                    <option>Last 3 Months</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="spendingChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <h3>Savings Growth</h3>
+                                <select class="insight-period">
+                                    <option>This Year</option>
+                                    <option>Last Year</option>
+                                    <option>Last 2 Years</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="savingsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <h3>Budget Status</h3>
+                            </div>
+                            <div class="budget-categories">
+                                <div class="budget-category">
+                                    <div class="category-info">
+                                        <span class="category-name">Groceries</span>
+                                        <span class="category-amount">$320/$400</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 80%;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-category">
+                                    <div class="category-info">
+                                        <span class="category-name">Entertainment</span>
+                                        <span class="category-amount">$150/$200</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-category">
+                                    <div class="category-info">
+                                        <span class="category-name">Dining Out</span>
+                                        <span class="category-amount">$280/$250</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress over-budget" style="width: 112%;"></div>
+                                    </div>
+                                </div>
+                                <div class="budget-category">
+                                    <div class="category-info">
+                                        <span class="category-name">Transportation</span>
+                                        <span class="category-amount">$120/$300</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 40%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="budget.html" class="view-all-budgets">Manage Budgets</a>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <h3>Financial Goals</h3>
+                            </div>
+                            <div class="goals-list">
+                                <div class="goal-item">
+                                    <div class="goal-icon vacation">
+                                        <i class="fas fa-umbrella-beach"></i>
+                                    </div>
+                                    <div class="goal-details">
+                                        <h4>Vacation Fund</h4>
+                                        <div class="goal-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 65%;"></div>
+                                            </div>
+                                            <span class="goal-amount">$3,250/$5,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="goal-item">
+                                    <div class="goal-icon car">
+                                        <i class="fas fa-car"></i>
+                                    </div>
+                                    <div class="goal-details">
+                                        <h4>New Car</h4>
+                                        <div class="goal-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 30%;"></div>
+                                            </div>
+                                            <span class="goal-amount">$6,000/$20,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="goal-item">
+                                    <div class="goal-icon emergency">
+                                        <i class="fas fa-medkit"></i>
+                                    </div>
+                                    <div class="goal-details">
+                                        <h4>Emergency Fund</h4>
+                                        <div class="goal-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 90%;"></div>
+                                            </div>
+                                            <span class="goal-amount">$9,000/$10,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="goals.html" class="add-new-goal">
+                                <i class="fas fa-plus"></i>
+                                <span>Add New Goal</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Panel (Hidden by default) -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="close-notifications">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item unread">
+                <div class="notification-icon alert">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Your credit card payment is due in 3 days.</p>
+                    <span class="notification-time">2 hours ago</span>
+                </div>
+                <button class="mark-read">
+                    <i class="fas fa-circle"></i>
+                </button>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon info">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Your account statement for April is now available.</p>
+                    <span class="notification-time">Yesterday</span>
+                </div>
+                <button class="mark-read">
+                    <i class="fas fa-circle"></i>
+                </button>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon success">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Your transfer of $500 to Savings account was successful.</p>
+                    <span class="notification-time">2 days ago</span>
+                </div>
+                <button class="mark-read">
+                    <i class="fas fa-circle"></i>
+                </button>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon info">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">Your debit card will expire next month. A new card has been issued.</p>
+                    <span class="notification-time">1 week ago</span>
+                </div>
+            </div>
+        </div>
+        <div class="notification-footer">
+            <a href="notifications.html">View All Notifications</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>

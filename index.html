@@ -1,369 +1,521 @@
-<!DOCTYPE html>
+&lt;!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zentry Banking - Modern Banking for the Digital Age</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zentry Banking - Modern Banking Solutions</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!-- Floating Icons Background -->
-  <div class="floating-icons">
-    <div class="floating-icon" style="top: 20%; left: 10%;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-        <line x1="2" y1="10" x2="22" y2="10"></line>
-      </svg>
-    </div>
-    <div class="floating-icon" style="top: 60%; left: 5%;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M17 1l4 4-4 4"></path>
-        <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-        <path d="M7 23l-4-4 4-4"></path>
-        <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-      </svg>
-    </div>
-    <div class="floating-icon" style="top: 30%; left: 80%;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <polyline points="12 6 12 12 16 14"></polyline>
-      </svg>
-    </div>
-    <div class="floating-icon" style="top: 70%; left: 85%;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2v6.5"></path>
-        <path d="M17.5 7.5L12 12"></path>
-        <path d="M3 16a9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9 9.5 9.5 0 0 0-3 .5"></path>
-      </svg>
-    </div>
-  </div>
-  
-  <!-- Header/Navigation -->
-  <header class="header">
-    <div class="container">
-      <div class="header-container">
-        <a href="#" class="header-logo">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-            <line x1="2" y1="10" x2="22" y2="10"></line>
-          </svg>
-          <span>Zentry</span>
-        </a>
-        
-        <nav class="header-nav">
-          <a href="#features" class="header-nav-link">Features</a>
-          <a href="#app-showcase" class="header-nav-link">App</a>
-          <a href="#testimonials" class="header-nav-link">Testimonials</a>
-          <a href="#pricing" class="header-nav-link">Pricing</a>
-          <a href="#contact" class="header-nav-link">Contact</a>
-        </nav>
-        
-        <div class="header-actions">
-          <a href="login.html" class="btn btn-secondary">Sign In</a>
-          <a href="register.html" class="btn btn-primary">Get Started</a>
-          
-          <button class="mobile-menu-toggle d-none d-md-flex">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-  
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-title">Banking Reimagined for the Modern World</h1>
-        <p class="hero-subtitle">Experience seamless financial management with our cutting-edge banking platform designed for today's digital lifestyle.</p>
-        
-        <div class="hero-actions">
-          <a href="register.html" class="btn btn-primary btn-lg">Open Account</a>
-          <a href="#features" class="btn btn-secondary btn-lg">Learn More</a>
-        </div>
-        
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-value">2M+</span>
-            <span class="hero-stat-label">Global Users</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-value">98%</span>
-            <span class="hero-stat-label">Satisfaction</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-value">24/7</span>
-            <span class="hero-stat-label">Support</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="hero-image">
-        <div class="credit-card">
-          <div class="credit-card-chip"></div>
-          <div class="credit-card-logo">Zentry</div>
-          <div class="credit-card-number">**** **** **** 4582</div>
-          <div class="credit-card-name">JOHN DOE</div>
-          <div class="credit-card-expiry">05/28</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Features Section -->
-  <section id="features" class="features">
-    <div class="container">
-      <div class="section-title text-center">
-        <h2>Experience Smart Banking</h2>
-        <p>Our platform combines security, convenience, and innovation to deliver an exceptional banking experience.</p>
-      </div>
-      
-      <div class="feature-grid">
-        <div class="glass-card feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-          </div>
-          <h3 class="feature-title">Military-Grade Security</h3>
-          <p class="feature-description">Bank with confidence knowing your information is protected with state-of-the-art encryption and continuous security monitoring.</p>
-        </div>
-        
-        <div class="glass-card feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-            </svg>
-          </div>
-          <h3 class="feature-title">Intelligent Insights</h3>
-          <p class="feature-description">Gain valuable perspectives on your spending habits with automated categorization and personalized financial recommendations.</p>
-        </div>
-        
-        <div class="glass-card feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 1l4 4-4 4"></path>
-              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-              <path d="M7 23l-4-4 4-4"></path>
-              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-            </svg>
-          </div>
-          <h3 class="feature-title">Instant Transfers</h3>
-          <p class="feature-description">Send and receive money in seconds, not days. Our platform enables lightning-fast transfers with minimal fees.</p>
-        </div>
-        
-        <div class="glass-card feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-          </div>
-          <h3 class="feature-title">Fraud Protection</h3>
-          <p class="feature-description">Sleep soundly with real-time fraud detection and instant alerts. We're constantly monitoring for suspicious activity.</p>
-        </div>
-        
-        <div class="glass-card feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-              <circle cx="12" cy="12" r="2"></circle>
-              <path d="M6 12h.01M18 12h.01"></path>
-            </svg>
-          </div>
-          <h3 class="feature-title">Virtual Cards</h3>
-          <p class="feature-description">Create and manage virtual cards for secure online shopping, subscriptions, and one-time purchases with just a few taps.</p>
-        </div>
-        
-        <div class="glass-card feature-card">
-          <div class="feature-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 3v18h18"></path>
-              <path d="m19 9-5 5-4-4-3 3"></path>
-            </svg>
-          </div>
-          <h3 class="feature-title">Smart Investments</h3>
-          <p class="feature-description">Grow your wealth with our automated investment tools. Set your goals and let our AI help guide your financial journey.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- App Screenshots Section -->
-  <section id="app-showcase" class="app-showcase">
-    <div class="container">
-      <div class="section-title text-center">
-        <h2>Explore Our Banking Platform</h2>
-        <p>Take a closer look at our sleek, intuitive interface designed to make banking a pleasure.</p>
-      </div>
-      
-      <div class="app-screenshots">
-        <div class="app-screenshot">
-          <img src="https://via.placeholder.com/320x640/0ea5e9/ffffff?text=Dashboard" alt="Zentry Dashboard">
-        </div>
-        <div class="app-screenshot">
-          <img src="https://via.placeholder.com/320x640/8b5cf6/ffffff?text=Accounts" alt="Accounts Management">
-        </div>
-        <div class="app-screenshot">
-          <img src="https://via.placeholder.com/320x640/ec4899/ffffff?text=Transfers" alt="Money Transfers">
-        </div>
-        <div class="app-screenshot">
-          <img src="https://via.placeholder.com/320x640/6366f1/ffffff?text=Analytics" alt="Financial Analytics">
-        </div>
-        <div class="app-screenshot">
-          <img src="https://via.placeholder.com/320x640/10b981/ffffff?text=Settings" alt="Account Settings">
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Testimonials Section -->
-  <section id="testimonials" class="testimonials">
-    <div class="container">
-      <div class="section-title text-center">
-        <h2>What Our Users Say</h2>
-        <p>Don't take our word for it - hear from our valued customers about their Zentry experience.</p>
-      </div>
-      
-      <div class="testimonial-grid">
-        <div class="glass-card testimonial-card">
-          <p class="testimonial-quote">Switching to Zentry was the best financial decision I've made in years. The interface is intuitive, transfers are instant, and their customer service is top-notch.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://via.placeholder.com/70x70/3b82f6/ffffff?text=S" alt="Sarah Johnson">
+    &lt;!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/logo.png" alt="Zentry Banking Logo">
+                    <h1>Zentry Banking</h1>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="apply.html" class="btn btn-primary">Open Account</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <div class="testimonial-info">
-              <h4>Sarah Johnson</h4>
-              <p class="testimonial-position">Marketing Executive</p>
-            </div>
-          </div>
         </div>
-        
-        <div class="glass-card testimonial-card">
-          <p class="testimonial-quote">The financial insights feature has completely changed how I manage my money. I've saved over $3,000 this year by following Zentry's smart recommendations.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://via.placeholder.com/70x70/8b5cf6/ffffff?text=M" alt="Michael Rodriguez">
-            </div>
-            <div class="testimonial-info">
-              <h4>Michael Rodriguez</h4>
-              <p class="testimonial-position">Software Engineer</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="glass-card testimonial-card">
-          <p class="testimonial-quote">As a small business owner, I need banking that works as hard as I do. Zentry's business accounts and instant transfers have streamlined my operations significantly.</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">
-              <img src="https://via.placeholder.com/70x70/ec4899/ffffff?text=J" alt="Jennifer Chen">
-            </div>
-            <div class="testimonial-info">
-              <h4>Jennifer Chen</h4>
-              <p class="testimonial-position">Business Owner</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-content">
-        <h2 class="cta-title">Ready to Transform Your Banking Experience?</h2>
-        <p class="cta-subtitle">Join thousands of satisfied customers who have made the switch to smarter, faster, and more secure banking.</p>
-        <div class="cta-actions">
-          <a href="register.html" class="btn btn-primary btn-lg">Open Account</a>
-          <a href="#contact" class="btn btn-secondary btn-lg">Contact Sales</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-main">
-        <div class="footer-brand">
-          <a href="#" class="footer-logo">Zentry</a>
-          <p class="footer-description">Next-generation banking for individuals and businesses. Secure, intelligent, and designed for the modern world.</p>
-          <div class="footer-social">
-            <a href="#" class="footer-social-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
-            </a>
-            <a href="#" class="footer-social-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-              </svg>
-            </a>
-            <a href="#" class="footer-social-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-            <a href="#" class="footer-social-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </a>
-          </div>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Company</h4>
-          <div class="footer-links">
-            <a href="#" class="footer-link">About Us</a>
-            <a href="#" class="footer-link">Careers</a>
-            <a href="#" class="footer-link">Press</a>
-            <a href="#" class="footer-link">Blog</a>
-          </div>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Products</h4>
-          <div class="footer-links">
-            <a href="#" class="footer-link">Personal Banking</a>
-            <a href="#" class="footer-link">Business Accounts</a>
-            <a href="#" class="footer-link">Credit Cards</a>
-            <a href="#" class="footer-link">Loans</a>
-            <a href="#" class="footer-link">Investments</a>
-          </div>
-        </div>
-        
-        <div class="footer-column">
-          <h4>Support</h4>
-          <div class="footer-links">
-            <a href="#" class="footer-link">Help Center</a>
-            <a href="#" class="footer-link">Contact Us</a>
-            <a href="#" class="footer-link">Security</a>
-            <a href="#" class="footer-link">Community</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 Zentry Banking. All rights reserved.</p>
-        <div class="footer-legal">
-          <a href="#" class="footer-legal-link">Privacy Policy</a>
-          <a href="#" class="footer-legal-link">Terms of Service</a>
-          <a href="#" class="footer-legal-link">Licenses</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </header>
 
-  <script src="js/main.js"></script>
-  <script src="js/landing.js"></script>
+    &lt;!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Banking Made Simple, Secure, and Smart</h1>
+                    <p>Experience the next generation of banking with Zentry. Manage your finances with ease, security, and intelligence.</p>
+                    <div class="hero-buttons">
+                        <a href="apply.html" class="btn btn-primary btn-large">Get Started</a>
+                        <a href="#features" class="btn btn-outline btn-large">Learn More</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <h3>2M+</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat">
+                            <h3>$10B+</h3>
+                            <p>Transactions</p>
+                        </div>
+                        <div class="stat">
+                            <h3>99.9%</h3>
+                            <p>Uptime</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/hero-banking-app.png" alt="Zentry Banking App">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Bank-grade security</p>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-bolt"></i>
+                        <p>Instant transfers</p>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-chart-line"></i>
+                        <p>Smart analytics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-shape"></div>
+    </section>
+
+    &lt;!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features for Modern Banking</h2>
+                <p>Discover the tools that make Zentry Banking the preferred choice for millions.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Banking</h3>
+                    <p>Bank anytime, anywhere with our award-winning mobile app. Manage accounts, transfer funds, and pay bills on the go.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure Transactions</h3>
+                    <p>Rest easy with our advanced encryption and multi-factor authentication keeping your money and data safe.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Instant Transfers</h3>
+                    <p>Send and receive money in seconds, not days. Our real-time payment system works 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Financial Insights</h3>
+                    <p>Gain clarity on your spending habits with AI-powered analytics and personalized recommendations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Smart Cards</h3>
+                    <p>Control your cards from the app - freeze, unfreeze, set limits, and get real-time notifications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>Savings Goals</h3>
+                    <p>Set and achieve your financial goals with automated savings plans and progress tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Zentry Banking Works</h2>
+                <p>Getting started is easy. Open an account in minutes and experience modern banking.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Apply Online</h3>
+                    <p>Complete our simple application process in just 5 minutes.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Verify Identity</h3>
+                    <p>Secure verification with our advanced ID check system.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Fund Account</h3>
+                    <p>Make your first deposit and activate your account.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Start Banking</h3>
+                    <p>Access all features and enjoy the Zentry experience.</p>
+                </div>
+            </div>
+            <div class="cta-center">
+                <a href="apply.html" class="btn btn-primary btn-large">Open Your Account</a>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- App Showcase Section -->
+    <section class="app-showcase">
+        <div class="container">
+            <div class="app-content">
+                <div class="app-text">
+                    <h2>Banking at Your Fingertips</h2>
+                    <p>Download the Zentry Banking app and take control of your finances from anywhere, at any time.</p>
+                    <ul class="app-features">
+                        <li><i class="fas fa-check"></i> Check balances and transactions instantly</li>
+                        <li><i class="fas fa-check"></i> Send money to friends and family</li>
+                        <li><i class="fas fa-check"></i> Pay bills and manage recurring payments</li>
+                        <li><i class="fas fa-check"></i> Deposit checks with your phone camera</li>
+                        <li><i class="fas fa-check"></i> Receive real-time notifications</li>
+                    </ul>
+                    <div class="app-download">
+                        <a href="#" class="download-btn">
+                            <i class="fab fa-apple"></i>
+                            <span>
+                                <small>Download on the</small>
+                                App Store
+                            </span>
+                        </a>
+                        <a href="#" class="download-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>
+                                <small>GET IT ON</small>
+                                Google Play
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <img src="assets/mobile-app-screens.png" alt="Zentry Banking Mobile App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Join thousands of satisfied customers who have transformed their banking experience.</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Switching to Zentry was the best financial decision I've made. The app is intuitive, transfers are instant, and customer service is exceptional."</p>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonial-1.jpg" alt="Sarah Johnson">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p>Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The financial insights feature has helped me save over $3,000 this year alone. I can finally see where my money is going and make better decisions."</p>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonial-2.jpg" alt="Michael Chen">
+                        <div>
+                            <h4>Michael Chen</h4>
+                            <p>Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"As someone who travels frequently, having a bank that works seamlessly across borders is essential. Zentry's international features are unmatched."</p>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonial-3.jpg" alt="Elena Rodriguez">
+                        <div>
+                            <h4>Elena Rodriguez</h4>
+                            <p>Travel Blogger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="testimonial-prev"><i class="fas fa-arrow-left"></i></button>
+                <div class="testimonial-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button class="testimonial-next"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the account that fits your needs with no hidden fees.</p>
+            </div>
+            <div class="pricing-plans">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>Perfect for everyday banking needs</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> No minimum balance</li>
+                            <li><i class="fas fa-check"></i> Free debit card</li>
+                            <li><i class="fas fa-check"></i> Mobile banking access</li>
+                            <li><i class="fas fa-check"></i> 3 free ATM withdrawals/month</li>
+                            <li><i class="fas fa-times"></i> Savings goals feature</li>
+                            <li><i class="fas fa-times"></i> Advanced financial insights</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="apply.html" class="btn btn-outline btn-full">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">9.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>Enhanced features for active users</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> No minimum balance</li>
+                            <li><i class="fas fa-check"></i> Premium metal debit card</li>
+                            <li><i class="fas fa-check"></i> Mobile banking access</li>
+                            <li><i class="fas fa-check"></i> Unlimited ATM withdrawals</li>
+                            <li><i class="fas fa-check"></i> Savings goals feature</li>
+                            <li><i class="fas fa-check"></i> Advanced financial insights</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="apply.html" class="btn btn-primary btn-full">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Business</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">19.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>Comprehensive tools for businesses</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Business account management</li>
+                            <li><i class="fas fa-check"></i> Multiple user access</li>
+                            <li><i class="fas fa-check"></i> Invoicing and payroll tools</li>
+                            <li><i class="fas fa-check"></i> Unlimited ATM withdrawals</li>
+                            <li><i class="fas fa-check"></i> Business analytics</li>
+                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="apply.html" class="btn btn-outline btn-full">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about Zentry Banking.</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I open an account?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Opening an account is simple. Click on "Open Account" and follow our 5-minute application process. You'll need to provide identification and complete a quick verification.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is my money safe with Zentry?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Zentry Banking is FDIC insured up to $250,000 per depositor. We also employ bank-grade security measures including encryption, fraud monitoring, and multi-factor authentication.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are there any hidden fees?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. We believe in complete transparency. All fees are clearly outlined in our pricing section and during the account opening process. There are no surprise charges.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How quickly can I access my funds?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>With Zentry, you have immediate access to deposited funds. Transfers between Zentry accounts happen instantly, and external transfers typically complete within 1-2 business days.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I use my card internationally?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Zentry cards work worldwide with competitive exchange rates and no foreign transaction fees on Premium and Business accounts.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What customer support options are available?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer 24/7 customer support via in-app chat, email, and phone. Premium and Business customers also have access to dedicated support representatives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Banking Experience?</h2>
+                <p>Join over 2 million customers who have switched to Zentry Banking for a simpler, smarter way to manage money.</p>
+                <a href="apply.html" class="btn btn-primary btn-large">Open Your Account Today</a>
+            </div>
+        </div>
+    </section>
+
+    &lt;!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="Zentry Banking Logo">
+                    <h2>Zentry Banking</h2>
+                    <p>Banking for the modern world</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>Products</h3>
+                        <ul>
+                            <li><a href="#">Checking Accounts</a></li>
+                            <li><a href="#">Savings Accounts</a></li>
+                            <li><a href="#">Credit Cards</a></li>
+                            <li><a href="#">Loans</a></li>
+                            <li><a href="#">Investments</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">API Documentation</a></li>
+                            <li><a href="#">Partners</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">Licenses</a></li>
+                            <li><a href="#">FDIC Information</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Zentry Banking. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/landing.js"></script>
 </body>
 </html>
