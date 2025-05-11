@@ -9,51 +9,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #10141e;
-            --bg-secondary: #161b2c;
-            --bg-tertiary: #1c2237;
-            --bg-card: #1c2338;
-            --bg-sidebar: #0f1525;
-            --text-primary: #ffffff;
-            --text-secondary: #a3aed0;
-            --text-tertiary: #697386;
-            --accent-primary: #4318ff;
-            --accent-secondary: #6a53ff;
-            --accent-hover: #7551ff;
-            --color-positive: #01b574;
-            --color-negative: #ee5d50;
-            --color-warning: #ffb547;
-            --color-info: #39c0ff;
+            /* Color Scheme - Dark Mode (Default) */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+            --accent-hover: #2563eb;
+            --color-positive: #10b981;
+            --color-negative: #ef4444;
+            --color-warning: #f59e0b;
+            --color-info: #0ea5e9;
             --color-bitcoin: #f7931a;
             --color-ethereum: #627eea;
             --color-solana: #14f195;
             --color-cardano: #0033ad;
             --color-polkadot: #e6007a;
-            --border-radius-sm: 8px;
-            --border-radius: 12px;
-            --border-radius-lg: 20px;
-            --transition-speed: 0.3s;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.3);
-            --border-color: rgba(255, 255, 255, 0.08);
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Transitions */
+            --transition-normal: 0.2s ease;
+            --transition-slow: 0.3s ease;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            
+            /* Border */
+            --border-color: rgba(255, 255, 255, 0.1);
         }
 
+        /* Light Mode */
         .light-theme {
-            --bg-primary: #f5f7fa;
+            --bg-primary: #f8fafc;
             --bg-secondary: #ffffff;
-            --bg-tertiary: #f0f3fa;
+            --bg-tertiary: #f1f5f9;
             --bg-card: #ffffff;
-            --bg-sidebar: #ffffff;
-            --text-primary: #2b3674;
-            --text-secondary: #707eae;
-            --text-tertiary: #8f9bba;
-            --accent-primary: #4318ff;
-            --accent-secondary: #6a53ff;
-            --accent-hover: #7551ff;
-            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-tertiary: #64748b;
+            --border-color: rgba(0, 0, 0, 0.1);
         }
 
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -61,21 +69,21 @@
         }
 
         body {
-            font-family: "Inter", sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.5;
             min-height: 100vh;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
+            transition: background-color var(--transition-slow), color var(--transition-slow);
         }
 
+        /* Layout */
         .dashboard {
             display: flex;
             min-height: 100vh;
         }
 
-        /* Scrollbar styles */
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -86,7 +94,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--text-tertiary);
+            background: var(--bg-tertiary);
             border-radius: 10px;
         }
 
@@ -94,30 +102,53 @@
             background: var(--accent-primary);
         }
 
-        /* Sidebar styles */
+        /* Sidebar */
         .sidebar {
-            width: 280px;
-            background-color: var(--bg-sidebar);
+            width: 260px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-            overflow-x: hidden;
-            transition: transform var(--transition-speed), width var(--transition-speed);
             height: 100vh;
             position: fixed;
             left: 0;
             top: 0;
             z-index: 100;
-            box-shadow: var(--shadow);
-            border-right: 1px solid var(--border-color);
+            transition: transform var(--transition-slow);
+            overflow-y: auto;
         }
 
         .sidebar-header {
+            padding: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.5rem;
             border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--accent-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--accent-primary);
         }
 
         .close-sidebar {
@@ -126,55 +157,21 @@
             border: none;
             color: var(--text-secondary);
             cursor: pointer;
-            font-size: 1.5rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo sup {
-            font-size: 0.6rem;
-            background: var(--accent-secondary);
-            color: white;
-            padding: 2px 4px;
-            border-radius: 4px;
-            margin-left: 2px;
-        }
-
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: var(--border-radius);
-            background-color: var(--accent-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .user-profile {
+        .sidebar-user {
             padding: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         .user-avatar {
-            width: 50px;
-            height: 50px;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;
-            background-color: var(--accent-secondary);
+            background-color: var(--accent-primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -183,8 +180,8 @@
         }
 
         .user-info {
-            flex-grow: 1;
-            overflow: hidden;
+            flex: 1;
+            min-width: 0;
         }
 
         .user-name {
@@ -195,44 +192,41 @@
         }
 
         .user-email {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .user-status {
-            font-size: 0.75rem;
             display: flex;
             align-items: center;
-            margin-top: 4px;
-            color: var(--text-tertiary);
-        }
-
-        .user-status.online {
+            gap: 0.25rem;
+            font-size: 0.75rem;
             color: var(--color-positive);
+            margin-top: 0.25rem;
         }
 
-        .status-indicator {
-            width: 6px;
-            height: 6px;
+        .status-dot {
+            width: 0.5rem;
+            height: 0.5rem;
             border-radius: 50%;
-            background-color: currentColor;
-            margin-right: 5px;
+            background-color: var(--color-positive);
         }
 
         .nav-section {
-            padding: 1.5rem 1rem 1rem;
+            padding: 1.5rem 1rem 0.5rem;
         }
 
         .nav-title {
             font-size: 0.75rem;
-            font-weight: 700;
+            font-weight: 600;
+            text-transform: uppercase;
             color: var(--text-tertiary);
+            padding: 0 0.5rem;
             margin-bottom: 0.75rem;
-            padding-left: 1rem;
-            letter-spacing: 1px;
+            letter-spacing: 0.05em;
         }
 
         .nav-menu {
@@ -246,19 +240,17 @@
         .nav-link {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
-            border-radius: var(--border-radius);
+            gap: 0.75rem;
+            padding: 0.75rem 0.5rem;
+            border-radius: var(--radius-md);
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all var(--transition-speed);
-            font-weight: 500;
-            gap: 0.75rem;
+            transition: all var(--transition-normal);
         }
 
         .nav-link:hover {
-            background-color: rgba(67, 24, 255, 0.1);
-            color: var(--accent-primary);
-            transform: translateX(5px);
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
         }
 
         .nav-link.active {
@@ -266,9 +258,9 @@
             color: white;
         }
 
-        .icon {
-            width: 20px;
-            height: 20px;
+        .nav-icon {
+            width: 1.25rem;
+            height: 1.25rem;
             flex-shrink: 0;
         }
 
@@ -280,21 +272,21 @@
 
         .theme-toggle {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             margin-bottom: 1rem;
         }
 
         .theme-label {
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            font-size: 0.9rem;
         }
 
         .switch {
             position: relative;
             display: inline-block;
-            width: 46px;
-            height: 24px;
+            width: 3rem;
+            height: 1.5rem;
         }
 
         .switch input {
@@ -310,20 +302,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--text-tertiary);
-            transition: var(--transition-speed);
-            border-radius: 24px;
+            background-color: var(--bg-tertiary);
+            transition: var(--transition-normal);
+            border-radius: 1.5rem;
         }
 
         .slider:before {
             position: absolute;
             content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
+            height: 1.125rem;
+            width: 1.125rem;
+            left: 0.1875rem;
+            bottom: 0.1875rem;
             background-color: white;
-            transition: var(--transition-speed);
+            transition: var(--transition-normal);
             border-radius: 50%;
         }
 
@@ -332,23 +324,23 @@
         }
 
         input:checked + .slider:before {
-            transform: translateX(22px);
+            transform: translateX(1.5rem);
         }
 
         .logout-btn {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: var(--border-radius);
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-weight: 500;
             cursor: pointer;
-            transition: all var(--transition-speed);
+            transition: all var(--transition-normal);
         }
 
         .logout-btn:hover {
@@ -357,12 +349,12 @@
             color: white;
         }
 
-        /* Main content styles */
+        /* Main Content */
         .main-content {
-            flex-grow: 1;
+            flex: 1;
             padding: 1.5rem;
-            margin-left: 280px;
-            transition: margin-left var(--transition-speed), padding var(--transition-speed);
+            margin-left: 260px;
+            transition: margin-left var(--transition-slow);
         }
 
         .header {
@@ -374,17 +366,22 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .mobile-menu-toggle {
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-toggle {
             display: none;
             background: none;
             border: none;
             color: var(--text-primary);
-            font-size: 1.5rem;
             cursor: pointer;
         }
 
         .page-title {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
 
@@ -401,19 +398,19 @@
         .search-input {
             background-color: var(--bg-tertiary);
             border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 0.65rem 1rem 0.65rem 2.5rem;
+            border-radius: var(--radius-md);
+            padding: 0.625rem 1rem 0.625rem 2.5rem;
             color: var(--text-primary);
-            width: 250px;
-            font-size: 0.9rem;
-            transition: all var(--transition-speed);
+            width: 15rem;
+            font-size: 0.875rem;
+            transition: all var(--transition-normal);
         }
 
         .search-input:focus {
             outline: none;
             border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(67, 24, 255, 0.1);
-            width: 300px;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+            width: 18rem;
         }
 
         .search-icon {
@@ -422,67 +419,67 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-tertiary);
-            pointer-events: none;
+            width: 1rem;
+            height: 1rem;
         }
 
         .notification-btn {
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            width: 40px;
-            height: 40px;
+            position: relative;
+            width: 2.5rem;
+            height: 2.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
             color: var(--text-primary);
-            position: relative;
             cursor: pointer;
-            transition: all var(--transition-speed);
+            transition: all var(--transition-normal);
         }
 
         .notification-btn:hover {
             background-color: var(--accent-primary);
-            color: white;
             border-color: var(--accent-primary);
-            transform: translateY(-3px);
+            color: white;
         }
 
         .notification-badge {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: -0.25rem;
+            right: -0.25rem;
+            width: 1.125rem;
+            height: 1.125rem;
             background-color: var(--color-negative);
-            color: white;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
+            color: white;
+            font-size: 0.625rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .user-dropdown-btn {
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 0.4rem 1rem;
+        .user-menu {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            padding: 0.375rem 0.75rem;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
             color: var(--text-primary);
             cursor: pointer;
-            transition: all var(--transition-speed);
+            transition: all var(--transition-normal);
         }
 
-        .user-dropdown-btn:hover {
-            background-color: var(--bg-primary);
-            transform: translateY(-3px);
+        .user-menu:hover {
+            background-color: var(--bg-secondary);
         }
 
-        .user-avatar-small {
-            width: 28px;
-            height: 28px;
+        .user-menu-avatar {
+            width: 1.75rem;
+            height: 1.75rem;
             border-radius: 50%;
             background-color: var(--accent-primary);
             display: flex;
@@ -490,78 +487,63 @@
             justify-content: center;
             color: white;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
 
-        .user-name-small {
-            font-weight: 600;
-            font-size: 0.9rem;
+        .user-menu-name {
+            font-weight: 500;
+            font-size: 0.875rem;
         }
 
-        /* Dashboard content styles */
+        /* Dashboard Grid */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 1.5rem;
         }
 
+        /* Cards */
         .card {
-            background-color: var(--bg-card);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-lg);
         }
 
         /* Balance Card */
         .balance-card {
             grid-column: span 12;
-            position: relative;
-            background: linear-gradient(135deg, var(--bg-card), var(--bg-tertiary));
-        }
-
-        .balance-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            z-index: 0;
+            background: linear-gradient(to right, var(--bg-secondary), var(--bg-tertiary));
         }
 
         .balance-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
             padding: 1.5rem;
-            gap: 1.5rem;
+            display: flex;
             align-items: center;
+            gap: 2rem;
         }
 
         .balance-info {
             flex: 1;
         }
 
-        .balance-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+        .balance-label {
+            font-size: 0.875rem;
             color: var(--text-secondary);
+            margin-bottom: 0.25rem;
         }
 
         .balance-value {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -570,8 +552,8 @@
         .balance-change {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
+            gap: 0.375rem;
+            font-size: 0.875rem;
             font-weight: 500;
         }
 
@@ -583,26 +565,42 @@
             color: var(--color-negative);
         }
 
-        .live-indicator {
-            display: inline-flex;
-            align-items: center;
-            margin-left: 0.75rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--color-positive);
-            background-color: rgba(1, 181, 116, 0.1);
-            padding: 0.15rem 0.5rem;
-            border-radius: 10px;
+        .balance-chart {
+            width: 200px;
+            height: 100px;
         }
 
-        .live-indicator::before {
-            content: "";
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background-color: var(--color-positive);
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            border-radius: 1rem;
+            color: var(--color-positive);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.75rem;
+        }
+
+        .live-dot {
+            width: 0.5rem;
+            height: 0.5rem;
             border-radius: 50%;
-            margin-right: 4px;
+            background-color: var(--color-positive);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
 
         /* Crypto Cards */
@@ -615,23 +613,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
-        .crypto-title {
-            font-size: 0.9rem;
+        .crypto-name {
+            font-size: 0.875rem;
             font-weight: 600;
             color: var(--text-secondary);
         }
 
         .crypto-icon {
-            width: 36px;
-            height: 36px;
+            width: 2.25rem;
+            height: 2.25rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .crypto-card:hover .crypto-icon {
@@ -658,18 +656,19 @@
             color: var(--color-cardano);
         }
 
-        .crypto-value {
+        .crypto-price {
             font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
 
         .crypto-change {
             display: flex;
             align-items: center;
             gap: 0.25rem;
-            font-size: 0.8rem;
-            margin-bottom: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
         }
 
         .crypto-change.positive {
@@ -680,17 +679,20 @@
             color: var(--color-negative);
         }
 
+        .crypto-chart {
+            height: 60px;
+        }
+
         /* Chart Cards */
         .chart-card {
             grid-column: span 6;
-            overflow: hidden;
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
+            padding: 1rem 1.25rem;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -708,9 +710,9 @@
         .card-link {
             color: var(--accent-primary);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: color var(--transition-normal);
         }
 
         .card-link:hover {
@@ -719,25 +721,17 @@
         }
 
         .card-body {
-            padding: 1rem;
+            padding: 1.25rem;
         }
 
-        .chart-placeholder {
-            width: 100%;
+        .chart-container {
             height: 250px;
-            background-color: var(--bg-tertiary);
-            border-radius: var(--border-radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            position: relative;
         }
 
         /* Data Cards */
         .data-card {
             grid-column: span 6;
-            overflow: hidden;
         }
 
         .transaction-list {
@@ -748,29 +742,29 @@
         .transaction-item {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
+            padding: 1rem 1.25rem;
             border-bottom: 1px solid var(--border-color);
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .transaction-item:hover {
-            background-color: var(--bg-tertiary);
+            gap: 1rem;
+            transition: background-color var(--transition-normal);
         }
 
         .transaction-item:last-child {
             border-bottom: none;
         }
 
+        .transaction-item:hover {
+            background-color: var(--bg-tertiary);
+        }
+
         .transaction-icon {
-            width: 36px;
-            height: 36px;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .transaction-item:hover .transaction-icon {
@@ -778,28 +772,29 @@
         }
 
         .transaction-icon.received {
-            background-color: rgba(1, 181, 116, 0.1);
+            background-color: rgba(16, 185, 129, 0.1);
             color: var(--color-positive);
         }
 
         .transaction-icon.sent {
-            background-color: rgba(238, 93, 80, 0.1);
+            background-color: rgba(239, 68, 68, 0.1);
             color: var(--color-negative);
         }
 
         .transaction-icon.exchange {
-            background-color: rgba(57, 192, 255, 0.1);
+            background-color: rgba(14, 165, 233, 0.1);
             color: var(--color-info);
         }
 
         .transaction-details {
-            flex-grow: 1;
+            flex: 1;
+            min-width: 0;
         }
 
         .transaction-title {
             font-weight: 600;
-            margin-bottom: 2px;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
         }
 
         .transaction-time {
@@ -809,9 +804,8 @@
 
         .transaction-amount {
             font-weight: 600;
+            font-size: 0.875rem;
             text-align: right;
-            white-space: nowrap;
-            font-size: 0.9rem;
         }
 
         .transaction-amount.positive {
@@ -825,63 +819,44 @@
         .watchlist-item {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
+            padding: 1rem 1.25rem;
             border-bottom: 1px solid var(--border-color);
-            gap: 0.75rem;
-            transition: all 0.3s ease;
-        }
-
-        .watchlist-item:hover {
-            background-color: var(--bg-tertiary);
+            gap: 1rem;
+            transition: background-color var(--transition-normal);
         }
 
         .watchlist-item:last-child {
             border-bottom: none;
         }
 
+        .watchlist-item:hover {
+            background-color: var(--bg-tertiary);
+        }
+
         .watchlist-icon {
-            width: 36px;
-            height: 36px;
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .watchlist-item:hover .watchlist-icon {
             transform: scale(1.1);
         }
 
-        .watchlist-icon.bitcoin {
-            background-color: rgba(247, 147, 26, 0.1);
-            color: var(--color-bitcoin);
-        }
-
-        .watchlist-icon.ethereum {
-            background-color: rgba(98, 126, 234, 0.1);
-            color: var(--color-ethereum);
-        }
-
-        .watchlist-icon.solana {
-            background-color: rgba(20, 241, 149, 0.1);
-            color: var(--color-solana);
-        }
-
-        .watchlist-icon.cardano {
-            background-color: rgba(0, 51, 173, 0.1);
-            color: var(--color-cardano);
-        }
-
         .watchlist-details {
-            flex-grow: 1;
+            flex: 1;
+            min-width: 0;
         }
 
         .watchlist-name {
             font-weight: 600;
-            margin-bottom: 2px;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
         }
 
         .watchlist-symbol {
@@ -893,75 +868,73 @@
             text-align: right;
         }
 
-        .watchlist-price .price {
+        .watchlist-current {
             font-weight: 600;
-            margin-bottom: 2px;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
         }
 
-        .watchlist-price .change {
+        .watchlist-change {
             font-size: 0.75rem;
+            font-weight: 500;
         }
 
-        .watchlist-price .change.positive {
+        .watchlist-change.positive {
             color: var(--color-positive);
         }
 
-        .watchlist-price .change.negative {
+        .watchlist-change.negative {
             color: var(--color-negative);
         }
 
-        /* Admin Notice Banner */
-        .admin-notice-banner {
+        /* Alert Banner */
+        .alert-banner {
             display: flex;
             align-items: center;
-            background-color: var(--bg-tertiary);
-            border-radius: var(--border-radius);
-            padding: 0.75rem 1rem;
-            margin-bottom: 1rem;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-lg);
             border-left: 4px solid var(--accent-primary);
-            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
         }
 
-        .admin-notice-icon {
-            flex-shrink: 0;
-            width: 32px;
-            height: 32px;
+        .alert-icon {
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
-            background-color: rgba(67, 24, 255, 0.1);
+            background-color: rgba(59, 130, 246, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent-primary);
-            margin-right: 1rem;
+            flex-shrink: 0;
         }
 
-        .admin-notice-content {
-            flex-grow: 1;
+        .alert-content {
+            flex: 1;
+            min-width: 0;
         }
 
-        .admin-notice-text {
-            font-size: 0.9rem;
+        .alert-message {
+            font-size: 0.875rem;
             font-weight: 500;
         }
 
-        .admin-notice-more {
+        .alert-close {
             background: none;
             border: none;
-            color: var(--text-secondary);
+            color: var(--text-tertiary);
             cursor: pointer;
-            padding: 0.25rem;
-            border-radius: 50%;
-            transition: all var(--transition-speed);
+            transition: color var(--transition-normal);
         }
 
-        .admin-notice-more:hover {
-            background-color: var(--bg-secondary);
-            color: var(--accent-primary);
+        .alert-close:hover {
+            color: var(--text-primary);
         }
 
-        /* Responsive styles */
-        @media (max-width: 1400px) {
+        /* Responsive Styles */
+        @media (max-width: 1280px) {
             .crypto-card {
                 grid-column: span 6;
             }
@@ -971,71 +944,77 @@
             }
         }
 
-        @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(-100%);
-                z-index: 1000;
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .close-sidebar {
-                display: block;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-
+        @media (max-width: 1024px) {
             .balance-content {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .balance-chart {
+                width: 100%;
             }
         }
 
         @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                z-index: 1000;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .close-sidebar {
+                display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
             .header-actions {
                 display: none;
             }
-
+            
             .crypto-card {
                 grid-column: span 12;
             }
         }
 
-        @media (max-width: 576px) {
-            .main-content {
-                padding: 1rem;
-            }
-
+        @media (max-width: 640px) {
             .dashboard-grid {
                 gap: 1rem;
             }
-
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
             .transaction-item,
             .watchlist-item {
                 flex-wrap: wrap;
             }
-
+            
             .transaction-amount,
             .watchlist-price {
-                margin-top: 0.5rem;
-                flex-basis: 100%;
+                width: 100%;
                 text-align: left;
+                margin-top: 0.5rem;
+                padding-left: 3.5rem;
             }
         }
 
         /* Icons */
         .icon {
             display: inline-block;
-            width: 1em;
-            height: 1em;
+            width: 1.5em;
+            height: 1.5em;
             stroke-width: 0;
             stroke: currentColor;
             fill: currentColor;
@@ -1049,8 +1028,7 @@
             <div class="sidebar-header">
                 <div class="logo">
                     <div class="logo-icon">Z</div>
-                    <span>Zephyr</span>
-                    <sup>PRO</sup>
+                    <div class="logo-text">Zephyr<span>Pro</span></div>
                 </div>
                 <button class="close-sidebar" id="close-sidebar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
@@ -1060,24 +1038,24 @@
                 </button>
             </div>
 
-            <div class="user-profile">
+            <div class="sidebar-user">
                 <div class="user-avatar">JD</div>
                 <div class="user-info">
                     <div class="user-name">John Doe</div>
                     <div class="user-email">john.doe@example.com</div>
-                    <div class="user-status online">
-                        <span class="status-indicator"></span>
+                    <div class="user-status">
+                        <div class="status-dot"></div>
                         Online
                     </div>
                 </div>
             </div>
 
             <div class="nav-section">
-                <div class="nav-title">MAIN MENU</div>
+                <div class="nav-title">Main Menu</div>
                 <ul class="nav-menu">
                     <li class="nav-item">
                         <a href="#" class="nav-link active" data-section="dashboard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <rect x="3" y="3" width="7" height="7"></rect>
                                 <rect x="14" y="3" width="7" height="7"></rect>
                                 <rect x="14" y="14" width="7" height="7"></rect>
@@ -1088,7 +1066,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-section="portfolio">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -1098,7 +1076,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-section="transactions">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <line x1="12" y1="1" x2="12" y2="23"></line>
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                             </svg>
@@ -1107,7 +1085,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-section="exchange">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="8" y1="12" x2="16" y2="12"></line>
                                 <line x1="12" y1="16" x2="12" y2="8"></line>
@@ -1119,11 +1097,11 @@
             </div>
 
             <div class="nav-section">
-                <div class="nav-title">TOOLS</div>
+                <div class="nav-title">Tools</div>
                 <ul class="nav-menu">
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-section="market">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                             </svg>
                             Market
@@ -1131,7 +1109,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-section="news">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
                                 <path d="M18 14h-8"></path>
                                 <path d="M15 18h-5"></path>
@@ -1142,7 +1120,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-section="settings">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
                                 <circle cx="12" cy="12" r="3"></circle>
                             </svg>
@@ -1175,7 +1153,7 @@
         <main class="main-content">
             <header class="header">
                 <div class="header-left">
-                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <button class="mobile-toggle" id="mobile-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -1186,7 +1164,7 @@
                 </div>
                 <div class="header-actions">
                     <div class="search-bar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
@@ -1199,29 +1177,29 @@
                         </svg>
                         <span class="notification-badge">3</span>
                     </button>
-                    <div class="user-dropdown-btn">
-                        <div class="user-avatar-small">JD</div>
-                        <span class="user-name-small">John Doe</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                    <div class="user-menu">
+                        <div class="user-menu-avatar">JD</div>
+                        <span class="user-menu-name">John Doe</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 1rem; height: 1rem;">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </div>
                 </div>
             </header>
 
-            <!-- Admin Notice Banner -->
-            <div class="admin-notice-banner">
-                <div class="admin-notice-icon">
+            <!-- Alert Banner -->
+            <div class="alert-banner" id="alert-banner">
+                <div class="alert-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                         <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                         <line x1="12" y1="9" x2="12" y2="13"></line>
                         <line x1="12" y1="17" x2="12.01" y2="17"></line>
                     </svg>
                 </div>
-                <div class="admin-notice-content">
-                    <div class="admin-notice-text">System maintenance scheduled for May 15th, 2023. Some services may be temporarily unavailable.</div>
+                <div class="alert-content">
+                    <div class="alert-message">System maintenance scheduled for May 15th, 2023. Some services may be temporarily unavailable.</div>
                 </div>
-                <button class="admin-notice-more" id="admin-notice-more">
+                <button class="alert-close" id="alert-close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -1235,14 +1213,21 @@
                 <div class="card balance-card">
                     <div class="balance-content">
                         <div class="balance-info">
-                            <div class="balance-title">Total Balance</div>
+                            <div class="balance-label">Total Balance</div>
                             <div class="balance-value">$45,287.65</div>
                             <div class="balance-change positive">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 1rem; height: 1rem;">
                                     <polyline points="18 15 12 9 6 15"></polyline>
                                 </svg>
-                                +5.3% ($2,354.22) <span class="live-indicator">LIVE</span>
+                                +5.3% ($2,354.22)
+                                <span class="live-badge">
+                                    <span class="live-dot"></span>
+                                    LIVE
+                                </span>
                             </div>
+                        </div>
+                        <div class="balance-chart">
+                            <canvas id="balance-chart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -1250,7 +1235,7 @@
                 <!-- Crypto Cards -->
                 <div class="card crypto-card">
                     <div class="crypto-header">
-                        <div class="crypto-title">Bitcoin</div>
+                        <div class="crypto-name">Bitcoin</div>
                         <div class="crypto-icon bitcoin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                                 <path d="M11.767 19.089c4.924.868 9.458-2.422 10.126-7.346.667-4.924-2.422-9.458-7.346-10.126-4.924-.667-9.458 2.422-10.126 7.346-.667 4.924 2.422 9.458 7.346 10.126z"></path>
@@ -1263,18 +1248,21 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="crypto-value">$32,456.78</div>
+                    <div class="crypto-price">$32,456.78</div>
                     <div class="crypto-change positive">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.875rem; height: 0.875rem;">
                             <polyline points="18 15 12 9 6 15"></polyline>
                         </svg>
                         +2.4%
+                    </div>
+                    <div class="crypto-chart">
+                        <canvas id="btc-chart"></canvas>
                     </div>
                 </div>
 
                 <div class="card crypto-card">
                     <div class="crypto-header">
-                        <div class="crypto-title">Ethereum</div>
+                        <div class="crypto-name">Ethereum</div>
                         <div class="crypto-icon ethereum">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                                 <polygon points="11 5 6 9 11 13 11 5"></polygon>
@@ -1284,18 +1272,21 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="crypto-value">$1,987.45</div>
+                    <div class="crypto-price">$1,987.45</div>
                     <div class="crypto-change negative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.875rem; height: 0.875rem;">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                         -1.2%
+                    </div>
+                    <div class="crypto-chart">
+                        <canvas id="eth-chart"></canvas>
                     </div>
                 </div>
 
                 <div class="card crypto-card">
                     <div class="crypto-header">
-                        <div class="crypto-title">Solana</div>
+                        <div class="crypto-name">Solana</div>
                         <div class="crypto-icon solana">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                                 <path d="M12 12m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"></path>
@@ -1304,18 +1295,21 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="crypto-value">$87.32</div>
+                    <div class="crypto-price">$87.32</div>
                     <div class="crypto-change positive">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.875rem; height: 0.875rem;">
                             <polyline points="18 15 12 9 6 15"></polyline>
                         </svg>
                         +5.7%
+                    </div>
+                    <div class="crypto-chart">
+                        <canvas id="sol-chart"></canvas>
                     </div>
                 </div>
 
                 <div class="card crypto-card">
                     <div class="crypto-header">
-                        <div class="crypto-title">Cardano</div>
+                        <div class="crypto-name">Cardano</div>
                         <div class="crypto-icon cardano">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                                 <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
@@ -1324,12 +1318,15 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="crypto-value">$0.52</div>
+                    <div class="crypto-price">$0.52</div>
                     <div class="crypto-change positive">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.875rem; height: 0.875rem;">
                             <polyline points="18 15 12 9 6 15"></polyline>
                         </svg>
                         +3.1%
+                    </div>
+                    <div class="crypto-chart">
+                        <canvas id="ada-chart"></canvas>
                     </div>
                 </div>
 
@@ -1342,7 +1339,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <canvas id="portfolio-chart" width="400" height="250"></canvas>
+                        <div class="chart-container">
+                            <canvas id="portfolio-chart"></canvas>
+                        </div>
                     </div>
                 </div>
 
@@ -1354,7 +1353,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <canvas id="market-chart" width="400" height="250"></canvas>
+                        <div class="chart-container">
+                            <canvas id="market-chart"></canvas>
+                        </div>
                     </div>
                 </div>
 
@@ -1366,7 +1367,7 @@
                             <a href="#" class="card-link">View All</a>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 0;">
                         <div class="transaction-list">
                             <div class="transaction-item">
                                 <div class="transaction-icon received">
@@ -1408,6 +1409,19 @@
                                 </div>
                                 <div class="transaction-amount">0.001 BTC → 12.5 SOL</div>
                             </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon received">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Received Solana</div>
+                                    <div class="transaction-time">May 8, 16:45</div>
+                                </div>
+                                <div class="transaction-amount positive">+2.5 SOL</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1419,7 +1433,7 @@
                             <a href="#" class="card-link">View All</a>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 0;">
                         <div class="watchlist-list">
                             <div class="watchlist-item">
                                 <div class="watchlist-icon bitcoin">
@@ -1438,8 +1452,8 @@
                                     <div class="watchlist-symbol">BTC</div>
                                 </div>
                                 <div class="watchlist-price">
-                                    <div class="price">$32,456.78</div>
-                                    <div class="change positive">+2.4%</div>
+                                    <div class="watchlist-current">$32,456.78</div>
+                                    <div class="watchlist-change positive">+2.4%</div>
                                 </div>
                             </div>
                             <div class="watchlist-item">
@@ -1456,8 +1470,8 @@
                                     <div class="watchlist-symbol">ETH</div>
                                 </div>
                                 <div class="watchlist-price">
-                                    <div class="price">$1,987.45</div>
-                                    <div class="change negative">-1.2%</div>
+                                    <div class="watchlist-current">$1,987.45</div>
+                                    <div class="watchlist-change negative">-1.2%</div>
                                 </div>
                             </div>
                             <div class="watchlist-item">
@@ -1473,8 +1487,25 @@
                                     <div class="watchlist-symbol">SOL</div>
                                 </div>
                                 <div class="watchlist-price">
-                                    <div class="price">$87.32</div>
-                                    <div class="change positive">+5.7%</div>
+                                    <div class="watchlist-current">$87.32</div>
+                                    <div class="watchlist-change positive">+5.7%</div>
+                                </div>
+                            </div>
+                            <div class="watchlist-item">
+                                <div class="watchlist-icon cardano">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                        <path d="M2 17l10 5 10-5"></path>
+                                        <path d="M2 12l10 5 10-5"></path>
+                                    </svg>
+                                </div>
+                                <div class="watchlist-details">
+                                    <div class="watchlist-name">Cardano</div>
+                                    <div class="watchlist-symbol">ADA</div>
+                                </div>
+                                <div class="watchlist-price">
+                                    <div class="watchlist-current">$0.52</div>
+                                    <div class="watchlist-change positive">+3.1%</div>
                                 </div>
                             </div>
                         </div>
@@ -1491,12 +1522,12 @@
             initializeCharts();
             
             // Mobile menu toggle
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileToggle = document.getElementById('mobile-toggle');
             const closeSidebar = document.getElementById('close-sidebar');
             const sidebar = document.getElementById('sidebar');
 
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function() {
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
                     sidebar.classList.add('active');
                 });
             }
@@ -1510,11 +1541,11 @@
             // Close sidebar when clicking outside on mobile
             document.addEventListener('click', function(event) {
                 if (
-                    window.innerWidth < 992 &&
+                    window.innerWidth < 768 &&
                     sidebar &&
                     !sidebar.contains(event.target) &&
-                    mobileMenuToggle &&
-                    !mobileMenuToggle.contains(event.target) &&
+                    mobileToggle &&
+                    !mobileToggle.contains(event.target) &&
                     sidebar.classList.contains('active')
                 ) {
                     sidebar.classList.remove('active');
@@ -1557,13 +1588,13 @@
                 });
             }
 
-            // Admin notice banner functionality
-            const adminNoticeBanner = document.querySelector('.admin-notice-banner');
-            const adminNoticeMore = document.getElementById('admin-notice-more');
+            // Alert banner close functionality
+            const alertBanner = document.getElementById('alert-banner');
+            const alertClose = document.getElementById('alert-close');
             
-            if (adminNoticeMore && adminNoticeBanner) {
-                adminNoticeMore.addEventListener('click', function() {
-                    adminNoticeBanner.style.display = 'none';
+            if (alertClose && alertBanner) {
+                alertClose.addEventListener('click', function() {
+                    alertBanner.style.display = 'none';
                 });
             }
 
@@ -1595,8 +1626,10 @@
                     // Update change text
                     const changeText = `${newChangePercent >= 0 ? '+' : ''}${newChangePercent.toFixed(1)}% ($${Math.abs(newChangeAmount)})`;
                     
-                    // Keep the LIVE indicator
-                    balanceChange.innerHTML = changeText + ' <span class="live-indicator">LIVE</span>';
+                    // Keep the LIVE badge
+                    const liveBadge = balanceChange.querySelector('.live-badge');
+                    balanceChange.innerHTML = changeText;
+                    balanceChange.appendChild(liveBadge);
                     
                     // Update class based on positive/negative
                     if (newChangePercent >= 0) {
@@ -1632,15 +1665,141 @@
             const isDarkTheme = !document.body.classList.contains('light-theme');
             
             const chartColors = {
-                primary: '#4318FF',
-                secondary: isDarkTheme ? '#A3AED0' : '#707EAE',
-                background: isDarkTheme ? '#1C2237' : '#FFFFFF',
+                primary: '#3b82f6',
+                secondary: isDarkTheme ? '#94a3b8' : '#64748b',
+                background: isDarkTheme ? '#1e293b' : '#ffffff',
                 grid: isDarkTheme ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                bitcoin: '#F7931A',
-                ethereum: '#627EEA',
-                solana: '#14F195',
-                cardano: '#0033AD'
+                bitcoin: '#f7931a',
+                ethereum: '#627eea',
+                solana: '#14f195',
+                cardano: '#0033ad'
             };
+
+            // Balance Chart
+            const balanceChartEl = document.getElementById('balance-chart');
+            if (balanceChartEl) {
+                // Destroy existing chart if it exists
+                const existingChart = Chart.getChart(balanceChartEl);
+                if (existingChart) {
+                    existingChart.destroy();
+                }
+
+                // Generate data for the last 7 days
+                const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                const data = [42000, 43500, 43200, 44800, 44100, 45300, 45287.65];
+
+                new Chart(balanceChartEl, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Balance',
+                            data: data,
+                            borderColor: chartColors.primary,
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: true,
+                                backgroundColor: chartColors.background,
+                                titleColor: isDarkTheme ? '#f8fafc' : '#0f172a',
+                                bodyColor: chartColors.secondary,
+                                callbacks: {
+                                    label: function(context) {
+                                        return `$${context.raw.toLocaleString()}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Crypto Mini Charts
+            const cryptoCharts = [
+                { id: 'btc-chart', color: chartColors.bitcoin, trend: 'up' },
+                { id: 'eth-chart', color: chartColors.ethereum, trend: 'down' },
+                { id: 'sol-chart', color: chartColors.solana, trend: 'up' },
+                { id: 'ada-chart', color: chartColors.cardano, trend: 'up' }
+            ];
+
+            cryptoCharts.forEach(chart => {
+                const chartEl = document.getElementById(chart.id);
+                if (chartEl) {
+                    // Destroy existing chart if it exists
+                    const existingChart = Chart.getChart(chartEl);
+                    if (existingChart) {
+                        existingChart.destroy();
+                    }
+
+                    // Generate random data based on trend
+                    const data = [];
+                    let value = 100;
+                    for (let i = 0; i < 24; i++) {
+                        if (chart.trend === 'up') {
+                            value += Math.random() * 5 - 1.5; // Trending up
+                        } else {
+                            value -= Math.random() * 5 - 1.5; // Trending down
+                        }
+                        data.push(value);
+                    }
+
+                    new Chart(chartEl, {
+                        type: 'line',
+                        data: {
+                            labels: Array(24).fill(''),
+                            datasets: [{
+                                data: data,
+                                borderColor: chart.color,
+                                backgroundColor: `${chart.color}10`,
+                                fill: true,
+                                tension: 0.4,
+                                borderWidth: 2,
+                                pointRadius: 0
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    enabled: false
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                }
+            });
 
             // Portfolio Chart
             const portfolioChartEl = document.getElementById('portfolio-chart');
@@ -1684,7 +1843,7 @@
                             },
                             tooltip: {
                                 backgroundColor: chartColors.background,
-                                titleColor: isDarkTheme ? '#FFFFFF' : '#000000',
+                                titleColor: isDarkTheme ? '#f8fafc' : '#0f172a',
                                 bodyColor: chartColors.secondary,
                                 borderColor: chartColors.grid,
                                 borderWidth: 1,
@@ -1772,7 +1931,7 @@
                             },
                             tooltip: {
                                 backgroundColor: chartColors.background,
-                                titleColor: isDarkTheme ? '#FFFFFF' : '#000000',
+                                titleColor: isDarkTheme ? '#f8fafc' : '#0f172a',
                                 bodyColor: chartColors.secondary,
                                 borderColor: chartColors.grid,
                                 borderWidth: 1,
