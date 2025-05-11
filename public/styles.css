@@ -808,6 +808,22 @@ input:checked + .slider:before {
   color: transparent;
 }
 
+.balance-value.highlight {
+  animation: highlight-pulse 1s ease-in-out;
+}
+
+@keyframes highlight-pulse {
+  0% {
+    text-shadow: 0 0 0 rgba(106, 83, 255, 0);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(106, 83, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 0 rgba(106, 83, 255, 0);
+  }
+}
+
 .balance-change {
   display: flex;
   align-items: center;
@@ -914,6 +930,10 @@ input:checked + .slider:before {
   padding: 1.5rem;
 }
 
+.tab-content {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 /* Ripple effect for quick actions */
 .quick-action {
   position: relative;
@@ -934,7 +954,11 @@ input:checked + .slider:before {
 }
 
 @keyframes ripple {
-  to {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
     transform: scale(4);
     opacity: 0;
   }
@@ -1066,6 +1090,7 @@ input:checked + .slider:before {
   gap: 1rem;
   padding: 2rem;
   background-color: var(--bg-tertiary);
+  border-radius: var(--border-radius);
   border: 1px dashed var(--border-color);
 }
 
