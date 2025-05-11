@@ -813,6 +813,91 @@ function simulatePriceUpdates() {
   }
 }
 
+// Add this to the setupInteractiveElements function
+function setupQuickActionTabs() {
+  const tabButtons = document.querySelectorAll(".tab-button")
+  const tabContents = document.querySelectorAll(".tab-content")
+
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Update active tab button
+      tabButtons.forEach((btn) => btn.classList.remove("active"))
+      this.classList.add("active")
+
+      // Show corresponding tab content
+      const tabName = this.getAttribute("data-tab")
+      tabContents.forEach((content) => {
+        if (content.getAttribute("data-tab-content") === tabName) {
+          content.style.display = "grid"
+
+          // Add entrance animation
+          content.style.opacity = "0"
+          content.style.transform = "translateY(10px)"
+
+          setTimeout(() => {
+            content.style.opacity = "1"
+            content.style.transform = "translateY(0)"
+            content.style.transition = "opacity 0.3s ease, transform 0.3s ease"
+          }, 50)
+        } else {
+          content.style.display = "none"
+        }
+      })
+    })
+  })
+
+  // Add hover effects for quick actions
+  const quickActions = document.querySelectorAll(".quick-action")
+  quickActions.forEach((action) => {
+    action.addEventListener("mouseenter", function () {
+      // Add subtle animation
+      this.style.transition = "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+
+      // Get the icon element
+      const icon = this.querySelector(".quick-action-icon")
+      if (icon) {
+        icon.style.transform = "scale(1.1)"
+      }
+    })
+
+    action.addEventListener("mouseleave", function () {
+      const icon = this.querySelector(".quick-action-icon")
+      if (icon) {
+        icon.style.transform = ""
+      }
+    })
+
+    // Add click effect
+    action.addEventListener("click", function (e) {
+      // Create ripple effect
+      const ripple = document.createElement("span")
+      ripple.classList.add("ripple-effect")
+
+      const rect = this.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      ripple.style.left = `${x}px`
+      ripple.style.top = `${y}px`
+
+      this.appendChild(ripple)
+
+      setTimeout(() => {
+        ripple.remove()
+      }, 600)
+    })
+  })
+
+  // Customize button functionality
+  const customizeButton = document.querySelector(".customize-button")
+  if (customizeButton) {
+    customizeButton.addEventListener("click", () => {
+      // In a real app, this would open a modal for customization
+      alert("This would open a customization modal in a real application.")
+    })
+  }
+}
+
 // Add event listeners for interactive elements
 function setupInteractiveElements() {
   // Portfolio distribution dropdown
@@ -955,4 +1040,7 @@ function setupInteractiveElements() {
       alert(`Action: ${this.textContent.trim()} - This would open a modal in a real application.`)
     })
   })
+
+  // Setup quick action tabs
+  setupQuickActionTabs()
 }
