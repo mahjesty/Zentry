@@ -3,18 +3,11 @@ import { Chart } from "@/components/ui/chart"
 document.addEventListener("DOMContentLoaded", () => {
   // Mobile menu functionality
   const mobileMenuToggle = document.getElementById("mobile-menu-toggle")
-  const closeSidebar = document.getElementById("close-sidebar")
   const sidebar = document.getElementById("sidebar")
 
   if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener("click", () => {
       sidebar.classList.add("active")
-    })
-  }
-
-  if (closeSidebar) {
-    closeSidebar.addEventListener("click", () => {
-      sidebar.classList.remove("active")
     })
   }
 
@@ -46,8 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Update active content section
       const targetSection = this.getAttribute("data-section")
-      contentSections.forEach((section) => section.classList.remove("active"))
-      document.getElementById(`${targetSection}-section`).classList.add("active")
+      if (targetSection && document.getElementById(`${targetSection}-section`)) {
+        contentSections.forEach((section) => section.classList.remove("active"))
+        document.getElementById(`${targetSection}-section`).classList.add("active")
+      }
     })
   })
 
@@ -90,6 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
       adminNoticeBanner.style.display = "none"
     })
   }
+
+  // Simulate loading states
+  setTimeout(() => {
+    // Add any animations or transitions here
+    document.querySelectorAll(".card").forEach((card) => {
+      card.style.opacity = "1"
+    })
+  }, 300)
 
   // Initialize charts
   initializeCharts()
@@ -823,7 +826,9 @@ function setupInteractiveElements() {
   dropdownItems.forEach((item) => {
     item.addEventListener("click", function () {
       const dropdownButton = this.closest(".dropdown-wrapper").querySelector(".btn-dropdown span")
-      dropdownButton.textContent = this.textContent
+      if (dropdownButton) {
+        dropdownButton.textContent = this.textContent
+      }
 
       dropdownItems.forEach((i) => i.classList.remove("active"))
       this.classList.add("active")
@@ -902,60 +907,47 @@ function setupInteractiveElements() {
         }
 
         // Update chart data and labels
-        marketTrendsChart.data.labels = labels
+        if (marketTrendsChart.data && marketTrendsChart.data.labels) {
+          marketTrendsChart.data.labels = labels
 
-        marketTrendsChart.data.datasets.forEach((dataset, index) => {
-          let startPrice, volatility, trend
+          marketTrendsChart.data.datasets.forEach((dataset, index) => {
+            let startPrice, volatility, trend
 
-          if (index === 0) {
-            // BTC
-            startPrice = 30000
-            volatility = timePeriod === "1D" ? 1 : timePeriod === "1W" ? 3 : 5
-            trend = "up"
-          } else if (index === 1) {
-            // ETH
-            startPrice = 1900
-            volatility = timePeriod === "1D" ? 1.5 : timePeriod === "1W" ? 4 : 6
-            trend = "down"
-          } else {
-            // SOL
-            startPrice = 80
-            volatility = timePeriod === "1D" ? 2 : timePeriod === "1W" ? 5 : 8
-            trend = "up"
-          }
+            if (index === 0) {
+              // BTC
+              startPrice = 30000
+              volatility = timePeriod === "1D" ? 1 : timePeriod === "1W" ? 3 : 5
+              trend = "up"
+            } else if (index === 1) {
+              // ETH
+              startPrice = 1900
+              volatility = timePeriod === "1D" ? 1.5 : timePeriod === "1W" ? 4 : 6
+              trend = "down"
+            } else {
+              // SOL
+              startPrice = 80
+              volatility = timePeriod === "1D" ? 2 : timePeriod === "1W" ? 5 : 8
+              trend = "up"
+            }
 
-          // Generate trend data
-          const data = []
-          let price = startPrice
+            // Generate trend data
+            const data = []
+            let price = startPrice
 
-          for (let i = 0; i < dataPoints; i++) {
-            const change = (Math.random() * 2 - 1) * volatility
-            const trendFactor = trend === "up" ? 0.2 : trend === "down" ? -0.2 : 0
+            for (let i = 0; i < dataPoints; i++) {
+              const change = (Math.random() * 2 - 1) * volatility
+              const trendFactor = trend === "up" ? 0.2 : trend === "down" ? -0.2 : 0
 
-            price = price * (1 + (change + trendFactor) / 100)
-            data.push(price)
-          }
+              price = price * (1 + (change + trendFactor) / 100)
+              data.push(price)
+            }
 
-          dataset.data = data
-        })
+            dataset.data = data
+          })
 
-        marketTrendsChart.update()
+          marketTrendsChart.update()
+        }
       }
-    })
-  })
-
-  // Distribution action buttons
-  const actionButtons = document.querySelectorAll(".action-button")
-  actionButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      // Add a subtle animation effect
-      this.classList.add("clicked")
-      setTimeout(() => {
-        this.classList.remove("clicked")
-      }, 300)
-
-      // Show a toast or notification (if we had one)
-      alert(`Action: ${this.textContent.trim()} - This would open a modal in a real application.`)
     })
   })
 }
