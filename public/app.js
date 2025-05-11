@@ -1,4 +1,5 @@
-import { Chart } from "@/components/ui/chart"
+// Access Chart from the global scope
+const Chart = window.Chart
 // No import needed as Chart.js is loaded via script tag in HTML
 document.addEventListener("DOMContentLoaded", () => {
   // Mobile menu functionality
