@@ -81,9 +81,72 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Admin notice banner functionality
+  const adminNoticeBanner = document.querySelector(".admin-notice-banner")
+  const adminNoticeMore = document.querySelector(".admin-notice-more")
+
+  if (adminNoticeMore && adminNoticeBanner) {
+    adminNoticeMore.addEventListener("click", () => {
+      adminNoticeBanner.style.display = "none"
+    })
+  }
+
   // Initialize charts
   initializeCharts()
+
+  // Simulate real-time balance updates
+  setInterval(updateBalanceValue, 3000)
 })
+
+function updateBalanceValue() {
+  const balanceValue = document.querySelector(".balance-value")
+  const balanceChange = document.querySelector(".balance-change")
+
+  if (balanceValue && balanceChange) {
+    // Get current value
+    const currentValue = Number.parseFloat(balanceValue.textContent.replace("$", "").replace(",", ""))
+
+    // Generate small random change (-0.2% to +0.2%)
+    const changePercent = (Math.random() * 0.4 - 0.2) / 100
+    const changeAmount = currentValue * changePercent
+    const newValue = currentValue + changeAmount
+
+    // Update display
+    balanceValue.textContent = "$" + newValue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+    // Update change text
+    const currentChangeText = balanceChange.textContent
+    const currentChangePercent = Number.parseFloat(currentChangeText.match(/\+?-?\d+\.\d+/)[0])
+    const newChangePercent = currentChangePercent + changePercent * 100
+
+    // Calculate new change amount
+    const newChangeAmount = ((currentValue * newChangePercent) / 100).toFixed(2)
+
+    // Update change text
+    balanceChange.textContent = `${newChangePercent >= 0 ? "+" : ""}${newChangePercent.toFixed(1)}% ($${Math.abs(newChangeAmount)}) `
+
+    // Add back the LIVE indicator
+    const liveIndicator = document.createElement("span")
+    liveIndicator.className = "live-indicator"
+    liveIndicator.textContent = "LIVE"
+    balanceChange.appendChild(liveIndicator)
+
+    // Update class based on positive/negative
+    if (newChangePercent >= 0) {
+      balanceChange.classList.remove("negative")
+      balanceChange.classList.add("positive")
+    } else {
+      balanceChange.classList.remove("positive")
+      balanceChange.classList.add("negative")
+    }
+
+    // Add highlight effect
+    balanceValue.classList.add("highlight")
+    setTimeout(() => {
+      balanceValue.classList.remove("highlight")
+    }, 1000)
+  }
+}
 
 function initializeCharts() {
   // Define chart colors based on theme
