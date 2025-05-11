@@ -1342,9 +1342,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="chart-placeholder">
-                            Portfolio Distribution Chart
-                        </div>
+                        <canvas id="portfolio-chart" width="400" height="250"></canvas>
                     </div>
                 </div>
 
@@ -1356,9 +1354,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="chart-placeholder">
-                            Market Trends Chart
-                        </div>
+                        <canvas id="market-chart" width="400" height="250"></canvas>
                     </div>
                 </div>
 
@@ -1488,8 +1484,12 @@
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize charts
+            initializeCharts();
+            
             // Mobile menu toggle
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const closeSidebar = document.getElementById('close-sidebar');
@@ -1551,6 +1551,9 @@
                     } else {
                         document.body.classList.add('light-theme');
                     }
+                    
+                    // Reinitialize charts with new theme colors
+                    initializeCharts();
                 });
             }
 
@@ -1617,6 +1620,202 @@
             // Update balance every 3 seconds
             setInterval(updateBalanceValue, 3000);
         });
+
+        function initializeCharts() {
+            // Check if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded');
+                return;
+            }
+
+            // Get theme colors
+            const isDarkTheme = !document.body.classList.contains('light-theme');
+            
+            const chartColors = {
+                primary: '#4318FF',
+                secondary: isDarkTheme ? '#A3AED0' : '#707EAE',
+                background: isDarkTheme ? '#1C2237' : '#FFFFFF',
+                grid: isDarkTheme ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                bitcoin: '#F7931A',
+                ethereum: '#627EEA',
+                solana: '#14F195',
+                cardano: '#0033AD'
+            };
+
+            // Portfolio Chart
+            const portfolioChartEl = document.getElementById('portfolio-chart');
+            if (portfolioChartEl) {
+                // Destroy existing chart if it exists
+                const existingChart = Chart.getChart(portfolioChartEl);
+                if (existingChart) {
+                    existingChart.destroy();
+                }
+
+                new Chart(portfolioChartEl, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Bitcoin', 'Ethereum', 'Solana', 'Cardano', 'Others'],
+                        datasets: [{
+                            data: [45, 30, 15, 7, 3],
+                            backgroundColor: [
+                                chartColors.bitcoin,
+                                chartColors.ethereum,
+                                chartColors.solana,
+                                chartColors.cardano,
+                                chartColors.secondary
+                            ],
+                            borderWidth: 0,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: chartColors.secondary,
+                                    font: {
+                                        size: 12
+                                    },
+                                    padding: 20
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: chartColors.background,
+                                titleColor: isDarkTheme ? '#FFFFFF' : '#000000',
+                                bodyColor: chartColors.secondary,
+                                borderColor: chartColors.grid,
+                                borderWidth: 1,
+                                padding: 12,
+                                displayColors: true,
+                                callbacks: {
+                                    label: function(context) {
+                                        const value = context.raw;
+                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                        const percentage = Math.round((value / total) * 100);
+                                        return `${context.label}: ${percentage}%`;
+                                    }
+                                }
+                            }
+                        },
+                        cutout: '70%',
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true
+                        }
+                    }
+                });
+            }
+
+            // Market Chart
+            const marketChartEl = document.getElementById('market-chart');
+            if (marketChartEl) {
+                // Destroy existing chart if it exists
+                const existingChart = Chart.getChart(marketChartEl);
+                if (existingChart) {
+                    existingChart.destroy();
+                }
+
+                // Generate some random data
+                const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const btcData = [29000, 32000, 31500, 34000, 33000, 36000, 38000, 37000, 39000, 41000, 40000, 42000];
+                const ethData = [1600, 1700, 1650, 1800, 1750, 1900, 2000, 1950, 2100, 2200, 2150, 2300];
+
+                new Chart(marketChartEl, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Bitcoin',
+                                data: btcData,
+                                borderColor: chartColors.bitcoin,
+                                backgroundColor: 'rgba(247, 147, 26, 0.1)',
+                                fill: true,
+                                tension: 0.4,
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                pointHoverRadius: 4
+                            },
+                            {
+                                label: 'Ethereum',
+                                data: ethData,
+                                borderColor: chartColors.ethereum,
+                                backgroundColor: 'rgba(98, 126, 234, 0.1)',
+                                fill: true,
+                                tension: 0.4,
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                pointHoverRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    color: chartColors.secondary,
+                                    font: {
+                                        size: 12
+                                    },
+                                    usePointStyle: true
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: chartColors.background,
+                                titleColor: isDarkTheme ? '#FFFFFF' : '#000000',
+                                bodyColor: chartColors.secondary,
+                                borderColor: chartColors.grid,
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: $${context.raw.toLocaleString()}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: chartColors.secondary,
+                                    font: {
+                                        size: 10
+                                    }
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    color: chartColors.grid,
+                                    borderDash: [5, 5]
+                                },
+                                ticks: {
+                                    color: chartColors.secondary,
+                                    font: {
+                                        size: 10
+                                    },
+                                    callback: function(value) {
+                                        return '$' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>
