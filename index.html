@@ -7,20 +7,49 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <style>
         :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-tertiary: #94a3b8;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #60a5fa;
-            --accent-tertiary: #93c5fd;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
+            --bg-primary: #10141e;
+            --bg-secondary: #161b2c;
+            --bg-tertiary: #1c2237;
+            --bg-card: #1c2338;
+            --bg-sidebar: #0f1525;
+            --text-primary: #ffffff;
+            --text-secondary: #a3aed0;
+            --text-tertiary: #697386;
+            --accent-primary: #4318ff;
+            --accent-secondary: #6a53ff;
+            --accent-hover: #7551ff;
+            --color-positive: #01b574;
+            --color-negative: #ee5d50;
+            --color-warning: #ffb547;
+            --color-info: #39c0ff;
+            --color-bitcoin: #f7931a;
+            --color-ethereum: #627eea;
+            --color-solana: #14f195;
+            --color-cardano: #0033ad;
+            --color-polkadot: #e6007a;
+            --border-radius-sm: 8px;
             --border-radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-radius-lg: 20px;
+            --transition-speed: 0.3s;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.3);
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .light-theme {
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f0f3fa;
+            --bg-card: #ffffff;
+            --bg-sidebar: #ffffff;
+            --text-primary: #2b3674;
+            --text-secondary: #707eae;
+            --text-tertiary: #8f9bba;
+            --accent-primary: #4318ff;
+            --accent-secondary: #6a53ff;
+            --accent-hover: #7551ff;
+            --border-color: rgba(0, 0, 0, 0.08);
         }
 
         * {
@@ -30,11 +59,13 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
         .dashboard {
@@ -42,21 +73,58 @@
             min-height: 100vh;
         }
 
-        /* Sidebar Styles */
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-tertiary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        /* Sidebar styles */
         .sidebar {
             width: 280px;
-            background-color: var(--bg-secondary);
-            padding: 1.5rem;
+            background-color: var(--bg-sidebar);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: transform var(--transition-speed), width var(--transition-speed);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
             z-index: 100;
+            box-shadow: var(--shadow);
+            border-right: 1px solid var(--border-color);
         }
 
         .sidebar-header {
             display: flex;
             align-items: center;
-            margin-bottom: 2rem;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .close-sidebar {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.5rem;
         }
 
         .logo {
@@ -68,24 +136,109 @@
             gap: 0.5rem;
         }
 
+        .logo sup {
+            font-size: 0.6rem;
+            background: var(--accent-secondary);
+            color: white;
+            padding: 2px 4px;
+            border-radius: 4px;
+            margin-left: 2px;
+        }
+
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--border-radius);
             background-color: var(--accent-primary);
-            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .user-profile {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: var(--accent-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .user-info {
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .user-name {
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-email {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-status {
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            margin-top: 4px;
+            color: var(--text-tertiary);
+        }
+
+        .user-status.online {
+            color: var(--color-positive);
+        }
+
+        .status-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: currentColor;
+            margin-right: 5px;
+        }
+
+        .nav-section {
+            padding: 1.5rem 1rem 1rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            letter-spacing: 1px;
         }
 
         .nav-menu {
             list-style: none;
-            margin-top: 1rem;
-            flex-grow: 1;
         }
 
         .nav-item {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .nav-link {
@@ -95,13 +248,15 @@
             border-radius: var(--border-radius);
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all var(--transition-speed);
             font-weight: 500;
+            gap: 0.75rem;
         }
 
         .nav-link:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-            color: var(--text-primary);
+            background-color: rgba(67, 24, 255, 0.1);
+            color: var(--accent-primary);
+            transform: translateX(5px);
         }
 
         .nav-link.active {
@@ -109,58 +264,121 @@
             color: white;
         }
 
-        .nav-link i {
-            margin-right: 0.75rem;
-            font-size: 1.25rem;
+        .icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
         }
 
-        .user-profile {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background-color: var(--bg-tertiary);
-            border-radius: var(--border-radius);
+        .sidebar-footer {
             margin-top: auto;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
         }
 
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--accent-secondary);
+        .theme-toggle {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            margin-right: 0.75rem;
+            margin-bottom: 1rem;
         }
 
-        .user-info {
-            flex-grow: 1;
-        }
-
-        .user-name {
-            font-weight: 600;
+        .theme-label {
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        .user-role {
-            font-size: 0.75rem;
-            color: var(--text-tertiary);
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
         }
 
-        /* Main Content Styles */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--text-tertiary);
+            transition: var(--transition-speed);
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: var(--transition-speed);
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .logout-btn:hover {
+            background-color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
+        }
+
+        /* Main content styles */
         .main-content {
             flex-grow: 1;
             padding: 1.5rem;
-            overflow-y: auto;
+            margin-left: 280px;
+            transition: margin-left var(--transition-speed), padding var(--transition-speed);
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         .page-title {
@@ -170,6 +388,7 @@
 
         .header-actions {
             display: flex;
+            align-items: center;
             gap: 1rem;
         }
 
@@ -178,13 +397,21 @@
         }
 
         .search-input {
-            background-color: var(--bg-secondary);
-            border: none;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            padding: 0.65rem 1rem 0.65rem 2.5rem;
             color: var(--text-primary);
             width: 250px;
             font-size: 0.9rem;
+            transition: all var(--transition-speed);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(67, 24, 255, 0.1);
+            width: 300px;
         }
 
         .search-icon {
@@ -193,11 +420,12 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-tertiary);
+            pointer-events: none;
         }
 
         .notification-btn {
-            background-color: var(--bg-secondary);
-            border: none;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
             width: 40px;
             height: 40px;
@@ -207,13 +435,21 @@
             color: var(--text-primary);
             position: relative;
             cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .notification-btn:hover {
+            background-color: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
         }
 
         .notification-badge {
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: var(--danger);
+            background-color: var(--color-negative);
             color: white;
             border-radius: 50%;
             width: 18px;
@@ -224,6 +460,43 @@
             justify-content: center;
         }
 
+        .user-dropdown-btn {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 0.4rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .user-dropdown-btn:hover {
+            background-color: var(--bg-primary);
+            transform: translateY(-3px);
+        }
+
+        .user-avatar-small {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .user-name-small {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Dashboard content styles */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -231,404 +504,506 @@
         }
 
         .card {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-card);
             border-radius: var(--border-radius);
-            padding: 1.5rem;
             box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .welcome-card {
-            grid-column: span 8;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Balance Card */
+        .balance-card {
+            grid-column: span 12;
+            position: relative;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-tertiary));
+        }
+
+        .balance-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .balance-content {
+            position: relative;
+            z-index: 1;
             display: flex;
+            padding: 1.5rem;
+            gap: 1.5rem;
             align-items: center;
-            background: linear-gradient(to right, var(--bg-secondary), #2a4365);
         }
 
-        .welcome-content {
-            flex-grow: 1;
+        .balance-info {
+            flex: 1;
         }
 
-        .welcome-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .welcome-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .welcome-actions {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--border-radius);
+        .balance-title {
+            font-size: 1rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
+            margin-bottom: 0.25rem;
+            color: var(--text-secondary);
+        }
+
+        .balance-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .balance-change {
+            display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        .btn-primary {
-            background-color: var(--accent-primary);
-            color: white;
-            border: none;
+        .balance-change.positive {
+            color: var(--color-positive);
         }
 
-        .btn-primary:hover {
-            background-color: var(--accent-secondary);
+        .balance-change.negative {
+            color: var(--color-negative);
         }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--text-tertiary);
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-positive);
+            background-color: rgba(1, 181, 116, 0.1);
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
         }
 
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+        .live-indicator::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-positive);
+            border-radius: 50%;
+            margin-right: 4px;
         }
 
-        .welcome-image {
-            width: 180px;
-            height: 180px;
-            background: url('/placeholder.svg?height=180&width=180&query=abstract crypto illustration') no-repeat center center;
-            background-size: contain;
+        /* Crypto Cards */
+        .crypto-card {
+            grid-column: span 3;
+            padding: 1.25rem;
         }
 
-        .portfolio-card {
-            grid-column: span 4;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .portfolio-header {
+        .crypto-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
-        .portfolio-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .portfolio-value {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-change {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .crypto-title {
             font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .change-positive {
-            color: var(--success);
-        }
-
-        .portfolio-actions {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 0.75rem;
-            border-radius: var(--border-radius);
-            background-color: var(--bg-tertiary);
-            border: none;
-            color: var(--text-primary);
             font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .crypto-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
-        .action-btn:hover {
-            background-color: var(--accent-primary);
+        .crypto-card:hover .crypto-icon {
+            transform: scale(1.1);
         }
 
-        .notices-card {
+        .crypto-icon.bitcoin {
+            background-color: rgba(247, 147, 26, 0.1);
+            color: var(--color-bitcoin);
+        }
+
+        .crypto-icon.ethereum {
+            background-color: rgba(98, 126, 234, 0.1);
+            color: var(--color-ethereum);
+        }
+
+        .crypto-icon.solana {
+            background-color: rgba(20, 241, 149, 0.1);
+            color: var(--color-solana);
+        }
+
+        .crypto-icon.cardano {
+            background-color: rgba(0, 51, 173, 0.1);
+            color: var(--color-cardano);
+        }
+
+        .crypto-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .crypto-change {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .crypto-change.positive {
+            color: var(--color-positive);
+        }
+
+        .crypto-change.negative {
+            color: var(--color-negative);
+        }
+
+        /* Chart Cards */
+        .chart-card {
             grid-column: span 6;
+            overflow: hidden;
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .card-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
         }
 
-        .card-action {
+        .card-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-link {
             color: var(--accent-primary);
+            text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .notice-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .card-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
         }
 
-        .notice-item {
-            display: flex;
-            gap: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--bg-tertiary);
+        .card-body {
+            padding: 1rem;
         }
 
-        .notice-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .notice-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(59, 130, 246, 0.1);
+        .chart-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-primary);
-            flex-shrink: 0;
-        }
-
-        .notice-content {
-            flex-grow: 1;
-        }
-
-        .notice-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .notice-desc {
-            color: var(--text-tertiary);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        .notice-time {
-            color: var(--text-tertiary);
-            font-size: 0.8rem;
-            white-space: nowrap;
-        }
-
-        .academy-card {
-            grid-column: span 8;
-        }
-
-        .course-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-        }
-
-        .course-item {
-            background-color: var(--bg-tertiary);
-            border-radius: var(--border-radius);
+        /* Data Cards */
+        .data-card {
+            grid-column: span 6;
             overflow: hidden;
-            transition: all 0.2s ease;
         }
 
-        .course-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .course-image {
-            height: 140px;
-            background-color: var(--bg-tertiary);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .course-content {
-            padding: 1.25rem;
-        }
-
-        .course-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background-color: rgba(59, 130, 246, 0.1);
-            color: var(--accent-primary);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .course-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .course-info {
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-tertiary);
-            font-size: 0.85rem;
-        }
-
-        .community-card {
-            grid-column: span 4;
-        }
-
-        .community-list {
+        .transaction-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
         }
 
-        .community-item {
+        .transaction-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .transaction-item:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .transaction-item:hover .transaction-icon {
+            transform: scale(1.1);
+        }
+
+        .transaction-icon.received {
+            background-color: rgba(1, 181, 116, 0.1);
+            color: var(--color-positive);
+        }
+
+        .transaction-icon.sent {
+            background-color: rgba(238, 93, 80, 0.1);
+            color: var(--color-negative);
+        }
+
+        .transaction-icon.exchange {
+            background-color: rgba(57, 192, 255, 0.1);
+            color: var(--color-info);
+        }
+
+        .transaction-details {
+            flex-grow: 1;
+        }
+
+        .transaction-title {
+            font-weight: 600;
+            margin-bottom: 2px;
+            font-size: 0.9rem;
+        }
+
+        .transaction-time {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .transaction-amount {
+            font-weight: 600;
+            text-align: right;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .transaction-amount.positive {
+            color: var(--color-positive);
+        }
+
+        .transaction-amount.negative {
+            color: var(--color-negative);
+        }
+
+        .watchlist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .watchlist-item:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .watchlist-item:last-child {
+            border-bottom: none;
+        }
+
+        .watchlist-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .watchlist-item:hover .watchlist-icon {
+            transform: scale(1.1);
+        }
+
+        .watchlist-icon.bitcoin {
+            background-color: rgba(247, 147, 26, 0.1);
+            color: var(--color-bitcoin);
+        }
+
+        .watchlist-icon.ethereum {
+            background-color: rgba(98, 126, 234, 0.1);
+            color: var(--color-ethereum);
+        }
+
+        .watchlist-icon.solana {
+            background-color: rgba(20, 241, 149, 0.1);
+            color: var(--color-solana);
+        }
+
+        .watchlist-icon.cardano {
+            background-color: rgba(0, 51, 173, 0.1);
+            color: var(--color-cardano);
+        }
+
+        .watchlist-details {
+            flex-grow: 1;
+        }
+
+        .watchlist-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+            font-size: 0.9rem;
+        }
+
+        .watchlist-symbol {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .watchlist-price {
+            text-align: right;
+        }
+
+        .watchlist-price .price {
+            font-weight: 600;
+            margin-bottom: 2px;
+            font-size: 0.9rem;
+        }
+
+        .watchlist-price .change {
+            font-size: 0.75rem;
+        }
+
+        .watchlist-price .change.positive {
+            color: var(--color-positive);
+        }
+
+        .watchlist-price .change.negative {
+            color: var(--color-negative);
+        }
+
+        /* Admin Notice Banner */
+        .admin-notice-banner {
+            display: flex;
+            align-items: center;
             background-color: var(--bg-tertiary);
             border-radius: var(--border-radius);
-            transition: all 0.2s ease;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--accent-primary);
+            box-shadow: var(--shadow-sm);
         }
 
-        .community-item:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-
-        .community-icon {
-            width: 40px;
-            height: 40px;
+        .admin-notice-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background-color: var(--bg-secondary);
+            background-color: rgba(67, 24, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent-primary);
-            flex-shrink: 0;
+            margin-right: 1rem;
         }
 
-        .community-content {
+        .admin-notice-content {
             flex-grow: 1;
         }
 
-        .community-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+        .admin-notice-text {
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        .community-members {
-            color: var(--text-tertiary);
-            font-size: 0.85rem;
-        }
-
-        .community-action {
-            color: var(--accent-primary);
-            font-size: 1.25rem;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
+        .admin-notice-more {
             background: none;
             border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
+            color: var(--text-secondary);
             cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 50%;
+            transition: all var(--transition-speed);
         }
 
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .dashboard-grid {
-                grid-template-columns: repeat(8, 1fr);
-            }
+        .admin-notice-more:hover {
+            background-color: var(--bg-secondary);
+            color: var(--accent-primary);
+        }
 
-            .welcome-card {
-                grid-column: span 8;
+        /* Responsive styles */
+        @media (max-width: 1400px) {
+            .crypto-card {
+                grid-column: span 6;
             }
-
-            .portfolio-card {
-                grid-column: span 8;
-            }
-
-            .notices-card {
-                grid-column: span 8;
-            }
-
-            .academy-card {
-                grid-column: span 8;
-            }
-
-            .community-card {
-                grid-column: span 8;
+            
+            .chart-card, .data-card {
+                grid-column: span 12;
             }
         }
 
         @media (max-width: 992px) {
             .sidebar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100%;
                 transform: translateX(-100%);
+                z-index: 1000;
             }
 
             .sidebar.active {
                 transform: translateX(0);
             }
 
+            .close-sidebar {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
             .mobile-menu-toggle {
                 display: block;
             }
 
-            .course-list {
-                grid-template-columns: 1fr;
+            .balance-content {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
         @media (max-width: 768px) {
-            .welcome-card {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .welcome-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .welcome-image {
-                margin-top: 1.5rem;
-            }
-
             .header-actions {
                 display: none;
+            }
+
+            .crypto-card {
+                grid-column: span 12;
             }
         }
 
@@ -641,12 +1016,16 @@
                 gap: 1rem;
             }
 
-            .card {
-                padding: 1rem;
+            .transaction-item,
+            .watchlist-item {
+                flex-wrap: wrap;
             }
 
-            .portfolio-actions {
-                flex-direction: column;
+            .transaction-amount,
+            .watchlist-price {
+                margin-top: 0.5rem;
+                flex-basis: 100%;
+                text-align: left;
             }
         }
 
@@ -669,294 +1048,436 @@
                 <div class="logo">
                     <div class="logo-icon">Z</div>
                     <span>Zephyr</span>
+                    <sup>PRO</sup>
                 </div>
+                <button class="close-sidebar" id="close-sidebar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"></path>
-                        </svg>
-                        Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                        </svg>
-                        Profile
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path>
-                        </svg>
-                        Notice Board
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"></path>
-                        </svg>
-                        Transfer
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path>
-                        </svg>
-                        Convert
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"></path>
-                        </svg>
-                        Academy
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-                        </svg>
-                        Community
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"></path>
-                        </svg>
-                        Mining
-                    </a>
-                </li>
-            </ul>
+
             <div class="user-profile">
                 <div class="user-avatar">JD</div>
                 <div class="user-info">
                     <div class="user-name">John Doe</div>
-                    <div class="user-role">Premium Member</div>
+                    <div class="user-email">john.doe@example.com</div>
+                    <div class="user-status online">
+                        <span class="status-indicator"></span>
+                        Online
+                    </div>
                 </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">MAIN MENU</div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-section="dashboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="portfolio">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Portfolio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="transactions">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Transactions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="exchange">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                                <line x1="12" y1="16" x2="12" y2="8"></line>
+                            </svg>
+                            Exchange
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">TOOLS</div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="market">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                            Market
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="news">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+                                <path d="M18 14h-8"></path>
+                                <path d="M15 18h-5"></path>
+                                <path d="M10 6h8v4h-8V6Z"></path>
+                            </svg>
+                            News
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="settings">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="theme-toggle">
+                    <span class="theme-label">Dark Mode</span>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button class="logout-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Logout
+                </button>
             </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
             <header class="header">
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-                    </svg>
-                </button>
-                <h1 class="page-title">Dashboard</h1>
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <h1 class="page-title">Dashboard</h1>
+                </div>
                 <div class="header-actions">
                     <div class="search-bar">
-                        <svg class="icon search-icon" viewBox="0 0 24 24">
-                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon search-icon">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                         <input type="text" class="search-input" placeholder="Search...">
                     </div>
                     <button class="notification-btn">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                         </svg>
                         <span class="notification-badge">3</span>
                     </button>
+                    <div class="user-dropdown-btn">
+                        <div class="user-avatar-small">JD</div>
+                        <span class="user-name-small">John Doe</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
             </header>
 
+            <!-- Admin Notice Banner -->
+            <div class="admin-notice-banner">
+                <div class="admin-notice-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </div>
+                <div class="admin-notice-content">
+                    <div class="admin-notice-text">System maintenance scheduled for May 15th, 2023. Some services may be temporarily unavailable.</div>
+                </div>
+                <button class="admin-notice-more" id="admin-notice-more">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Dashboard Content -->
             <div class="dashboard-grid">
-                <!-- Welcome Card -->
-                <div class="card welcome-card">
-                    <div class="welcome-content">
-                        <h2 class="welcome-title">Welcome back, John!</h2>
-                        <p class="welcome-subtitle">Your portfolio is performing well today. Check the latest updates.</p>
-                        <div class="welcome-actions">
-                            <button class="btn btn-primary">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                <!-- Balance Card -->
+                <div class="card balance-card">
+                    <div class="balance-content">
+                        <div class="balance-info">
+                            <div class="balance-title">Total Balance</div>
+                            <div class="balance-value">$45,287.65</div>
+                            <div class="balance-change positive">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <polyline points="18 15 12 9 6 15"></polyline>
                                 </svg>
-                                Deposit Funds
-                            </button>
-                            <button class="btn btn-secondary">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
-                                </svg>
-                                Create New Wallet
-                            </button>
+                                +5.3% ($2,354.22) <span class="live-indicator">LIVE</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="welcome-image"></div>
                 </div>
 
-                <!-- Portfolio Card -->
-                <div class="card portfolio-card">
-                    <div class="portfolio-header">
-                        <h3 class="portfolio-title">Your Portfolio</h3>
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                        </svg>
-                    </div>
-                    <div class="portfolio-value">$24,635.89</div>
-                    <div class="portfolio-change change-positive">
-                        <svg class="icon" viewBox="0 0 24 24">
-                            <path d="M7 14l5-5 5 5z"></path>
-                        </svg>
-                        +5.23% ($1,256.89)
-                    </div>
-                    <div class="portfolio-actions">
-                        <button class="action-btn">
-                            <svg class="icon" viewBox="0 0 24 24">
-                                <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"></path>
+                <!-- Crypto Cards -->
+                <div class="card crypto-card">
+                    <div class="crypto-header">
+                        <div class="crypto-title">Bitcoin</div>
+                        <div class="crypto-icon bitcoin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M11.767 19.089c4.924.868 9.458-2.422 10.126-7.346.667-4.924-2.422-9.458-7.346-10.126-4.924-.667-9.458 2.422-10.126 7.346-.667 4.924 2.422 9.458 7.346 10.126z"></path>
+                                <path d="M15.5 8.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                <path d="M10 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                <path d="M15.5 17.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                <path d="M7.5 12h9"></path>
+                                <path d="M9.5 6.5l5 3"></path>
+                                <path d="M9.5 17.5l5-3"></path>
                             </svg>
-                            Deposit
-                        </button>
-                        <button class="action-btn">
-                            <svg class="icon" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"></path>
+                        </div>
+                    </div>
+                    <div class="crypto-value">$32,456.78</div>
+                    <div class="crypto-change positive">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                        +2.4%
+                    </div>
+                </div>
+
+                <div class="card crypto-card">
+                    <div class="crypto-header">
+                        <div class="crypto-title">Ethereum</div>
+                        <div class="crypto-icon ethereum">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <polygon points="11 5 6 9 11 13 11 5"></polygon>
+                                <polygon points="13 5 13 13 18 9 13 5"></polygon>
+                                <polygon points="11 13 6 9 11 17 11 13"></polygon>
+                                <polygon points="13 13 18 9 13 17 13 13"></polygon>
                             </svg>
-                            Withdraw
-                        </button>
+                        </div>
+                    </div>
+                    <div class="crypto-value">$1,987.45</div>
+                    <div class="crypto-change negative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                        -1.2%
                     </div>
                 </div>
 
-                <!-- Notices Card -->
-                <div class="card notices-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Admin Notices</h3>
-                        <span class="card-action">View All</span>
+                <div class="card crypto-card">
+                    <div class="crypto-header">
+                        <div class="crypto-title">Solana</div>
+                        <div class="crypto-icon solana">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M12 12m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"></path>
+                                <path d="M6 12h12"></path>
+                                <path d="M12 6v12"></path>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="notice-list">
-                        <div class="notice-item">
-                            <div class="notice-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
-                                </svg>
-                            </div>
-                            <div class="notice-content">
-                                <h4 class="notice-title">System Maintenance</h4>
-                                <p class="notice-desc">Scheduled maintenance on May 15th. Services may be temporarily unavailable.</p>
-                            </div>
-                            <div class="notice-time">2h ago</div>
+                    <div class="crypto-value">$87.32</div>
+                    <div class="crypto-change positive">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                        +5.7%
+                    </div>
+                </div>
+
+                <div class="card crypto-card">
+                    <div class="crypto-header">
+                        <div class="crypto-title">Cardano</div>
+                        <div class="crypto-icon cardano">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5"></path>
+                                <path d="M2 12l10 5 10-5"></path>
+                            </svg>
                         </div>
-                        <div class="notice-item">
-                            <div class="notice-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                                </svg>
-                            </div>
-                            <div class="notice-content">
-                                <h4 class="notice-title">Security Alert</h4>
-                                <p class="notice-desc">Enable 2FA for enhanced account security. Protect your assets now.</p>
-                            </div>
-                            <div class="notice-time">1d ago</div>
+                    </div>
+                    <div class="crypto-value">$0.52</div>
+                    <div class="crypto-change positive">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                            <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                        +3.1%
+                    </div>
+                </div>
+
+                <!-- Chart Cards -->
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <div class="card-title">Portfolio Distribution</div>
+                        <div class="card-actions">
+                            <a href="#" class="card-link">View Details</a>
                         </div>
-                        <div class="notice-item">
-                            <div class="notice-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
-                                </svg>
-                            </div>
-                            <div class="notice-content">
-                                <h4 class="notice-title">New Token Listing</h4>
-                                <p class="notice-desc">ZephyrCoin (ZPC) is now available for trading. Check it out!</p>
-                            </div>
-                            <div class="notice-time">3d ago</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-placeholder">
+                            Portfolio Distribution Chart
                         </div>
                     </div>
                 </div>
 
-                <!-- Academy Card -->
-                <div class="card academy-card">
+                <div class="card chart-card">
                     <div class="card-header">
-                        <h3 class="card-title">Academy Updates</h3>
-                        <span class="card-action">View All Courses</span>
+                        <div class="card-title">Market Trends</div>
+                        <div class="card-actions">
+                            <a href="#" class="card-link">View Details</a>
+                        </div>
                     </div>
-                    <div class="course-list">
-                        <div class="course-item">
-                            <div class="course-image" style="background-image: url('/placeholder.svg?height=140&width=280&query=blockchain technology course')"></div>
-                            <div class="course-content">
-                                <span class="course-tag">Beginner</span>
-                                <h4 class="course-title">Blockchain Fundamentals</h4>
-                                <div class="course-info">
-                                    <span>8 Lessons</span>
-                                    <span>2.5 Hours</span>
+                    <div class="card-body">
+                        <div class="chart-placeholder">
+                            Market Trends Chart
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Cards -->
+                <div class="card data-card">
+                    <div class="card-header">
+                        <div class="card-title">Recent Transactions</div>
+                        <div class="card-actions">
+                            <a href="#" class="card-link">View All</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="transaction-icon received">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Received Bitcoin</div>
+                                    <div class="transaction-time">Today, 14:23</div>
+                                </div>
+                                <div class="transaction-amount positive">+0.0045 BTC</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon sent">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                                        <polyline points="17 18 23 18 23 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Sent Ethereum</div>
+                                    <div class="transaction-time">Yesterday, 09:15</div>
+                                </div>
+                                <div class="transaction-amount negative">-0.25 ETH</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon exchange">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Exchanged BTC to SOL</div>
+                                    <div class="transaction-time">May 10, 11:32</div>
+                                </div>
+                                <div class="transaction-amount">0.001 BTC → 12.5 SOL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card data-card">
+                    <div class="card-header">
+                        <div class="card-title">Watchlist</div>
+                        <div class="card-actions">
+                            <a href="#" class="card-link">View All</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="watchlist-list">
+                            <div class="watchlist-item">
+                                <div class="watchlist-icon bitcoin">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path d="M11.767 19.089c4.924.868 9.458-2.422 10.126-7.346.667-4.924-2.422-9.458-7.346-10.126-4.924-.667-9.458 2.422-10.126 7.346-.667 4.924 2.422 9.458 7.346 10.126z"></path>
+                                        <path d="M15.5 8.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                        <path d="M10 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                        <path d="M15.5 17.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                                        <path d="M7.5 12h9"></path>
+                                        <path d="M9.5 6.5l5 3"></path>
+                                        <path d="M9.5 17.5l5-3"></path>
+                                    </svg>
+                                </div>
+                                <div class="watchlist-details">
+                                    <div class="watchlist-name">Bitcoin</div>
+                                    <div class="watchlist-symbol">BTC</div>
+                                </div>
+                                <div class="watchlist-price">
+                                    <div class="price">$32,456.78</div>
+                                    <div class="change positive">+2.4%</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="course-item">
-                            <div class="course-image" style="background-image: url('/placeholder.svg?height=140&width=280&query=cryptocurrency trading course')"></div>
-                            <div class="course-content">
-                                <span class="course-tag">Intermediate</span>
-                                <h4 class="course-title">Crypto Trading Strategies</h4>
-                                <div class="course-info">
-                                    <span>12 Lessons</span>
-                                    <span>4 Hours</span>
+                            <div class="watchlist-item">
+                                <div class="watchlist-icon ethereum">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <polygon points="11 5 6 9 11 13 11 5"></polygon>
+                                        <polygon points="13 5 13 13 18 9 13 5"></polygon>
+                                        <polygon points="11 13 6 9 11 17 11 13"></polygon>
+                                        <polygon points="13 13 18 9 13 17 13 13"></polygon>
+                                    </svg>
+                                </div>
+                                <div class="watchlist-details">
+                                    <div class="watchlist-name">Ethereum</div>
+                                    <div class="watchlist-symbol">ETH</div>
+                                </div>
+                                <div class="watchlist-price">
+                                    <div class="price">$1,987.45</div>
+                                    <div class="change negative">-1.2%</div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Community Card -->
-                <div class="card community-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Community</h3>
-                        <span class="card-action">View All</span>
-                    </div>
-                    <div class="community-list">
-                        <div class="community-item">
-                            <div class="community-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path>
-                                </svg>
-                            </div>
-                            <div class="community-content">
-                                <h4 class="community-title">Traders Chat</h4>
-                                <p class="community-members">8,542 members</p>
-                            </div>
-                            <div class="community-action">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="community-item">
-                            <div class="community-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path>
-                                </svg>
-                            </div>
-                            <div class="community-content">
-                                <h4 class="community-title">DeFi Discussion</h4>
-                                <p class="community-members">5,129 members</p>
-                            </div>
-                            <div class="community-action">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="community-item">
-                            <div class="community-icon">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path>
-                                </svg>
-                            </div>
-                            <div class="community-content">
-                                <h4 class="community-title">NFT Collectors</h4>
-                                <p class="community-members">3,871 members</p>
-                            </div>
-                            <div class="community-action">
-                                <svg class="icon" viewBox="0 0 24 24">
-                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
-                                </svg>
+                            <div class="watchlist-item">
+                                <div class="watchlist-icon solana">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path d="M12 12m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"></path>
+                                        <path d="M6 12h12"></path>
+                                        <path d="M12 6v12"></path>
+                                    </svg>
+                                </div>
+                                <div class="watchlist-details">
+                                    <div class="watchlist-name">Solana</div>
+                                    <div class="watchlist-symbol">SOL</div>
+                                </div>
+                                <div class="watchlist-price">
+                                    <div class="price">$87.32</div>
+                                    <div class="change positive">+5.7%</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -966,48 +1487,134 @@
     </div>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const sidebar = document.getElementById('sidebar');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const closeSidebar = document.getElementById('close-sidebar');
+            const sidebar = document.getElementById('sidebar');
 
-        mobileMenuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', (event) => {
-            if (window.innerWidth < 992 && 
-                !sidebar.contains(event.target) && 
-                !mobileMenuToggle.contains(event.target) && 
-                sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-            }
-        });
-
-        // Responsive handling
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 992) {
-                sidebar.classList.remove('active');
-            }
-        });
-
-        // Sample data for charts (can be expanded with a charting library)
-        const portfolioData = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            values: [12000, 19000, 15000, 22000, 18000, 24635]
-        };
-
-        // Simulate loading states
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                // Add any animations or transitions here
-                document.querySelectorAll('.card').forEach(card => {
-                    card.style.opacity = '1';
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    sidebar.classList.add('active');
                 });
-            }, 300);
+            }
+
+            if (closeSidebar) {
+                closeSidebar.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                });
+            }
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (
+                    window.innerWidth < 992 &&
+                    sidebar &&
+                    !sidebar.contains(event.target) &&
+                    mobileMenuToggle &&
+                    !mobileMenuToggle.contains(event.target) &&
+                    sidebar.classList.contains('active')
+                ) {
+                    sidebar.classList.remove('active');
+                }
+            });
+
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active nav link
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update page title based on active link
+                    const sectionName = this.getAttribute('data-section');
+                    if (sectionName) {
+                        document.querySelector('.page-title').textContent = 
+                            sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
+                    }
+                });
+            });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('change', function() {
+                    if (this.checked) {
+                        document.body.classList.remove('light-theme');
+                    } else {
+                        document.body.classList.add('light-theme');
+                    }
+                });
+            }
+
+            // Admin notice banner functionality
+            const adminNoticeBanner = document.querySelector('.admin-notice-banner');
+            const adminNoticeMore = document.getElementById('admin-notice-more');
+            
+            if (adminNoticeMore && adminNoticeBanner) {
+                adminNoticeMore.addEventListener('click', function() {
+                    adminNoticeBanner.style.display = 'none';
+                });
+            }
+
+            // Simulate real-time balance updates
+            function updateBalanceValue() {
+                const balanceValue = document.querySelector('.balance-value');
+                const balanceChange = document.querySelector('.balance-change');
+                
+                if (balanceValue && balanceChange) {
+                    // Get current value
+                    const currentValue = parseFloat(balanceValue.textContent.replace('$', '').replace(',', ''));
+                    
+                    // Generate small random change (-0.2% to +0.2%)
+                    const changePercent = (Math.random() * 0.4 - 0.2) / 100;
+                    const changeAmount = currentValue * changePercent;
+                    const newValue = currentValue + changeAmount;
+                    
+                    // Update display
+                    balanceValue.textContent = '$' + newValue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    
+                    // Update change text
+                    const currentChangeText = balanceChange.textContent;
+                    const currentChangePercent = parseFloat(currentChangeText.match(/\+?-?\d+\.\d+/)[0]);
+                    const newChangePercent = currentChangePercent + changePercent * 100;
+                    
+                    // Calculate new change amount
+                    const newChangeAmount = ((currentValue * newChangePercent) / 100).toFixed(2);
+                    
+                    // Update change text
+                    const changeText = `${newChangePercent >= 0 ? '+' : ''}${newChangePercent.toFixed(1)}% ($${Math.abs(newChangeAmount)})`;
+                    
+                    // Keep the LIVE indicator
+                    balanceChange.innerHTML = changeText + ' <span class="live-indicator">LIVE</span>';
+                    
+                    // Update class based on positive/negative
+                    if (newChangePercent >= 0) {
+                        balanceChange.classList.remove('negative');
+                        balanceChange.classList.add('positive');
+                    } else {
+                        balanceChange.classList.remove('positive');
+                        balanceChange.classList.add('negative');
+                    }
+                    
+                    // Add highlight effect
+                    balanceValue.style.transition = 'color 0.3s';
+                    balanceValue.style.color = newChangePercent >= 0 ? 'var(--color-positive)' : 'var(--color-negative)';
+                    
+                    setTimeout(() => {
+                        balanceValue.style.color = '';
+                    }, 500);
+                }
+            }
+            
+            // Update balance every 3 seconds
+            setInterval(updateBalanceValue, 3000);
         });
     </script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-<script src="/app.js"></script>
 </body>
 </html>
