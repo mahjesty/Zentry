@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyr | Cryptocurrency Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+            --accent-tertiary: #93c5fd;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-secondary);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--accent-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-top: 1rem;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            background-color: var(--accent-primary);
+            color: white;
+        }
+
+        .nav-link i {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            margin-top: auto;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 0.75rem;
+        }
+
+        .user-info {
+            flex-grow: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex-grow: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-bar {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: var(--bg-secondary);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            color: var(--text-primary);
+            width: 250px;
+            font-size: 0.9rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+        }
+
+        .notification-btn {
+            background-color: var(--bg-secondary);
+            border: none;
+            border-radius: var(--border-radius);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-card {
+            grid-column: span 8;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, var(--bg-secondary), #2a4365);
+        }
+
+        .welcome-content {
+            flex-grow: 1;
+        }
+
+        .welcome-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-secondary);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--text-tertiary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .welcome-image {
+            width: 180px;
+            height: 180px;
+            background: url('/placeholder.svg?height=180&width=180&query=abstract crypto illustration') no-repeat center center;
+            background-size: contain;
+        }
+
+        .portfolio-card {
+            grid-column: span 4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .portfolio-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-change {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .change-positive {
+            color: var(--success);
+        }
+
+        .portfolio-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            background-color: var(--bg-tertiary);
+            border: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background-color: var(--accent-primary);
+        }
+
+        .notices-card {
+            grid-column: span 6;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-action {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .notice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .notice-item {
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .notice-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(59, 130, 246, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .notice-content {
+            flex-grow: 1;
+        }
+
+        .notice-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .notice-desc {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        .notice-time {
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .quick-actions-card {
+            grid-column: span 6;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .action-card {
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--border-radius);
+            background-color: rgba(59, 130, 246, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        .action-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-desc {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        .academy-card {
+            grid-column: span 8;
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .course-item {
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .course-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .course-image {
+            height: 140px;
+            background-color: var(--bg-tertiary);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .course-content {
+            padding: 1.25rem;
+        }
+
+        .course-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent-primary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        .community-card {
+            grid-column: span 4;
+        }
+
+        .community-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .community-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease;
+        }
+
+        .community-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .community-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .community-content {
+            flex-grow: 1;
+        }
+
+        .community-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .community-members {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        .community-action {
+            color: var(--accent-primary);
+            font-size: 1.25rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+
+            .welcome-card {
+                grid-column: span 8;
+            }
+
+            .portfolio-card {
+                grid-column: span 8;
+            }
+
+            .notices-card {
+                grid-column: span 8;
+            }
+
+            .quick-actions-card {
+                grid-column: span 8;
+            }
+
+            .academy-card {
+                grid-column: span 8;
+            }
+
+            .community-card {
+                grid-column: span 8;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .course-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .welcome-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .welcome-image {
+                margin-top: 1.5rem;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-actions {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 1rem;
+            }
+
+            .dashboard-grid {
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .portfolio-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">Z</div>
+                    <span>Zephyr</span>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"></path>
+                        </svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+                        </svg>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path>
+                        </svg>
+                        Notice Board
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"></path>
+                        </svg>
+                        Transfer
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path>
+                        </svg>
+                        Convert
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"></path>
+                        </svg>
+                        Academy
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+                        </svg>
+                        Community
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"></path>
+                        </svg>
+                        Mining
+                    </a>
+                </li>
+            </ul>
+            <div class="user-profile">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Premium Member</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                    </svg>
+                </button>
+                <h1 class="page-title">Dashboard</h1>
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <svg class="icon search-icon" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Search...">
+                    </div>
+                    <button class="notification-btn">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
+                        </svg>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Welcome Card -->
+                <div class="card welcome-card">
+                    <div class="welcome-content">
+                        <h2 class="welcome-title">Welcome back, John!</h2>
+                        <p class="welcome-subtitle">Your portfolio is performing well today. Check the latest updates.</p>
+                        <div class="welcome-actions">
+                            <button class="btn btn-primary">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                                </svg>
+                                Deposit Funds
+                            </button>
+                            <button class="btn btn-secondary">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                                </svg>
+                                Create New Wallet
+                            </button>
+                        </div>
+                    </div>
+                    <div class="welcome-image"></div>
+                </div>
+
+                <!-- Portfolio Card -->
+                <div class="card portfolio-card">
+                    <div class="portfolio-header">
+                        <h3 class="portfolio-title">Your Portfolio</h3>
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div class="portfolio-value">$24,635.89</div>
+                    <div class="portfolio-change change-positive">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M7 14l5-5 5 5z"></path>
+                        </svg>
+                        +5.23% ($1,256.89)
+                    </div>
+                    <div class="portfolio-actions">
+                        <button class="action-btn">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"></path>
+                            </svg>
+                            Deposit
+                        </button>
+                        <button class="action-btn">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"></path>
+                            </svg>
+                            Withdraw
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notices Card -->
+                <div class="card notices-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Admin Notices</h3>
+                        <span class="card-action">View All</span>
+                    </div>
+                    <div class="notice-list">
+                        <div class="notice-item">
+                            <div class="notice-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+                                </svg>
+                            </div>
+                            <div class="notice-content">
+                                <h4 class="notice-title">System Maintenance</h4>
+                                <p class="notice-desc">Scheduled maintenance on May 15th. Services may be temporarily unavailable.</p>
+                            </div>
+                            <div class="notice-time">2h ago</div>
+                        </div>
+                        <div class="notice-item">
+                            <div class="notice-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                </svg>
+                            </div>
+                            <div class="notice-content">
+                                <h4 class="notice-title">Security Alert</h4>
+                                <p class="notice-desc">Enable 2FA for enhanced account security. Protect your assets now.</p>
+                            </div>
+                            <div class="notice-time">1d ago</div>
+                        </div>
+                        <div class="notice-item">
+                            <div class="notice-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+                                </svg>
+                            </div>
+                            <div class="notice-content">
+                                <h4 class="notice-title">New Token Listing</h4>
+                                <p class="notice-desc">ZephyrCoin (ZPC) is now available for trading. Check it out!</p>
+                            </div>
+                            <div class="notice-time">3d ago</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Card -->
+                <div class="card quick-actions-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Quick Actions</h3>
+                    </div>
+                    <div class="actions-grid">
+                        <div class="action-card">
+                            <div class="action-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="action-title">Transfer Assets</h4>
+                            <p class="action-desc">Send crypto to another wallet</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="action-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="action-title">Convert Crypto</h4>
+                            <p class="action-desc">Swap between different assets</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="action-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="action-title">Buy Crypto</h4>
+                            <p class="action-desc">Purchase with credit card</p>
+                        </div>
+                        <div class="action-card">
+                            <div class="action-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="action-title">Staking</h4>
+                            <p class="action-desc">Earn passive income</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academy Card -->
+                <div class="card academy-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Academy Updates</h3>
+                        <span class="card-action">View All Courses</span>
+                    </div>
+                    <div class="course-list">
+                        <div class="course-item">
+                            <div class="course-image" style="background-image: url('/placeholder.svg?height=140&width=280&query=blockchain technology course')"></div>
+                            <div class="course-content">
+                                <span class="course-tag">Beginner</span>
+                                <h4 class="course-title">Blockchain Fundamentals</h4>
+                                <div class="course-info">
+                                    <span>8 Lessons</span>
+                                    <span>2.5 Hours</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="course-item">
+                            <div class="course-image" style="background-image: url('/placeholder.svg?height=140&width=280&query=cryptocurrency trading course')"></div>
+                            <div class="course-content">
+                                <span class="course-tag">Intermediate</span>
+                                <h4 class="course-title">Crypto Trading Strategies</h4>
+                                <div class="course-info">
+                                    <span>12 Lessons</span>
+                                    <span>4 Hours</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Card -->
+                <div class="card community-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Community</h3>
+                        <span class="card-action">View All</span>
+                    </div>
+                    <div class="community-list">
+                        <div class="community-item">
+                            <div class="community-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path>
+                                </svg>
+                            </div>
+                            <div class="community-content">
+                                <h4 class="community-title">Traders Chat</h4>
+                                <p class="community-members">8,542 members</p>
+                            </div>
+                            <div class="community-action">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="community-item">
+                            <div class="community-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path>
+                                </svg>
+                            </div>
+                            <div class="community-content">
+                                <h4 class="community-title">DeFi Discussion</h4>
+                                <p class="community-members">5,129 members</p>
+                            </div>
+                            <div class="community-action">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="community-item">
+                            <div class="community-icon">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path>
+                                </svg>
+                            </div>
+                            <div class="community-content">
+                                <h4 class="community-title">NFT Collectors</h4>
+                                <p class="community-members">3,871 members</p>
+                            </div>
+                            <div class="community-action">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            if (window.innerWidth < 992 && 
+                !sidebar.contains(event.target) && 
+                !mobileMenuToggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Responsive handling
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 992) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Sample data for charts (can be expanded with a charting library)
+        const portfolioData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            values: [12000, 19000, 15000, 22000, 18000, 24635]
+        };
+
+        // Simulate loading states
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                // Add any animations or transitions here
+                document.querySelectorAll('.card').forEach(card => {
+                    card.style.opacity = '1';
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
