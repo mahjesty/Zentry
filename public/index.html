@@ -296,6 +296,141 @@
 
             <!-- Content for Dashboard section -->
             <section id="dashboard-section" class="content-section active">
+                <!-- Admin Notices Card - Moved to top and made more prominent -->
+                <div class="admin-notice-card">
+                    <div class="admin-notice-header">
+                        <h3 class="admin-notice-title">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z"></path>
+                            </svg>
+                            Admin Notices
+                        </h3>
+                        <button class="btn-icon">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="admin-notice-body">
+                        <div class="admin-notice-list">
+                            <div class="admin-notice-item">
+                                <div class="admin-notice-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+                                    </svg>
+                                </div>
+                                <div class="admin-notice-content">
+                                    <h4 class="admin-notice-text">System Maintenance</h4>
+                                    <p class="admin-notice-desc">Scheduled maintenance on May 15th. Services may be temporarily unavailable.</p>
+                                </div>
+                                <div class="admin-notice-time">2h ago</div>
+                            </div>
+                            <div class="admin-notice-item">
+                                <div class="admin-notice-icon warning">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                    </svg>
+                                </div>
+                                <div class="admin-notice-content">
+                                    <h4 class="admin-notice-text">Security Alert</h4>
+                                    <p class="admin-notice-desc">Enable 2FA for enhanced account security. Protect your assets now.</p>
+                                </div>
+                                <div class="admin-notice-time">1d ago</div>
+                            </div>
+                            <div class="admin-notice-item">
+                                <div class="admin-notice-icon info">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+                                    </svg>
+                                </div>
+                                <div class="admin-notice-content">
+                                    <h4 class="admin-notice-text">New Token Listing</h4>
+                                    <p class="admin-notice-desc">ZephyrCoin (ZPC) is now available for trading. Check it out!</p>
+                                </div>
+                                <div class="admin-notice-time">3d ago</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-notice-footer">
+                        <a href="#notices">View all notices</a>
+                    </div>
+                </div>
+
+                <!-- Quick Actions - Moved to top -->
+                <div class="quick-actions-container card">
+                    <div class="card-header">
+                        <h3 class="card-title">Quick Actions</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-actions">
+                            <a href="#buy" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Buy</div>
+                            </a>
+                            <a href="#sell" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M19 13H5v-2h14v2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Sell</div>
+                            </a>
+                            <a href="#send" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Send</div>
+                            </a>
+                            <a href="#receive" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M20 5.41L18.59 4 7 15.59V9H5v10h10v-2H8.41z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Receive</div>
+                            </a>
+                            <a href="#convert" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Convert</div>
+                            </a>
+                            <a href="#stake" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M15 4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zM3 12c0-2.61 1.67-4.83 4-5.65V4.26C3.55 5.15 1 8.27 1 12s2.55 6.85 6 7.74v-2.09c-2.33-.82-4-3.04-4-5.65z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Stake</div>
+                            </a>
+                            <a href="#borrow" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Borrow</div>
+                            </a>
+                            <a href="#earn" class="quick-action">
+                                <div class="quick-action-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"></path>
+                                    </svg>
+                                </div>
+                                <div class="quick-action-label">Earn</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="metrics-container">
                     <div class="metric-card">
                         <div class="metric-header">
@@ -606,183 +741,4 @@
                             <div class="watchlist-item">
                                 <div class="watchlist-icon polkadot">
                                     <svg class="icon" viewBox="0 0 24 24">
-                                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z"></path>
-                                    </svg>
-                                </div>
-                                <div class="watchlist-details">
-                                    <div class="watchlist-name">Polkadot</div>
-                                    <div class="watchlist-symbol">DOT</div>
-                                </div>
-                                <div class="watchlist-price">
-                                    <div class="price">$7.85</div>
-                                    <div class="change negative">-1.2%</div>
-                                </div>
-                                <div class="watchlist-chart">
-                                    <canvas class="mini-chart" id="dot-mini-chart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-row">
-                    <div class="card news-card">
-                        <div class="card-header">
-                            <h3 class="card-title">Crypto News</h3>
-                            <a href="#news" class="card-link">View All</a>
-                        </div>
-                        <div class="card-body">
-                            <div class="news-list">
-                                <div class="news-item">
-                                    <div class="news-image" style="background-image: url('/placeholder.svg?height=80&width=120&query=bitcoin news')"></div>
-                                    <div class="news-content">
-                                        <h4 class="news-title">Bitcoin Breaks $32K Resistance Level, Analysts Predict Bull Run</h4>
-                                        <div class="news-meta">
-                                            <span class="news-source">CryptoDaily</span>
-                                            <span class="news-time">2 hours ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="news-item">
-                                    <div class="news-image" style="background-image: url('/placeholder.svg?height=80&width=120&query=ethereum news')"></div>
-                                    <div class="news-content">
-                                        <h4 class="news-title">Ethereum 2.0 Upgrade Set for Release Next Month, Gas Fees Expected to Drop</h4>
-                                        <div class="news-meta">
-                                            <span class="news-source">CoinDesk</span>
-                                            <span class="news-time">5 hours ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="news-item">
-                                    <div class="news-image" style="background-image: url('/placeholder.svg?height=80&width=120&query=crypto regulation')"></div>
-                                    <div class="news-content">
-                                        <h4 class="news-title">New Regulatory Framework for Cryptocurrencies Proposed by EU Commission</h4>
-                                        <div class="news-meta">
-                                            <span class="news-source">Bloomberg</span>
-                                            <span class="news-time">Yesterday</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="news-item">
-                                    <div class="news-image" style="background-image: url('/placeholder.svg?height=80&width=120&query=defi protocols')"></div>
-                                    <div class="news-content">
-                                        <h4 class="news-title">DeFi TVL Reaches All-Time High of $150 Billion as New Protocols Gain Traction</h4>
-                                        <div class="news-meta">
-                                            <span class="news-source">DeFi Pulse</span>
-                                            <span class="news-time">2 days ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card quick-actions-card">
-                        <div class="card-header">
-                            <h3 class="card-title">Quick Actions</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="quick-actions">
-                                <a href="#buy" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Buy</div>
-                                </a>
-                                <a href="#sell" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M19 13H5v-2h14v2z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Sell</div>
-                                </a>
-                                <a href="#send" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Send</div>
-                                </a>
-                                <a href="#receive" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M20 5.41L18.59 4 7 15.59V9H5v10h10v-2H8.41z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Receive</div>
-                                </a>
-                                <a href="#convert" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Convert</div>
-                                </a>
-                                <a href="#stake" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M15 4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zM3 12c0-2.61 1.67-4.83 4-5.65V4.26C3.55 5.15 1 8.27 1 12s2.55 6.85 6 7.74v-2.09c-2.33-.82-4-3.04-4-5.65z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Stake</div>
-                                </a>
-                                <a href="#borrow" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Borrow</div>
-                                </a>
-                                <a href="#earn" class="quick-action">
-                                    <div class="quick-action-icon">
-                                        <svg class="icon" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="quick-action-label">Earn</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Other sections would be here, initially hidden -->
-            <section id="portfolio-section" class="content-section">
-                <h2>Portfolio Section</h2>
-                <p>Portfolio Content Coming Soon</p>
-            </section>
-            
-            <section id="market-section" class="content-section">
-                <h2>Market Section</h2>
-                <p>Market Content Coming Soon</p>
-            </section>
-            
-            <section id="wallets-section" class="content-section">
-                <h2>Wallets Section</h2>
-                <p>Wallets Content Coming Soon</p>
-            </section>
-            
-            <section id="transactions-section" class="content-section">
-                <h2>Transactions Section</h2>
-                <p>Transactions Content Coming Soon</p>
-            </section>
-        </main>
-    </div>
-
-    <!-- Make Chart globally available -->
-    <script>
-        // Ensure Chart is available globally
-        window.Chart = window.Chart || Chart;
-    </script>
-    
-    <!-- Load our app.js after Chart.js -->
-    <script src="app.js"></script>
-</body>
-</html>
+                                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1

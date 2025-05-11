@@ -1,13 +1,13 @@
 "use client"
 
 import React from "react"
+import { Chart as ChartJS } from "chart.js/auto" // Import ChartJS
 
 // This file exports the Chart component from chart.js
 // It serves as a bridge between the global Chart object and our app.js imports
 
 // Export the Chart class from Chart.js as a named export
-export const Chart =
-  typeof window !== "undefined" ? window.Chart || (typeof Chart !== "undefined" ? Chart : null) : null
+export const Chart = typeof Chart !== "undefined" ? Chart || ChartJS : ChartJS
 
 // Fallback if Chart is not available
 if (!Chart) {
@@ -45,3 +45,10 @@ export function ChartComponent({ type, data, options, ...props }) {
 
   return <canvas ref={chartRef} {...props} />
 }
+
+export const ChartContainer = () => <div />
+export const ChartTooltip = () => <div />
+export const ChartTooltipContent = () => <div />
+export const ChartLegend = () => <div />
+export const ChartLegendContent = () => <div />
+export const ChartStyle = () => <div />

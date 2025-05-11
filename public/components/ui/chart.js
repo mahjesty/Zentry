@@ -7,7 +7,7 @@ import { Chart as ChartJS } from "chart.js/auto" // Import ChartJS
 // It serves as a bridge between the global Chart object and our app.js imports
 
 // Export the Chart class from Chart.js as a named export
-export const Chart = ChartJS || (typeof Chart !== "undefined" ? Chart : null)
+export const Chart = typeof Chart !== "undefined" ? Chart || ChartJS : ChartJS
 
 // Fallback if Chart is not available
 if (!Chart) {
