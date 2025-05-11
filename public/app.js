@@ -815,8 +815,8 @@ function simulatePriceUpdates() {
 
 // Add this to the setupInteractiveElements function
 function setupQuickActionTabs() {
-  const tabButtons = document.querySelectorAll(".tab-button")
-  const tabContents = document.querySelectorAll(".tab-content")
+  const tabButtons = document.querySelectorAll(".quick-actions-card .tab-button")
+  const tabContents = document.querySelectorAll(".quick-actions-card .tab-content")
 
   tabButtons.forEach((button) => {
     button.addEventListener("click", function () {
@@ -847,7 +847,7 @@ function setupQuickActionTabs() {
   })
 
   // Add hover effects for quick actions
-  const quickActions = document.querySelectorAll(".quick-action")
+  const quickActions = document.querySelectorAll(".quick-actions-card .quick-action")
   quickActions.forEach((action) => {
     action.addEventListener("mouseenter", function () {
       // Add subtle animation
@@ -889,7 +889,7 @@ function setupQuickActionTabs() {
   })
 
   // Customize button functionality
-  const customizeButton = document.querySelector(".customize-button")
+  const customizeButton = document.querySelector(".quick-actions-card .customize-button")
   if (customizeButton) {
     customizeButton.addEventListener("click", () => {
       // In a real app, this would open a modal for customization
