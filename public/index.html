@@ -491,84 +491,232 @@
 
                 <!-- Charts and Data Row -->
                 <div class="charts-row">
-                    <!-- Portfolio Distribution Card -->
-                    <div class="chart-card distribution-card">
-                        <div class="card-header">
-                            <h3 class="card-title">Portfolio Distribution</h3>
-                            <div class="card-actions">
-                                <button class="btn-dropdown">
-                                    <span>Last 30 Days</span>
-                                    <svg class="icon" viewBox="0 0 24 24">
-                                        <path d="M7 10l5 5 5-5z"></path>
-                                    </svg>
-                                </button>
+    <!-- Portfolio Distribution Card -->
+    <div class="chart-card distribution-card">
+        <div class="card-header">
+            <h3 class="card-title">Portfolio Distribution</h3>
+            <div class="card-actions">
+                <div class="dropdown-wrapper">
+                    <button class="btn-dropdown">
+                        <span>Last 30 Days</span>
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5z"></path>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item active">Last 30 Days</div>
+                        <div class="dropdown-item">Last 90 Days</div>
+                        <div class="dropdown-item">Last 6 Months</div>
+                        <div class="dropdown-item">Last Year</div>
+                        <div class="dropdown-item">All Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="distribution-layout">
+                <div class="distribution-chart">
+                    <canvas id="portfolio-distribution-chart"></canvas>
+                    <div class="distribution-total">
+                        <div class="total-value">$45,287.65</div>
+                        <div class="total-label">Total Value</div>
+                    </div>
+                </div>
+                <div class="distribution-details">
+                    <div class="distribution-legend">
+                        <div class="legend-item">
+                            <div class="legend-color bitcoin"></div>
+                            <div class="legend-info">
+                                <div class="legend-header">
+                                    <span class="legend-label">Bitcoin (BTC)</span>
+                                    <span class="legend-value">45.7%</span>
+                                </div>
+                                <div class="legend-stats">
+                                    <span class="legend-amount">$20,696.45</span>
+                                    <span class="legend-change positive">+5.6%</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="portfolio-distribution-chart"></canvas>
+                        <div class="legend-item">
+                            <div class="legend-color ethereum"></div>
+                            <div class="legend-info">
+                                <div class="legend-header">
+                                    <span class="legend-label">Ethereum (ETH)</span>
+                                    <span class="legend-value">28.3%</span>
+                                </div>
+                                <div class="legend-stats">
+                                    <span class="legend-amount">$12,816.40</span>
+                                    <span class="legend-change negative">-2.3%</span>
+                                </div>
                             </div>
-                            <div class="distribution-legend">
-                                <div class="legend-item">
-                                    <div class="legend-color bitcoin"></div>
-                                    <div class="legend-info">
-                                        <span class="legend-label">Bitcoin (BTC)</span>
-                                        <span class="legend-value">45.7%</span>
-                                    </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color solana"></div>
+                            <div class="legend-info">
+                                <div class="legend-header">
+                                    <span class="legend-label">Solana (SOL)</span>
+                                    <span class="legend-value">15.2%</span>
                                 </div>
-                                <div class="legend-item">
-                                    <div class="legend-color ethereum"></div>
-                                    <div class="legend-info">
-                                        <span class="legend-label">Ethereum (ETH)</span>
-                                        <span class="legend-value">28.3%</span>
-                                    </div>
+                                <div class="legend-stats">
+                                    <span class="legend-amount">$6,883.72</span>
+                                    <span class="legend-change positive">+12.7%</span>
                                 </div>
-                                <div class="legend-item">
-                                    <div class="legend-color solana"></div>
-                                    <div class="legend-info">
-                                        <span class="legend-label">Solana (SOL)</span>
-                                        <span class="legend-value">15.2%</span>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color cardano"></div>
+                            <div class="legend-info">
+                                <div class="legend-header">
+                                    <span class="legend-label">Cardano (ADA)</span>
+                                    <span class="legend-value">6.5%</span>
                                 </div>
-                                <div class="legend-item">
-                                    <div class="legend-color cardano"></div>
-                                    <div class="legend-info">
-                                        <span class="legend-label">Cardano (ADA)</span>
-                                        <span class="legend-value">6.5%</span>
-                                    </div>
+                                <div class="legend-stats">
+                                    <span class="legend-amount">$2,943.70</span>
+                                    <span class="legend-change positive">+3.5%</span>
                                 </div>
-                                <div class="legend-item">
-                                    <div class="legend-color others"></div>
-                                    <div class="legend-info">
-                                        <span class="legend-label">Others</span>
-                                        <span class="legend-value">4.3%</span>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color others"></div>
+                            <div class="legend-info">
+                                <div class="legend-header">
+                                    <span class="legend-label">Others</span>
+                                    <span class="legend-value">4.3%</span>
+                                </div>
+                                <div class="legend-stats">
+                                    <span class="legend-amount">$1,947.38</span>
+                                    <span class="legend-change negative">-1.2%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="distribution-actions">
+                        <button class="action-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                            </svg>
+                            Add Asset
+                        </button>
+                        <button class="action-button">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"></path>
+                            </svg>
+                            Rebalance
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <!-- Market Trends Card -->
-                    <div class="chart-card trends-card">
-                        <div class="card-header">
-                            <h3 class="card-title">Market Trends</h3>
-                            <div class="card-actions">
-                                <div class="switch-group">
-                                    <button class="switch-item active">1D</button>
-                                    <button class="switch-item">1W</button>
-                                    <button class="switch-item">1M</button>
-                                    <button class="switch-item">3M</button>
-                                    <button class="switch-item">1Y</button>
-                                </div>
-                            </div>
+    <!-- Market Trends Card -->
+    <div class="chart-card trends-card">
+        <div class="card-header">
+            <h3 class="card-title">Market Trends</h3>
+            <div class="card-actions">
+                <div class="switch-group">
+                    <button class="switch-item active">1D</button>
+                    <button class="switch-item">1W</button>
+                    <button class="switch-item">1M</button>
+                    <button class="switch-item">3M</button>
+                    <button class="switch-item">1Y</button>
+                    <button class="switch-item">All</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="trends-layout">
+                <div class="trends-controls">
+                    <div class="trends-toggles">
+                        <label class="toggle-label">
+                            <input type="checkbox" checked class="toggle-input">
+                            <span class="toggle-track bitcoin"></span>
+                            <span class="toggle-text">BTC</span>
+                        </label>
+                        <label class="toggle-label">
+                            <input type="checkbox" checked class="toggle-input">
+                            <span class="toggle-track ethereum"></span>
+                            <span class="toggle-text">ETH</span>
+                        </label>
+                        <label class="toggle-label">
+                            <input type="checkbox" checked class="toggle-input">
+                            <span class="toggle-track solana"></span>
+                            <span class="toggle-text">SOL</span>
+                        </label>
+                        <label class="toggle-label">
+                            <input type="checkbox" class="toggle-input">
+                            <span class="toggle-track cardano"></span>
+                            <span class="toggle-text">ADA</span>
+                        </label>
+                        <label class="toggle-label">
+                            <input type="checkbox" class="toggle-input">
+                            <span class="toggle-track polkadot"></span>
+                            <span class="toggle-text">DOT</span>
+                        </label>
+                    </div>
+                    <div class="trends-view-options">
+                        <button class="view-option active" data-view="price">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"></path>
+                            </svg>
+                            Price
+                        </button>
+                        <button class="view-option" data-view="volume">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M7 18h2V6H7v12zm4 0h2V6h-2v12zm4 0h2V6h-2v12z"></path>
+                            </svg>
+                            Volume
+                        </button>
+                        <button class="view-option" data-view="market-cap">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"></path>
+                            </svg>
+                            Market Cap
+                        </button>
+                    </div>
+                </div>
+                <div class="chart-container trends-chart">
+                    <canvas id="market-trends-chart"></canvas>
+                </div>
+                <div class="trends-stats">
+                    <div class="trend-stat-item">
+                        <div class="trend-stat-icon bitcoin">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M17.06 11.57c.59-.69.94-1.59.94-2.57 0-1.86-1.27-3.43-3-3.87V3h-2v2h-2V3H9v2H6v2h2v10H6v2h3v2h2v-2h2v2h2v-2.13c1.73-.44 3-2.01 3-3.87 0-.98-.35-1.88-.94-2.57zM10 7h4c1.1 0 2 .9 2 2s-.9 2-2 2h-4V7zm5 10h-5v-4h5c1.1 0 2 .9 2 2s-.9 2-2 2z"></path>
+                            </svg>
                         </div>
-                        <div class="card-body">
-                            <div class="chart-container">
-                                <canvas id="market-trends-chart"></canvas>
-                            </div>
+                        <div class="trend-stat-info">
+                            <div class="trend-stat-value">$32,456.78</div>
+                            <div class="trend-stat-change positive">+5.6%</div>
+                        </div>
+                    </div>
+                    <div class="trend-stat-item">
+                        <div class="trend-stat-icon ethereum">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12,1.75L5.75,12.25L12,16L18.25,12.25L12,1.75M5.75,13.5L12,22.25L18.25,13.5L12,17.25L5.75,13.5Z"></path>
+                            </svg>
+                        </div>
+                        <div class="trend-stat-info">
+                            <div class="trend-stat-value">$1,982.45</div>
+                            <div class="trend-stat-change negative">-2.3%</div>
+                        </div>
+                    </div>
+                    <div class="trend-stat-item">
+                        <div class="trend-stat-icon solana">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M4,17.17L6.83,20L10,16.83V2H4V17.17M14,4H20V10H14V4M14,12H20V18H14V12Z"></path>
+                            </svg>
+                        </div>
+                        <div class="trend-stat-info">
+                            <div class="trend-stat-value">$84.32</div>
+                            <div class="trend-stat-change positive">+12.7%</div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
                 <!-- Transactions and Watchlist Row -->
                 <div class="data-row">

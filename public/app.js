@@ -94,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize charts
   initializeCharts()
 
+  // Setup interactive elements
+  setupInteractiveElements()
+
   // Simulate real-time balance updates
   setInterval(updateBalanceValue, 3000)
 })
@@ -145,6 +148,280 @@ function updateBalanceValue() {
     setTimeout(() => {
       balanceValue.classList.remove("highlight")
     }, 1000)
+  }
+}
+
+// Enhanced Portfolio Distribution Chart
+function initializePortfolioDistributionChart() {
+  const portfolioDistributionChartEl = document.getElementById("portfolio-distribution-chart")
+  if (portfolioDistributionChartEl) {
+    const isDarkTheme =
+      document.body.classList.contains("dark-theme") || !document.body.classList.contains("light-theme")
+
+    const chartColors = {
+      bitcoin: "#F7931A",
+      ethereum: "#627EEA",
+      solana: "#14F195",
+      cardano: "#0033AD",
+      others: isDarkTheme ? "#A3AED0" : "#707EAE",
+    }
+
+    new Chart(portfolioDistributionChartEl, {
+      type: "doughnut",
+      data: {
+        labels: ["Bitcoin (BTC)", "Ethereum (ETH)", "Solana (SOL)", "Cardano (ADA)", "Others"],
+        datasets: [
+          {
+            data: [45.7, 28.3, 15.2, 6.5, 4.3],
+            backgroundColor: [
+              chartColors.bitcoin,
+              chartColors.ethereum,
+              chartColors.solana,
+              chartColors.cardano,
+              chartColors.others,
+            ],
+            borderWidth: 0,
+            hoverOffset: 10,
+            borderRadius: 4,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "70%",
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            backgroundColor: isDarkTheme ? "#1C2237" : "#FFFFFF",
+            titleColor: isDarkTheme ? "#FFFFFF" : "#2B3674",
+            bodyColor: isDarkTheme ? "#A3AED0" : "#707EAE",
+            borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+            borderWidth: 1,
+            padding: 12,
+            boxPadding: 6,
+            usePointStyle: true,
+            callbacks: {
+              label: (context) => {
+                const value = context.raw
+                const total = context.dataset.data.reduce((acc, data) => acc + data, 0)
+                const percentage = ((value / total) * 100).toFixed(1)
+                const assetValue = ((45287.65 * value) / 100).toFixed(2)
+                return `${context.label}: ${percentage}% ($${assetValue})`
+              },
+            },
+          },
+        },
+        animation: {
+          animateRotate: true,
+          animateScale: true,
+          duration: 1000,
+          easing: "easeOutQuart",
+        },
+      },
+    })
+  }
+}
+
+// Enhanced Market Trends Chart
+function initializeMarketTrendsChart() {
+  const marketTrendsChartEl = document.getElementById("market-trends-chart")
+  if (marketTrendsChartEl) {
+    const isDarkTheme =
+      document.body.classList.contains("dark-theme") || !document.body.classList.contains("light-theme")
+
+    const chartColors = {
+      grid: isDarkTheme ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.05)",
+      text: isDarkTheme ? "#A3AED0" : "#707EAE",
+      bitcoin: "#F7931A",
+      ethereum: "#627EEA",
+      solana: "#14F195",
+    }
+
+    // Generate dates for the last 30 days
+    const dates = []
+    const now = new Date()
+    for (let i = 29; i >= 0; i--) {
+      const date = new Date(now)
+      date.setDate(date.getDate() - i)
+      dates.push(date.toLocaleDateString("en-US", { month: "short", day: "numeric" }))
+    }
+
+    // Generate more realistic price data with trends
+    const generateTrendData = (startPrice, volatility, trend) => {
+      const data = []
+      let price = startPrice
+
+      for (let i = 0; i < 30; i++) {
+        // Add some randomness but follow the trend
+        const change = (Math.random() * 2 - 1) * volatility
+        const trendFactor = trend === "up" ? 0.2 : trend === "down" ? -0.2 : 0
+
+        price = price * (1 + (change + trendFactor) / 100)
+        data.push(price)
+      }
+
+      return data
+    }
+
+    const btcData = generateTrendData(30000, 3, "up")
+    const ethData = generateTrendData(1900, 4, "down")
+    const solData = generateTrendData(80, 6, "up")
+
+    const chart = new Chart(marketTrendsChartEl, {
+      type: "line",
+      data: {
+        labels: dates,
+        datasets: [
+          {
+            label: "Bitcoin",
+            data: btcData,
+            borderColor: chartColors.bitcoin,
+            backgroundColor: `${chartColors.bitcoin}10`,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.4,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+          },
+          {
+            label: "Ethereum",
+            data: ethData,
+            borderColor: chartColors.ethereum,
+            backgroundColor: `${chartColors.ethereum}10`,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.4,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+          },
+          {
+            label: "Solana",
+            data: solData,
+            borderColor: chartColors.solana,
+            backgroundColor: `${chartColors.solana}10`,
+            borderWidth: 2,
+            fill: false,
+            tension: 0.4,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: "index",
+          intersect: false,
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            backgroundColor: isDarkTheme ? "#1C2237" : "#FFFFFF",
+            titleColor: isDarkTheme ? "#FFFFFF" : "#2B3674",
+            bodyColor: isDarkTheme ? "#A3AED0" : "#707EAE",
+            borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+            borderWidth: 1,
+            padding: 12,
+            boxPadding: 6,
+            usePointStyle: true,
+            callbacks: {
+              label: (context) => {
+                const value = context.raw.toFixed(2)
+                return `${context.dataset.label}: $${value}`
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            grid: {
+              display: false,
+            },
+            ticks: {
+              color: chartColors.text,
+              font: {
+                size: 10,
+              },
+              maxRotation: 0,
+              maxTicksLimit: 6,
+            },
+          },
+          y: {
+            grid: {
+              color: chartColors.grid,
+              borderDash: [5, 5],
+            },
+            ticks: {
+              color: chartColors.text,
+              font: {
+                size: 10,
+              },
+              callback: (value) => `$${value.toLocaleString()}`,
+            },
+          },
+        },
+        animations: {
+          tension: {
+            duration: 1000,
+            easing: "easeOutQuart",
+            from: 0.4,
+            to: 0.4,
+          },
+        },
+      },
+    })
+
+    // Add event listeners for the toggle buttons
+    const toggleInputs = document.querySelectorAll(".toggle-input")
+    toggleInputs.forEach((input, index) => {
+      if (index < chart.data.datasets.length) {
+        input.addEventListener("change", function () {
+          const dataset = chart.data.datasets[index]
+          dataset.hidden = !this.checked
+          chart.update()
+        })
+      }
+    })
+
+    // Add event listeners for view options
+    const viewOptions = document.querySelectorAll(".view-option")
+    viewOptions.forEach((option) => {
+      option.addEventListener("click", function () {
+        viewOptions.forEach((opt) => opt.classList.remove("active"))
+        this.classList.add("active")
+
+        const view = this.getAttribute("data-view")
+
+        // Simulate changing the data based on the view
+        if (view === "volume") {
+          chart.data.datasets.forEach((dataset, index) => {
+            // Generate volume data (different pattern than price)
+            dataset.data = generateTrendData(index === 0 ? 5000 : index === 1 ? 3000 : 1500, 8, "fluctuate")
+          })
+          chart.options.scales.y.ticks.callback = (value) => `${value.toLocaleString()} BTC`
+        } else if (view === "market-cap") {
+          chart.data.datasets.forEach((dataset, index) => {
+            // Generate market cap data (larger numbers)
+            dataset.data = generateTrendData(index === 0 ? 600000 : index === 1 ? 250000 : 50000, 2, "up")
+          })
+          chart.options.scales.y.ticks.callback = (value) => `$${(value / 1000).toLocaleString()}K`
+        } else {
+          // Reset to price data
+          chart.data.datasets[0].data = btcData
+          chart.data.datasets[1].data = ethData
+          chart.data.datasets[2].data = solData
+          chart.options.scales.y.ticks.callback = (value) => `$${value.toLocaleString()}`
+        }
+
+        chart.update()
+      })
+    })
   }
 }
 
@@ -388,114 +665,44 @@ function initializeCharts() {
     })
   }
 
-  // Portfolio Distribution Chart
-  const portfolioDistributionChartEl = document.getElementById("portfolio-distribution-chart")
-  if (portfolioDistributionChartEl) {
-    new Chart(portfolioDistributionChartEl, {
-      type: "doughnut",
-      data: {
-        labels: ["Bitcoin (BTC)", "Ethereum (ETH)", "Solana (SOL)", "Cardano (ADA)", "Others"],
-        datasets: [
-          {
-            data: [45.7, 28.3, 15.2, 6.5, 4.3],
-            backgroundColor: [
-              chartColors.bitcoin,
-              chartColors.ethereum,
-              chartColors.solana,
-              chartColors.cardano,
-              chartColors.secondary,
-            ],
-            borderWidth: 0,
-            hoverOffset: 5,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: "70%",
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            backgroundColor: isDarkTheme ? "#1C2237" : "#FFFFFF",
-            titleColor: isDarkTheme ? "#FFFFFF" : "#2B3674",
-            bodyColor: isDarkTheme ? "#A3AED0" : "#707EAE",
-            borderColor: isDarkTheme ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
-            borderWidth: 1,
-            padding: 10,
-            callbacks: {
-              label: (context) => `${context.label}: ${context.parsed}%`,
-            },
-          },
-        },
-      },
-    })
-  }
+  // ADA Chart
+  const adaChartEl = document.getElementById("ada-chart")
+  if (adaChartEl) {
+    const labels = ["1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "11h", "12h"]
+    const adaData = generateData(12, 0.45, 0.55, "up")
 
-  // Market Trends Chart
-  const marketTrendsChartEl = document.getElementById("market-trends-chart")
-  if (marketTrendsChartEl) {
-    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-    new Chart(marketTrendsChartEl, {
+    new Chart(adaChartEl, {
       type: "line",
       data: {
         labels: labels,
         datasets: [
           {
-            label: "Bitcoin",
-            data: generateData(12, 25000, 35000, "up"),
-            borderColor: chartColors.bitcoin,
-            borderWidth: 2,
-            fill: false,
-          },
-          {
-            label: "Ethereum",
-            data: generateData(12, 1500, 2500, "fluctuate"),
-            borderColor: chartColors.ethereum,
-            borderWidth: 2,
-            fill: false,
-          },
-          {
-            label: "Solana",
-            data: generateData(12, 50, 100, "up"),
-            borderColor: chartColors.solana,
-            borderWidth: 2,
-            fill: false,
-          },
-          {
-            label: "Cardano",
-            data: generateData(12, 0.3, 0.7, "fluctuate"),
+            label: "Cardano Price",
+            data: adaData,
             borderColor: chartColors.cardano,
-            borderWidth: 2,
-            fill: false,
+            backgroundColor: "rgba(0, 51, 173, 0.1)",
+            fill: true,
           },
         ],
       },
       options: {
         ...commonOptions,
-        plugins: {
-          ...commonOptions.plugins,
-          legend: {
-            display: true,
-            position: "top",
-            align: "end",
-            labels: {
-              boxWidth: 12,
-              color: chartColors.text,
-              font: {
-                size: 11,
-              },
-              usePointStyle: true,
-              pointStyle: "circle",
-            },
+        scales: {
+          ...commonOptions.scales,
+          x: {
+            display: false,
+          },
+          y: {
+            display: false,
           },
         },
       },
     })
   }
+
+  // Initialize our enhanced charts
+  initializePortfolioDistributionChart()
+  initializeMarketTrendsChart()
 
   // Mini Charts for Watchlist
   const miniChartEls = document.querySelectorAll(".mini-chart")
@@ -510,6 +717,8 @@ function initializeCharts() {
           : chartEl.id.includes("ada")
             ? chartColors.cardano
             : chartEl.id.includes("polkadot")
+              ? chartColors.polkadot
+              : chartColors.primary
 
     const data = generateData(24, 50, 100, trend)
 
@@ -602,4 +811,148 @@ function simulatePriceUpdates() {
     const newValue = currentValue + change
     portfolioValue.textContent = "$" + newValue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   }
+}
+
+// Add event listeners for interactive elements
+function setupInteractiveElements() {
+  // Portfolio distribution dropdown
+  const dropdownItems = document.querySelectorAll(".dropdown-item")
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const dropdownButton = this.closest(".dropdown-wrapper").querySelector(".btn-dropdown span")
+      dropdownButton.textContent = this.textContent
+
+      dropdownItems.forEach((i) => i.classList.remove("active"))
+      this.classList.add("active")
+
+      // Simulate data change
+      const portfolioDistributionChart = Chart.getChart("portfolio-distribution-chart")
+      if (portfolioDistributionChart) {
+        // Slightly modify the data based on the selected timeframe
+        const newData = [...portfolioDistributionChart.data.datasets[0].data]
+        for (let i = 0; i < newData.length; i++) {
+          newData[i] = newData[i] * (0.9 + Math.random() * 0.2)
+        }
+
+        portfolioDistributionChart.data.datasets[0].data = newData
+        portfolioDistributionChart.update()
+      }
+    })
+  })
+
+  // Market trends time period switches
+  const switchItems = document.querySelectorAll(".switch-item")
+  switchItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      switchItems.forEach((i) => i.classList.remove("active"))
+      this.classList.add("active")
+
+      // Simulate data change
+      const marketTrendsChart = Chart.getChart("market-trends-chart")
+      if (marketTrendsChart) {
+        // Generate new data with different patterns based on time period
+        const timePeriod = this.textContent
+        let dataPoints
+        let labels
+
+        switch (timePeriod) {
+          case "1D":
+            dataPoints = 24
+            labels = Array.from({ length: dataPoints }, (_, i) => `${i}:00`)
+            break
+          case "1W":
+            dataPoints = 7
+            labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            break
+          case "1M":
+            dataPoints = 30
+            labels = Array.from({ length: dataPoints }, (_, i) => `Day ${i + 1}`)
+            break
+          case "3M":
+            dataPoints = 12
+            labels = [
+              "Week 1",
+              "Week 2",
+              "Week 3",
+              "Week 4",
+              "Week 5",
+              "Week 6",
+              "Week 7",
+              "Week 8",
+              "Week 9",
+              "Week 10",
+              "Week 11",
+              "Week 12",
+            ]
+            break
+          case "1Y":
+            dataPoints = 12
+            labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            break
+          case "All":
+            dataPoints = 5
+            labels = ["2019", "2020", "2021", "2022", "2023"]
+            break
+          default:
+            dataPoints = 30
+            labels = Array.from({ length: dataPoints }, (_, i) => `Day ${i + 1}`)
+        }
+
+        // Update chart data and labels
+        marketTrendsChart.data.labels = labels
+
+        marketTrendsChart.data.datasets.forEach((dataset, index) => {
+          let startPrice, volatility, trend
+
+          if (index === 0) {
+            // BTC
+            startPrice = 30000
+            volatility = timePeriod === "1D" ? 1 : timePeriod === "1W" ? 3 : 5
+            trend = "up"
+          } else if (index === 1) {
+            // ETH
+            startPrice = 1900
+            volatility = timePeriod === "1D" ? 1.5 : timePeriod === "1W" ? 4 : 6
+            trend = "down"
+          } else {
+            // SOL
+            startPrice = 80
+            volatility = timePeriod === "1D" ? 2 : timePeriod === "1W" ? 5 : 8
+            trend = "up"
+          }
+
+          // Generate trend data
+          const data = []
+          let price = startPrice
+
+          for (let i = 0; i < dataPoints; i++) {
+            const change = (Math.random() * 2 - 1) * volatility
+            const trendFactor = trend === "up" ? 0.2 : trend === "down" ? -0.2 : 0
+
+            price = price * (1 + (change + trendFactor) / 100)
+            data.push(price)
+          }
+
+          dataset.data = data
+        })
+
+        marketTrendsChart.update()
+      }
+    })
+  })
+
+  // Distribution action buttons
+  const actionButtons = document.querySelectorAll(".action-button")
+  actionButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // Add a subtle animation effect
+      this.classList.add("clicked")
+      setTimeout(() => {
+        this.classList.remove("clicked")
+      }, 300)
+
+      // Show a toast or notification (if we had one)
+      alert(`Action: ${this.textContent.trim()} - This would open a modal in a real application.`)
+    })
+  })
 }
