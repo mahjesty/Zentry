@@ -1,5 +1,6 @@
 {
   "version": 2,
   "public": true,
-  "outputDirectory": "public"
+  "outputDirectory": "public",
+  "routes": [{ "handle": "filesystem" }, { "src": "/(.*)", "dest": "/index.html" }]
 }
