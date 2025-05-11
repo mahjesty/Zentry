@@ -8,56 +8,53 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Base Variables */
         :root {
-            /* Color Scheme - Dark Mode (Default) */
+            /* Dark Theme (Default) */
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
             --bg-card: #1e293b;
             --text-primary: #f8fafc;
             --text-secondary: #cbd5e1;
-            --text-tertiary: #94a3b8;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #60a5fa;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-color: #3b82f6;
             --accent-hover: #2563eb;
-            --color-positive: #10b981;
-            --color-negative: #ef4444;
-            --color-warning: #f59e0b;
-            --color-info: #0ea5e9;
-            --color-bitcoin: #f7931a;
-            --color-ethereum: #627eea;
-            --color-solana: #14f195;
-            --color-cardano: #0033ad;
-            --color-polkadot: #e6007a;
+            --positive: #10b981;
+            --negative: #ef4444;
+            --warning: #f59e0b;
+            --info: #0ea5e9;
+            --bitcoin: #f7931a;
+            --ethereum: #627eea;
+            --solana: #14f195;
+            --cardano: #0033ad;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
             
             /* Border Radius */
-            --radius-sm: 0.375rem;
+            --radius-sm: 0.25rem;
             --radius-md: 0.5rem;
             --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
             
             /* Transitions */
             --transition-normal: 0.2s ease;
-            --transition-slow: 0.3s ease;
-            
-            /* Shadows */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            
-            /* Border */
-            --border-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Light Mode */
+        /* Light Theme */
         .light-theme {
             --bg-primary: #f8fafc;
             --bg-secondary: #ffffff;
-            --bg-tertiary: #f1f5f9;
             --bg-card: #ffffff;
             --text-primary: #0f172a;
             --text-secondary: #334155;
-            --text-tertiary: #64748b;
+            --text-muted: #64748b;
             --border-color: rgba(0, 0, 0, 0.1);
         }
 
@@ -73,8 +70,7 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.5;
-            min-height: 100vh;
-            transition: background-color var(--transition-slow), color var(--transition-slow);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Layout */
@@ -83,43 +79,22 @@
             min-height: 100vh;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--bg-tertiary);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-primary);
-        }
-
         /* Sidebar */
         .sidebar {
-            width: 260px;
+            width: 250px;
             background-color: var(--bg-secondary);
             border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
             position: fixed;
-            left: 0;
             top: 0;
-            z-index: 100;
-            transition: transform var(--transition-slow);
+            left: 0;
+            height: 100vh;
             overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
         }
 
         .sidebar-header {
-            padding: 1.5rem;
+            padding: var(--space-6);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -129,26 +104,20 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: var(--space-3);
             font-weight: 700;
             font-size: 1.25rem;
-            color: var(--text-primary);
         }
 
         .logo-icon {
             width: 2rem;
             height: 2rem;
-            background-color: var(--accent-primary);
+            background-color: var(--accent-color);
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 700;
-        }
-
-        .logo-text span {
-            color: var(--accent-primary);
         }
 
         .close-sidebar {
@@ -160,10 +129,10 @@
         }
 
         .sidebar-user {
-            padding: 1.5rem;
+            padding: var(--space-6);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: var(--space-4);
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -171,7 +140,7 @@
             width: 2.5rem;
             height: 2.5rem;
             border-radius: 50%;
-            background-color: var(--accent-primary);
+            background-color: var(--accent-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -193,39 +162,23 @@
 
         .user-email {
             font-size: 0.75rem;
-            color: var(--text-tertiary);
+            color: var(--text-muted);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .user-status {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            font-size: 0.75rem;
-            color: var(--color-positive);
-            margin-top: 0.25rem;
-        }
-
-        .status-dot {
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 50%;
-            background-color: var(--color-positive);
-        }
-
         .nav-section {
-            padding: 1.5rem 1rem 0.5rem;
+            padding: var(--space-6) var(--space-4) var(--space-2);
         }
 
         .nav-title {
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            color: var(--text-tertiary);
-            padding: 0 0.5rem;
-            margin-bottom: 0.75rem;
+            color: var(--text-muted);
+            padding: 0 var(--space-2);
+            margin-bottom: var(--space-3);
             letter-spacing: 0.05em;
         }
 
@@ -234,14 +187,14 @@
         }
 
         .nav-item {
-            margin-bottom: 0.25rem;
+            margin-bottom: var(--space-1);
         }
 
         .nav-link {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 0.5rem;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-2);
             border-radius: var(--radius-md);
             color: var(--text-secondary);
             text-decoration: none;
@@ -249,12 +202,12 @@
         }
 
         .nav-link:hover {
-            background-color: var(--bg-tertiary);
-            color: var(--text-primary);
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color);
         }
 
         .nav-link.active {
-            background-color: var(--accent-primary);
+            background-color: var(--accent-color);
             color: white;
         }
 
@@ -266,7 +219,7 @@
 
         .sidebar-footer {
             margin-top: auto;
-            padding: 1.5rem;
+            padding: var(--space-6);
             border-top: 1px solid var(--border-color);
         }
 
@@ -274,7 +227,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-4);
         }
 
         .theme-label {
@@ -302,7 +255,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: var(--bg-tertiary);
+            background-color: var(--text-muted);
             transition: var(--transition-normal);
             border-radius: 1.5rem;
         }
@@ -320,7 +273,7 @@
         }
 
         input:checked + .slider {
-            background-color: var(--accent-primary);
+            background-color: var(--accent-color);
         }
 
         input:checked + .slider:before {
@@ -331,9 +284,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: var(--space-2);
             width: 100%;
-            padding: 0.75rem;
+            padding: var(--space-3);
             background-color: transparent;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
@@ -344,32 +297,32 @@
         }
 
         .logout-btn:hover {
-            background-color: var(--accent-primary);
-            border-color: var(--accent-primary);
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
             color: white;
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
-            padding: 1.5rem;
-            margin-left: 260px;
-            transition: margin-left var(--transition-slow);
+            margin-left: 250px;
+            padding: var(--space-6);
+            transition: margin-left 0.3s ease;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
             border-bottom: 1px solid var(--border-color);
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: var(--space-4);
         }
 
         .mobile-toggle {
@@ -385,126 +338,16 @@
             font-weight: 700;
         }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .search-bar {
-            position: relative;
-        }
-
-        .search-input {
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 0.625rem 1rem 0.625rem 2.5rem;
-            color: var(--text-primary);
-            width: 15rem;
-            font-size: 0.875rem;
-            transition: all var(--transition-normal);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-            width: 18rem;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-tertiary);
-            width: 1rem;
-            height: 1rem;
-        }
-
-        .notification-btn {
-            position: relative;
-            width: 2.5rem;
-            height: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all var(--transition-normal);
-        }
-
-        .notification-btn:hover {
-            background-color: var(--accent-primary);
-            border-color: var(--accent-primary);
-            color: white;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -0.25rem;
-            right: -0.25rem;
-            width: 1.125rem;
-            height: 1.125rem;
-            background-color: var(--color-negative);
-            border-radius: 50%;
-            color: white;
-            font-size: 0.625rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.375rem 0.75rem;
-            background-color: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all var(--transition-normal);
-        }
-
-        .user-menu:hover {
-            background-color: var(--bg-secondary);
-        }
-
-        .user-menu-avatar {
-            width: 1.75rem;
-            height: 1.75rem;
-            border-radius: 50%;
-            background-color: var(--accent-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-
-        .user-menu-name {
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
         /* Dashboard Grid */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
+            gap: var(--space-6);
         }
 
         /* Cards */
         .card {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-card);
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
             overflow: hidden;
@@ -513,20 +356,20 @@
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         /* Balance Card */
         .balance-card {
             grid-column: span 12;
-            background: linear-gradient(to right, var(--bg-secondary), var(--bg-tertiary));
+            background: linear-gradient(to right, var(--bg-card), var(--bg-secondary));
         }
 
         .balance-content {
-            padding: 1.5rem;
+            padding: var(--space-6);
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: var(--space-8);
         }
 
         .balance-info {
@@ -536,14 +379,14 @@
         .balance-label {
             font-size: 0.875rem;
             color: var(--text-secondary);
-            margin-bottom: 0.25rem;
+            margin-bottom: var(--space-1);
         }
 
         .balance-value {
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            margin-bottom: var(--space-2);
+            background: linear-gradient(to right, var(--accent-color), #60a5fa);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -552,17 +395,17 @@
         .balance-change {
             display: flex;
             align-items: center;
-            gap: 0.375rem;
+            gap: var(--space-2);
             font-size: 0.875rem;
             font-weight: 500;
         }
 
         .balance-change.positive {
-            color: var(--color-positive);
+            color: var(--positive);
         }
 
         .balance-change.negative {
-            color: var(--color-negative);
+            color: var(--negative);
         }
 
         .balance-chart {
@@ -573,21 +416,21 @@
         .live-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.5rem;
+            gap: var(--space-1);
+            padding: var(--space-1) var(--space-2);
             background-color: rgba(16, 185, 129, 0.1);
             border-radius: 1rem;
-            color: var(--color-positive);
+            color: var(--positive);
             font-size: 0.75rem;
             font-weight: 600;
-            margin-left: 0.75rem;
+            margin-left: var(--space-3);
         }
 
         .live-dot {
             width: 0.5rem;
             height: 0.5rem;
             border-radius: 50%;
-            background-color: var(--color-positive);
+            background-color: var(--positive);
             animation: pulse 2s infinite;
         }
 
@@ -606,14 +449,14 @@
         /* Crypto Cards */
         .crypto-card {
             grid-column: span 3;
-            padding: 1.25rem;
+            padding: var(--space-5);
         }
 
         .crypto-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-4);
         }
 
         .crypto-name {
@@ -638,45 +481,45 @@
 
         .crypto-icon.bitcoin {
             background-color: rgba(247, 147, 26, 0.1);
-            color: var(--color-bitcoin);
+            color: var(--bitcoin);
         }
 
         .crypto-icon.ethereum {
             background-color: rgba(98, 126, 234, 0.1);
-            color: var(--color-ethereum);
+            color: var(--ethereum);
         }
 
         .crypto-icon.solana {
             background-color: rgba(20, 241, 149, 0.1);
-            color: var(--color-solana);
+            color: var(--solana);
         }
 
         .crypto-icon.cardano {
             background-color: rgba(0, 51, 173, 0.1);
-            color: var(--color-cardano);
+            color: var(--cardano);
         }
 
         .crypto-price {
             font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--space-2);
         }
 
         .crypto-change {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: var(--space-1);
             font-size: 0.75rem;
             font-weight: 500;
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-4);
         }
 
         .crypto-change.positive {
-            color: var(--color-positive);
+            color: var(--positive);
         }
 
         .crypto-change.negative {
-            color: var(--color-negative);
+            color: var(--negative);
         }
 
         .crypto-chart {
@@ -692,7 +535,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 1.25rem;
+            padding: var(--space-4) var(--space-5);
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -704,11 +547,11 @@
         .card-actions {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--space-2);
         }
 
         .card-link {
-            color: var(--accent-primary);
+            color: var(--accent-color);
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 500;
@@ -721,7 +564,7 @@
         }
 
         .card-body {
-            padding: 1.25rem;
+            padding: var(--space-5);
         }
 
         .chart-container {
@@ -742,9 +585,9 @@
         .transaction-item {
             display: flex;
             align-items: center;
-            padding: 1rem 1.25rem;
+            padding: var(--space-4) var(--space-5);
             border-bottom: 1px solid var(--border-color);
-            gap: 1rem;
+            gap: var(--space-4);
             transition: background-color var(--transition-normal);
         }
 
@@ -753,7 +596,7 @@
         }
 
         .transaction-item:hover {
-            background-color: var(--bg-tertiary);
+            background-color: rgba(59, 130, 246, 0.05);
         }
 
         .transaction-icon {
@@ -773,17 +616,17 @@
 
         .transaction-icon.received {
             background-color: rgba(16, 185, 129, 0.1);
-            color: var(--color-positive);
+            color: var(--positive);
         }
 
         .transaction-icon.sent {
             background-color: rgba(239, 68, 68, 0.1);
-            color: var(--color-negative);
+            color: var(--negative);
         }
 
         .transaction-icon.exchange {
             background-color: rgba(14, 165, 233, 0.1);
-            color: var(--color-info);
+            color: var(--info);
         }
 
         .transaction-details {
@@ -794,12 +637,12 @@
         .transaction-title {
             font-weight: 600;
             font-size: 0.875rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: var(--space-1);
         }
 
         .transaction-time {
             font-size: 0.75rem;
-            color: var(--text-tertiary);
+            color: var(--text-muted);
         }
 
         .transaction-amount {
@@ -809,19 +652,19 @@
         }
 
         .transaction-amount.positive {
-            color: var(--color-positive);
+            color: var(--positive);
         }
 
         .transaction-amount.negative {
-            color: var(--color-negative);
+            color: var(--negative);
         }
 
         .watchlist-item {
             display: flex;
             align-items: center;
-            padding: 1rem 1.25rem;
+            padding: var(--space-4) var(--space-5);
             border-bottom: 1px solid var(--border-color);
-            gap: 1rem;
+            gap: var(--space-4);
             transition: background-color var(--transition-normal);
         }
 
@@ -830,7 +673,7 @@
         }
 
         .watchlist-item:hover {
-            background-color: var(--bg-tertiary);
+            background-color: rgba(59, 130, 246, 0.05);
         }
 
         .watchlist-icon {
@@ -856,12 +699,12 @@
         .watchlist-name {
             font-weight: 600;
             font-size: 0.875rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: var(--space-1);
         }
 
         .watchlist-symbol {
             font-size: 0.75rem;
-            color: var(--text-tertiary);
+            color: var(--text-muted);
         }
 
         .watchlist-price {
@@ -871,7 +714,7 @@
         .watchlist-current {
             font-weight: 600;
             font-size: 0.875rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: var(--space-1);
         }
 
         .watchlist-change {
@@ -880,23 +723,23 @@
         }
 
         .watchlist-change.positive {
-            color: var(--color-positive);
+            color: var(--positive);
         }
 
         .watchlist-change.negative {
-            color: var(--color-negative);
+            color: var(--negative);
         }
 
         /* Alert Banner */
         .alert-banner {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.25rem;
-            background-color: var(--bg-secondary);
+            gap: var(--space-4);
+            padding: var(--space-4) var(--space-5);
+            background-color: var(--bg-card);
             border-radius: var(--radius-lg);
-            border-left: 4px solid var(--accent-primary);
-            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: var(--space-6);
         }
 
         .alert-icon {
@@ -907,7 +750,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-primary);
+            color: var(--accent-color);
             flex-shrink: 0;
         }
 
@@ -924,7 +767,7 @@
         .alert-close {
             background: none;
             border: none;
-            color: var(--text-tertiary);
+            color: var(--text-muted);
             cursor: pointer;
             transition: color var(--transition-normal);
         }
@@ -948,7 +791,7 @@
             .balance-content {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 1rem;
+                gap: var(--space-4);
             }
             
             .balance-chart {
@@ -978,10 +821,6 @@
                 display: block;
             }
             
-            .header-actions {
-                display: none;
-            }
-            
             .crypto-card {
                 grid-column: span 12;
             }
@@ -989,11 +828,11 @@
 
         @media (max-width: 640px) {
             .dashboard-grid {
-                gap: 1rem;
+                gap: var(--space-4);
             }
             
             .main-content {
-                padding: 1rem;
+                padding: var(--space-4);
             }
             
             .transaction-item,
@@ -1005,7 +844,7 @@
             .watchlist-price {
                 width: 100%;
                 text-align: left;
-                margin-top: 0.5rem;
+                margin-top: var(--space-2);
                 padding-left: 3.5rem;
             }
         }
@@ -1028,7 +867,7 @@
             <div class="sidebar-header">
                 <div class="logo">
                     <div class="logo-icon">Z</div>
-                    <div class="logo-text">Zephyr<span>Pro</span></div>
+                    <div>Zephyr</div>
                 </div>
                 <button class="close-sidebar" id="close-sidebar">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
@@ -1043,10 +882,6 @@
                 <div class="user-info">
                     <div class="user-name">John Doe</div>
                     <div class="user-email">john.doe@example.com</div>
-                    <div class="user-status">
-                        <div class="status-dot"></div>
-                        Online
-                    </div>
                 </div>
             </div>
 
@@ -1108,17 +943,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-section="news">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
-                                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
-                                <path d="M18 14h-8"></path>
-                                <path d="M15 18h-5"></path>
-                                <path d="M10 6h8v4h-8V6Z"></path>
-                            </svg>
-                            News
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="#" class="nav-link" data-section="settings">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
                                 <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
@@ -1162,29 +986,6 @@
                     </button>
                     <h1 class="page-title">Dashboard</h1>
                 </div>
-                <div class="header-actions">
-                    <div class="search-bar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <input type="text" class="search-input" placeholder="Search...">
-                    </div>
-                    <button class="notification-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                        </svg>
-                        <span class="notification-badge">3</span>
-                    </button>
-                    <div class="user-menu">
-                        <div class="user-menu-avatar">JD</div>
-                        <span class="user-menu-name">John Doe</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 1rem; height: 1rem;">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </div>
-                </div>
             </header>
 
             <!-- Alert Banner -->
@@ -1214,8 +1015,8 @@
                     <div class="balance-content">
                         <div class="balance-info">
                             <div class="balance-label">Total Balance</div>
-                            <div class="balance-value">$45,287.65</div>
-                            <div class="balance-change positive">
+                            <div class="balance-value" id="balance-value">$45,287.65</div>
+                            <div class="balance-change positive" id="balance-change">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 1rem; height: 1rem;">
                                     <polyline points="18 15 12 9 6 15"></polyline>
                                 </svg>
@@ -1409,19 +1210,6 @@
                                 </div>
                                 <div class="transaction-amount">0.001 BTC → 12.5 SOL</div>
                             </div>
-                            <div class="transaction-item">
-                                <div class="transaction-icon received">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
-                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                                        <polyline points="17 6 23 6 23 12"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="transaction-details">
-                                    <div class="transaction-title">Received Solana</div>
-                                    <div class="transaction-time">May 8, 16:45</div>
-                                </div>
-                                <div class="transaction-amount positive">+2.5 SOL</div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1491,23 +1279,6 @@
                                     <div class="watchlist-change positive">+5.7%</div>
                                 </div>
                             </div>
-                            <div class="watchlist-item">
-                                <div class="watchlist-icon cardano">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
-                                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                        <path d="M2 17l10 5 10-5"></path>
-                                        <path d="M2 12l10 5 10-5"></path>
-                                    </svg>
-                                </div>
-                                <div class="watchlist-details">
-                                    <div class="watchlist-name">Cardano</div>
-                                    <div class="watchlist-symbol">ADA</div>
-                                </div>
-                                <div class="watchlist-price">
-                                    <div class="watchlist-current">$0.52</div>
-                                    <div class="watchlist-change positive">+3.1%</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1517,23 +1288,46 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script>
+        // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing dashboard...');
+            
+            // Check if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded! Make sure the CDN link is working.');
+                return;
+            } else {
+                console.log('Chart.js loaded successfully');
+            }
+            
+            // Initialize UI components
+            initUI();
+            
             // Initialize charts
-            initializeCharts();
+            initCharts();
+            
+            // Start live updates
+            startLiveUpdates();
+        });
+
+        function initUI() {
+            console.log('Initializing UI components...');
             
             // Mobile menu toggle
             const mobileToggle = document.getElementById('mobile-toggle');
             const closeSidebar = document.getElementById('close-sidebar');
             const sidebar = document.getElementById('sidebar');
 
-            if (mobileToggle) {
+            if (mobileToggle && sidebar) {
                 mobileToggle.addEventListener('click', function() {
+                    console.log('Mobile toggle clicked');
                     sidebar.classList.add('active');
                 });
             }
 
-            if (closeSidebar) {
+            if (closeSidebar && sidebar) {
                 closeSidebar.addEventListener('click', function() {
+                    console.log('Close sidebar clicked');
                     sidebar.classList.remove('active');
                 });
             }
@@ -1548,6 +1342,7 @@
                     !mobileToggle.contains(event.target) &&
                     sidebar.classList.contains('active')
                 ) {
+                    console.log('Clicked outside sidebar, closing');
                     sidebar.classList.remove('active');
                 }
             });
@@ -1566,8 +1361,10 @@
                     // Update page title based on active link
                     const sectionName = this.getAttribute('data-section');
                     if (sectionName) {
-                        document.querySelector('.page-title').textContent = 
-                            sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
+                        const pageTitle = document.querySelector('.page-title');
+                        if (pageTitle) {
+                            pageTitle.textContent = sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
+                        }
                     }
                 });
             });
@@ -1577,6 +1374,7 @@
             
             if (themeToggle) {
                 themeToggle.addEventListener('change', function() {
+                    console.log('Theme toggle changed:', this.checked);
                     if (this.checked) {
                         document.body.classList.remove('light-theme');
                     } else {
@@ -1584,7 +1382,7 @@
                     }
                     
                     // Reinitialize charts with new theme colors
-                    initializeCharts();
+                    initCharts();
                 });
             }
 
@@ -1594,74 +1392,16 @@
             
             if (alertClose && alertBanner) {
                 alertClose.addEventListener('click', function() {
+                    console.log('Closing alert banner');
                     alertBanner.style.display = 'none';
                 });
             }
+        }
 
-            // Simulate real-time balance updates
-            function updateBalanceValue() {
-                const balanceValue = document.querySelector('.balance-value');
-                const balanceChange = document.querySelector('.balance-change');
-                
-                if (balanceValue && balanceChange) {
-                    // Get current value
-                    const currentValue = parseFloat(balanceValue.textContent.replace('$', '').replace(',', ''));
-                    
-                    // Generate small random change (-0.2% to +0.2%)
-                    const changePercent = (Math.random() * 0.4 - 0.2) / 100;
-                    const changeAmount = currentValue * changePercent;
-                    const newValue = currentValue + changeAmount;
-                    
-                    // Update display
-                    balanceValue.textContent = '$' + newValue.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                    
-                    // Update change text
-                    const currentChangeText = balanceChange.textContent;
-                    const currentChangePercent = parseFloat(currentChangeText.match(/\+?-?\d+\.\d+/)[0]);
-                    const newChangePercent = currentChangePercent + changePercent * 100;
-                    
-                    // Calculate new change amount
-                    const newChangeAmount = ((currentValue * newChangePercent) / 100).toFixed(2);
-                    
-                    // Update change text
-                    const changeText = `${newChangePercent >= 0 ? '+' : ''}${newChangePercent.toFixed(1)}% ($${Math.abs(newChangeAmount)})`;
-                    
-                    // Keep the LIVE badge
-                    const liveBadge = balanceChange.querySelector('.live-badge');
-                    balanceChange.innerHTML = changeText;
-                    balanceChange.appendChild(liveBadge);
-                    
-                    // Update class based on positive/negative
-                    if (newChangePercent >= 0) {
-                        balanceChange.classList.remove('negative');
-                        balanceChange.classList.add('positive');
-                    } else {
-                        balanceChange.classList.remove('positive');
-                        balanceChange.classList.add('negative');
-                    }
-                    
-                    // Add highlight effect
-                    balanceValue.style.transition = 'color 0.3s';
-                    balanceValue.style.color = newChangePercent >= 0 ? 'var(--color-positive)' : 'var(--color-negative)';
-                    
-                    setTimeout(() => {
-                        balanceValue.style.color = '';
-                    }, 500);
-                }
-            }
+        function initCharts() {
+            console.log('Initializing charts...');
             
-            // Update balance every 3 seconds
-            setInterval(updateBalanceValue, 3000);
-        });
-
-        function initializeCharts() {
-            // Check if Chart.js is loaded
-            if (typeof Chart === 'undefined') {
-                console.error('Chart.js is not loaded');
-                return;
-            }
-
-            // Get theme colors
+            // Get theme colors based on current theme
             const isDarkTheme = !document.body.classList.contains('light-theme');
             
             const chartColors = {
@@ -1675,19 +1415,40 @@
                 cardano: '#0033ad'
             };
 
-            // Balance Chart
+            // Initialize Balance Chart
+            initBalanceChart(chartColors);
+            
+            // Initialize Crypto Charts
+            initCryptoCharts(chartColors);
+            
+            // Initialize Portfolio Chart
+            initPortfolioChart(chartColors);
+            
+            // Initialize Market Chart
+            initMarketChart(chartColors);
+        }
+
+        function initBalanceChart(chartColors) {
+            console.log('Initializing balance chart...');
             const balanceChartEl = document.getElementById('balance-chart');
-            if (balanceChartEl) {
-                // Destroy existing chart if it exists
-                const existingChart = Chart.getChart(balanceChartEl);
-                if (existingChart) {
-                    existingChart.destroy();
-                }
+            
+            if (!balanceChartEl) {
+                console.error('Balance chart element not found!');
+                return;
+            }
+            
+            // Destroy existing chart if it exists
+            const existingChart = Chart.getChart(balanceChartEl);
+            if (existingChart) {
+                console.log('Destroying existing balance chart');
+                existingChart.destroy();
+            }
 
-                // Generate data for the last 7 days
-                const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-                const data = [42000, 43500, 43200, 44800, 44100, 45300, 45287.65];
+            // Generate data for the last 7 days
+            const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            const data = [42000, 43500, 43200, 44800, 44100, 45300, 45287.65];
 
+            try {
                 new Chart(balanceChartEl, {
                     type: 'line',
                     data: {
@@ -1713,7 +1474,7 @@
                             tooltip: {
                                 enabled: true,
                                 backgroundColor: chartColors.background,
-                                titleColor: isDarkTheme ? '#f8fafc' : '#0f172a',
+                                titleColor: chartColors.primary,
                                 bodyColor: chartColors.secondary,
                                 callbacks: {
                                     label: function(context) {
@@ -1732,249 +1493,10 @@
                         }
                     }
                 });
-            }
-
-            // Crypto Mini Charts
-            const cryptoCharts = [
-                { id: 'btc-chart', color: chartColors.bitcoin, trend: 'up' },
-                { id: 'eth-chart', color: chartColors.ethereum, trend: 'down' },
-                { id: 'sol-chart', color: chartColors.solana, trend: 'up' },
-                { id: 'ada-chart', color: chartColors.cardano, trend: 'up' }
-            ];
-
-            cryptoCharts.forEach(chart => {
-                const chartEl = document.getElementById(chart.id);
-                if (chartEl) {
-                    // Destroy existing chart if it exists
-                    const existingChart = Chart.getChart(chartEl);
-                    if (existingChart) {
-                        existingChart.destroy();
-                    }
-
-                    // Generate random data based on trend
-                    const data = [];
-                    let value = 100;
-                    for (let i = 0; i < 24; i++) {
-                        if (chart.trend === 'up') {
-                            value += Math.random() * 5 - 1.5; // Trending up
-                        } else {
-                            value -= Math.random() * 5 - 1.5; // Trending down
-                        }
-                        data.push(value);
-                    }
-
-                    new Chart(chartEl, {
-                        type: 'line',
-                        data: {
-                            labels: Array(24).fill(''),
-                            datasets: [{
-                                data: data,
-                                borderColor: chart.color,
-                                backgroundColor: `${chart.color}10`,
-                                fill: true,
-                                tension: 0.4,
-                                borderWidth: 2,
-                                pointRadius: 0
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    display: false
-                                },
-                                tooltip: {
-                                    enabled: false
-                                }
-                            },
-                            scales: {
-                                x: {
-                                    display: false
-                                },
-                                y: {
-                                    display: false
-                                }
-                            }
-                        }
-                    });
-                }
-            });
-
-            // Portfolio Chart
-            const portfolioChartEl = document.getElementById('portfolio-chart');
-            if (portfolioChartEl) {
-                // Destroy existing chart if it exists
-                const existingChart = Chart.getChart(portfolioChartEl);
-                if (existingChart) {
-                    existingChart.destroy();
-                }
-
-                new Chart(portfolioChartEl, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Bitcoin', 'Ethereum', 'Solana', 'Cardano', 'Others'],
-                        datasets: [{
-                            data: [45, 30, 15, 7, 3],
-                            backgroundColor: [
-                                chartColors.bitcoin,
-                                chartColors.ethereum,
-                                chartColors.solana,
-                                chartColors.cardano,
-                                chartColors.secondary
-                            ],
-                            borderWidth: 0,
-                            hoverOffset: 4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    color: chartColors.secondary,
-                                    font: {
-                                        size: 12
-                                    },
-                                    padding: 20
-                                }
-                            },
-                            tooltip: {
-                                backgroundColor: chartColors.background,
-                                titleColor: isDarkTheme ? '#f8fafc' : '#0f172a',
-                                bodyColor: chartColors.secondary,
-                                borderColor: chartColors.grid,
-                                borderWidth: 1,
-                                padding: 12,
-                                displayColors: true,
-                                callbacks: {
-                                    label: function(context) {
-                                        const value = context.raw;
-                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                        const percentage = Math.round((value / total) * 100);
-                                        return `${context.label}: ${percentage}%`;
-                                    }
-                                }
-                            }
-                        },
-                        cutout: '70%',
-                        animation: {
-                            animateScale: true,
-                            animateRotate: true
-                        }
-                    }
-                });
-            }
-
-            // Market Chart
-            const marketChartEl = document.getElementById('market-chart');
-            if (marketChartEl) {
-                // Destroy existing chart if it exists
-                const existingChart = Chart.getChart(marketChartEl);
-                if (existingChart) {
-                    existingChart.destroy();
-                }
-
-                // Generate some random data
-                const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                const btcData = [29000, 32000, 31500, 34000, 33000, 36000, 38000, 37000, 39000, 41000, 40000, 42000];
-                const ethData = [1600, 1700, 1650, 1800, 1750, 1900, 2000, 1950, 2100, 2200, 2150, 2300];
-
-                new Chart(marketChartEl, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [
-                            {
-                                label: 'Bitcoin',
-                                data: btcData,
-                                borderColor: chartColors.bitcoin,
-                                backgroundColor: 'rgba(247, 147, 26, 0.1)',
-                                fill: true,
-                                tension: 0.4,
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                pointHoverRadius: 4
-                            },
-                            {
-                                label: 'Ethereum',
-                                data: ethData,
-                                borderColor: chartColors.ethereum,
-                                backgroundColor: 'rgba(98, 126, 234, 0.1)',
-                                fill: true,
-                                tension: 0.4,
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                pointHoverRadius: 4
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        interaction: {
-                            mode: 'index',
-                            intersect: false
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    color: chartColors.secondary,
-                                    font: {
-                                        size: 12
-                                    },
-                                    usePointStyle: true
-                                }
-                            },
-                            tooltip: {
-                                backgroundColor: chartColors.background,
-                                titleColor: isDarkTheme ? '#f8fafc' : '#0f172a',
-                                bodyColor: chartColors.secondary,
-                                borderColor: chartColors.grid,
-                                borderWidth: 1,
-                                padding: 12,
-                                callbacks: {
-                                    label: function(context) {
-                                        return `${context.dataset.label}: $${context.raw.toLocaleString()}`;
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                grid: {
-                                    display: false
-                                },
-                                ticks: {
-                                    color: chartColors.secondary,
-                                    font: {
-                                        size: 10
-                                    }
-                                }
-                            },
-                            y: {
-                                grid: {
-                                    color: chartColors.grid,
-                                    borderDash: [5, 5]
-                                },
-                                ticks: {
-                                    color: chartColors.secondary,
-                                    font: {
-                                        size: 10
-                                    },
-                                    callback: function(value) {
-                                        return '$' + value.toLocaleString();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
+                console.log('Balance chart initialized successfully');
+            } catch (error) {
+                console.error('Error initializing balance chart:', error);
             }
         }
-    </script>
-</body>
-</html>
+
+        function initCryptoCharts(chartColors) {
